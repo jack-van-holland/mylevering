@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">MyLevering</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="nav_header_name">Jay Hopkins</string>
+    <string name="nav_header_account">View Account</string>
+    <string name="my_order">My Order</string>
+    <string name="kitchens">Kitchens</string>
+    <string name="past_orders">Past Orders</string>
+    <string name="payment">Payment</string>
+    <string name="settings">Settings</string>
+    <string name="help">Help</string>
+    <string name="about">About</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="filled_circle">Filled circle</string>
+    <string name="wok">Wok</string>
+    <string name="butterfly">Butterfly</string>
+    <string name="fresh">Fresh</string>
+    <string name="toastee">Toastee</string>
+    <string name="go">GO</string>
+    <string name="grill">Grill</string>
+</resources>

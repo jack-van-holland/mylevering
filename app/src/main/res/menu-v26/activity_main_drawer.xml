@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/my_order"
+        android:icon="@drawable/ic_menu_my_order"
+        android:title="@string/my_order"
+        android:iconTint="@color/colorPrimaryLight"/>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/kitchens"
+            android:icon="@drawable/ic_menu_kitchens"
+            android:title="@string/kitchens" />
+        <item
+            android:id="@+id/past_orders"
+            android:icon="@drawable/ic_menu_past_orders"
+            android:title="@string/past_orders" />
+        <item
+            android:id="@+id/payment"
+            android:icon="@drawable/ic_menu_payment"
+            android:title="@string/payment" />
+        <item
+            android:id="@+id/settings"
+            android:icon="@drawable/ic_menu_settings"
+            android:title="@string/settings" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/help"
+            android:icon="@drawable/ic_menu_help"
+            android:title="@string/help" />
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/ic_menu_about"
+            android:title="@string/about" />
+    </group>
+
+</menu>
