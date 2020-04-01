@@ -1,60 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.gridlayout.widget.GridLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".KitchensFrag"
-    app:columnCount="2"
-    app:rowCount="3">
+    tools:context=".KitchensFrag">
 
     <ImageView
         android:id="@+id/wok"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="50dp"
         android:contentDescription="@string/wok"
-        app:layout_column="0"
-        app:layout_row="0"
-        app:layout_gravity="left|top"
-        app:srcCompat="@drawable/wok"/>
+        app:layout_constraintBottom_toTopOf="@+id/fresh"
+        app:layout_constraintEnd_toStartOf="@+id/butterfly"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/wok" />
 
     <ImageView
         android:id="@+id/butterfly"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="30dp"
         android:contentDescription="@string/butterfly"
-        app:layout_column="1"
-        app:layout_row="0"
-        app:layout_gravity="left|top"
+        app:layout_constraintBottom_toTopOf="@+id/toastee"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/wok"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/butterfly" />
 
     <ImageView
         android:id="@+id/fresh"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="60dp"
         android:contentDescription="@string/fresh"
-        app:layout_column="0"
-        app:layout_row="1"
-        app:layout_gravity="left|top"
+        app:layout_constraintBottom_toTopOf="@+id/go"
+        app:layout_constraintEnd_toStartOf="@+id/toastee"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wok"
         app:srcCompat="@drawable/fresh" />
 
     <ImageView
         android:id="@+id/toastee"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="30dp"
         android:contentDescription="@string/toastee"
-        app:layout_column="1"
-        app:layout_row="1"
-        app:layout_gravity="left|top"
+        app:layout_constraintBottom_toTopOf="@+id/grill"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fresh"
+        app:layout_constraintTop_toBottomOf="@+id/butterfly"
         app:srcCompat="@drawable/toastee" />
 
     <ImageView
         android:id="@+id/go"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="110dp"
         android:contentDescription="@string/go"
-        app:layout_column="0"
-        app:layout_row="2"
-        app:layout_gravity="left|top"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/grill"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fresh"
         app:srcCompat="@drawable/go" />
 
     <ImageView
         android:id="@+id/grill"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="60dp"
         android:contentDescription="@string/grill"
-        app:layout_column="1"
-        app:layout_row="2"
-        app:layout_gravity="left|top"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/go"
+        app:layout_constraintTop_toBottomOf="@+id/toastee"
         app:srcCompat="@drawable/grill" />
 
-</androidx.gridlayout.widget.GridLayout>
+    <TextView
+        android:id="@+id/wok_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/wok"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/butterfly_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wok" />
+
+    <TextView
+        android:id="@+id/butterfly_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/butterfly"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/wok_label"
+        app:layout_constraintTop_toBottomOf="@+id/butterfly" />
+
+    <TextView
+        android:id="@+id/fresh_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/fresh"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/toastee_label"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fresh" />
+
+    <TextView
+        android:id="@+id/toastee_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/toastee"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fresh_label"
+        app:layout_constraintTop_toBottomOf="@+id/toastee" />
+
+    <TextView
+        android:id="@+id/go_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/go"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/grill_label"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/go" />
+
+    <TextView
+        android:id="@+id/grill_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/grill"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/go_label"
+        app:layout_constraintTop_toBottomOf="@+id/grill" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

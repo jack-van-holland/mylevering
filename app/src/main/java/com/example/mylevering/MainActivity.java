@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -18,7 +19,12 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private NavigationView navigationView;
-    private Fragment frag;
+    private Fragment kitchenFrag;
+    private Fragment myOrderFrag;
+    private Fragment pastOrdersFrag;
+    private Fragment paymentFrag;
+    private Fragment settingsFrag;
+    private FragmentTransaction transaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +40,14 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        frag = new KitchensFrag();
+        kitchenFrag = new KitchensFrag();
+        myOrderFrag = new MyOrderFrag();
+        pastOrdersFrag = new PastOrdersFrag();
+        paymentFrag = new PaymentFrag();
+        settingsFrag = new SettingsFrag();
+
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container, frag).commit();
+                .add(R.id.fragment_container, kitchenFrag).commit();
 
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -47,29 +58,34 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.my_order) {
-            frag = new MyOrderFrag();
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, frag).commit();
+            transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, myOrderFrag);
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
         else if (id == R.id.kitchens) {
-            frag = new KitchensFrag();
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, frag).commit();
+            transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, kitchenFrag);
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
         else if (id == R.id.past_orders) {
-            frag = new PastOrdersFrag();
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, frag).commit();
+            transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, pastOrdersFrag);
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
         else if (id == R.id.payment) {
-            frag = new PaymentFrag();
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, frag).commit();
+            transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, paymentFrag);
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
         else if (id == R.id.settings) {
-            frag = new SettingsFrag();
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, frag).commit();
+            transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, settingsFrag);
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
