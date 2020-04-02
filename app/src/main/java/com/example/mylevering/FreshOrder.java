@@ -164,5 +164,116 @@ public class FreshOrder extends AppCompatActivity {
         topping.setPadding(50,0,0,0);
         fresh.addView(topping);
 
+        final LinearLayout protein = new LinearLayout(getApplicationContext());
+        protein.setOrientation(LinearLayout.VERTICAL);
+
+        RadioGroup proteinGroup = new RadioGroup(getApplicationContext());
+        RadioButton[] proteinButtons = new RadioButton[FreshMenuOption.proteinNames.length];
+        for (int i = 0; i < FreshMenuOption.proteinNames.length; i++){
+            proteinButtons[i] = new RadioButton(getApplicationContext());
+            proteinButtons[i].setText(FreshMenuOption.proteinNames[i]);
+            proteinGroup.addView(proteinButtons[i]);
+        }
+        final TextView proteinShown = new TextView(getApplicationContext());
+        proteinShown.setText("True");
+        TextView proteinTitle = new TextView(getApplicationContext());
+        proteinTitle.setText(R.string.protein);
+        final ImageView proteinToggle = new ImageView(getApplicationContext());
+        proteinToggle.setClickable(true);
+        proteinToggle.setImageResource(R.drawable.baseline_arrow_drop_up_black_18dp);
+
+        LinearLayout proteinHeader = new LinearLayout(getApplicationContext());
+        proteinHeader.addView(proteinTitle);
+        proteinHeader.addView(proteinToggle);
+        proteinHeader.setPadding(50, 50,0,0);
+
+
+
+        proteinToggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ("True".equals(proteinShown.getText().toString())) {
+                    fresh.removeView(protein);
+                    proteinToggle.setImageResource(R.drawable.baseline_arrow_drop_down_black_18dp);
+                    proteinShown.setText("False");
+                } else {
+                    int aboveViews = 4;
+                    if ("True".equals(baseShown.getText().toString())) {
+                        aboveViews += 1;
+                    }
+                    if ("True".equals(spreadShown.getText().toString())) {
+                        aboveViews += 1;
+                    }
+                    if ("True".equals(toppingShown.getText().toString())) {
+                        aboveViews += 1;
+                    }
+                    fresh.addView(protein, aboveViews);
+                    proteinShown.setText("True");
+                    proteinToggle.setImageResource(R.drawable.baseline_arrow_drop_up_black_18dp);
+                }
+            }
+        });
+        fresh.addView(proteinHeader);
+        protein.addView(proteinGroup);
+        protein.setPadding(50,0,0,0);
+        fresh.addView(protein);
+
+        final LinearLayout dressing = new LinearLayout(getApplicationContext());
+        dressing.setOrientation(LinearLayout.VERTICAL);
+
+        RadioGroup dressingGroup = new RadioGroup(getApplicationContext());
+        RadioButton[] dressingButtons = new RadioButton[FreshMenuOption.dressingNames.length];
+        for (int i = 0; i < FreshMenuOption.dressingNames.length; i++){
+            dressingButtons[i] = new RadioButton(getApplicationContext());
+            dressingButtons[i].setText(FreshMenuOption.dressingNames[i]);
+            dressingGroup.addView(dressingButtons[i]);
+        }
+        final TextView dressingShown = new TextView(getApplicationContext());
+        dressingShown.setText("True");
+        TextView dressingTitle = new TextView(getApplicationContext());
+        dressingTitle.setText(R.string.dressing);
+        final ImageView dressingToggle = new ImageView(getApplicationContext());
+        dressingToggle.setClickable(true);
+        dressingToggle.setImageResource(R.drawable.baseline_arrow_drop_up_black_18dp);
+
+        LinearLayout dressingHeader = new LinearLayout(getApplicationContext());
+        dressingHeader.addView(dressingTitle);
+        dressingHeader.addView(dressingToggle);
+        dressingHeader.setPadding(50, 50,0,0);
+
+
+
+        dressingToggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ("True".equals(dressingShown.getText().toString())) {
+                    fresh.removeView(dressing);
+                    dressingToggle.setImageResource(R.drawable.baseline_arrow_drop_down_black_18dp);
+                    dressingShown.setText("False");
+                } else {
+                    int aboveViews = 5;
+                    if ("True".equals(baseShown.getText().toString())) {
+                        aboveViews += 1;
+                    }
+                    if ("True".equals(spreadShown.getText().toString())) {
+                        aboveViews += 1;
+                    }
+                    if ("True".equals(toppingShown.getText().toString())) {
+                        aboveViews += 1;
+                    }
+                    if ("True".equals(proteinShown.getText().toString())) {
+                        aboveViews += 1;
+                    }
+                    fresh.addView(dressing, aboveViews);
+                    dressingShown.setText("True");
+                    dressingToggle.setImageResource(R.drawable.baseline_arrow_drop_up_black_18dp);
+                }
+            }
+        });
+        fresh.addView(dressingHeader);
+        dressing.addView(dressingGroup);
+        dressing.setPadding(50,0,0,0);
+        fresh.addView(dressing);
+
     }
 }
