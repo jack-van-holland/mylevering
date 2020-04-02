@@ -104,70 +104,60 @@
         android:id="@+id/wok_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="@string/wok"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/butterfly_label"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/wok"
+        app:layout_constraintStart_toStartOf="@+id/wok"
         app:layout_constraintTop_toBottomOf="@+id/wok" />
 
     <TextView
         android:id="@+id/butterfly_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="@string/butterfly"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/wok_label"
-        app:layout_constraintTop_toBottomOf="@+id/butterfly" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/wok_label"
+        app:layout_constraintEnd_toEndOf="@+id/butterfly"
+        app:layout_constraintStart_toStartOf="@+id/butterfly" />
 
     <TextView
         android:id="@+id/fresh_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="@string/fresh"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/toastee_label"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/fresh"
+        app:layout_constraintStart_toStartOf="@+id/fresh"
         app:layout_constraintTop_toBottomOf="@+id/fresh" />
 
     <TextView
         android:id="@+id/toastee_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="@string/toastee"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/fresh_label"
-        app:layout_constraintTop_toBottomOf="@+id/toastee" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/fresh_label"
+        app:layout_constraintEnd_toEndOf="@+id/toastee"
+        app:layout_constraintStart_toStartOf="@+id/toastee" />
 
     <TextView
         android:id="@+id/go_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="@string/go"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/grill_label"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/go"
+        app:layout_constraintStart_toStartOf="@+id/go"
         app:layout_constraintTop_toBottomOf="@+id/go" />
 
     <TextView
         android:id="@+id/grill_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="@string/grill"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/go_label"
-        app:layout_constraintTop_toBottomOf="@+id/grill" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/go_label"
+        app:layout_constraintEnd_toEndOf="@+id/grill"
+        app:layout_constraintStart_toStartOf="@+id/grill" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
