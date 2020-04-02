@@ -174,6 +174,8 @@ public class FreshOrder extends AppCompatActivity {
 
         final Button orderButton = findViewById(R.id.orderButton);
 
+
+
         baseToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -186,7 +188,6 @@ public class FreshOrder extends AppCompatActivity {
                     baseShown.setText("True");
                     baseToggle.setImageResource(R.drawable.baseline_arrow_drop_up_black_18dp);
                 }
-                changeButton(orderButton, baseGroup, spreadChecks, toppingChecks, proteinGroup, dressingGroup);
             }
         });
 
@@ -206,7 +207,6 @@ public class FreshOrder extends AppCompatActivity {
                     spreadShown.setText("True");
                     spreadToggle.setImageResource(R.drawable.baseline_arrow_drop_up_black_18dp);
                 }
-                changeButton(orderButton, baseGroup, spreadChecks, toppingChecks, proteinGroup, dressingGroup);
             }
         });
 
@@ -229,7 +229,6 @@ public class FreshOrder extends AppCompatActivity {
                     toppingShown.setText("True");
                     toppingToggle.setImageResource(R.drawable.baseline_arrow_drop_up_black_18dp);
                 }
-                changeButton(orderButton, baseGroup, spreadChecks, toppingChecks, proteinGroup, dressingGroup);
             }
         });
 
@@ -255,7 +254,6 @@ public class FreshOrder extends AppCompatActivity {
                     proteinShown.setText("True");
                     proteinToggle.setImageResource(R.drawable.baseline_arrow_drop_up_black_18dp);
                 }
-                changeButton(orderButton, baseGroup, spreadChecks, toppingChecks, proteinGroup, dressingGroup);
             }
         });
 
@@ -284,10 +282,31 @@ public class FreshOrder extends AppCompatActivity {
                     dressingShown.setText("True");
                     dressingToggle.setImageResource(R.drawable.baseline_arrow_drop_up_black_18dp);
                 }
-                changeButton(orderButton, baseGroup, spreadChecks, toppingChecks, proteinGroup, dressingGroup);
             }
         });
 
+        View.OnClickListener checkSelection = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeButton(orderButton, baseGroup, spreadChecks, toppingChecks, proteinGroup, dressingGroup);
+            }
+        };
+
+        for (int i = 0; i < baseButtons.length; i++) {
+            baseButtons[i].setOnClickListener(checkSelection);
+        }
+        for (int i = 0; i < spreadChecks.length; i++) {
+            spreadChecks[i].setOnClickListener(checkSelection);
+        }
+        for (int i = 0; i < toppingChecks.length; i++) {
+            toppingChecks[i].setOnClickListener(checkSelection);
+        }
+        for (int i = 0; i < proteinButtons.length; i++) {
+            proteinButtons[i].setOnClickListener(checkSelection);
+        }
+        for (int i = 0; i < dressingButtons.length; i++) {
+            dressingButtons[i].setOnClickListener(checkSelection);
+        }
         if (orderButton.isClickable()) {
             orderButton.setOnClickListener(new View.OnClickListener() {
                 @Override
