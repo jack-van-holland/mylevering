@@ -22,4 +22,9 @@
     <string name="toastee">Toastee</string>
     <string name="go">GO</string>
     <string name="grill">Grill</string>
+    <string name="base">Base</string>
+    <string name="spreads">Spreads (max 3)</string>
+    <string name="toppings">Toppings (max 5)</string>
+    <string name="protein">Protein</string>
+    <string name="dressing">Dressing</string>
 </resources>
