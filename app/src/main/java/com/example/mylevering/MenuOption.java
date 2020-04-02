@@ -5,18 +5,18 @@ import java.io.Serializable;
 public class MenuOption implements Serializable {
     protected String title;
     protected String description;
-    protected Price price;
+    //protected Price price;
 
     public MenuOption() {
         title = "";
         description = "";
-        price = new Price();
+      //  price = new Price();
     }
 
     public MenuOption(String t, String d, Price p) {
         title = t;
         description = d;
-        price = p;
+        //price = p;
     }
 
     public String getDescription(){
@@ -27,13 +27,13 @@ public class MenuOption implements Serializable {
         return title;
     }
 
-    public Price getPrice() {
-        return price;
-    }
+    //public Price getPrice() {
+      //  return price;
+    //}
 
-    public void setPrice(Price p) {
-        price = p;
-    }
+    //public void setPrice(Price p) {
+      //  price = p;
+   // }
 
     public void setTitle(String t) {
         title = t;

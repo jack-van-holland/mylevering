@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -21,6 +22,7 @@ import com.google.android.material.resources.TextAppearance;
 
 public class FreshOrder extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,10 +33,11 @@ public class FreshOrder extends AppCompatActivity {
         base.setOrientation(LinearLayout.VERTICAL);
 
         final RadioGroup baseGroup = new RadioGroup(getApplicationContext());
-        RadioButton[] baseButtons = new RadioButton[FreshMenuOption.baseNames.length];
+        final RadioButton[] baseButtons = new RadioButton[FreshMenuOption.baseNames.length];
         for (int i = 0; i < FreshMenuOption.baseNames.length; i++){
             baseButtons[i] = new RadioButton(getApplicationContext());
             baseButtons[i].setText(FreshMenuOption.baseNames[i]);
+            baseButtons[i].setId(View.generateViewId());
             baseGroup.addView(baseButtons[i]);
         }
         final TextView baseShown = new TextView(getApplicationContext());
@@ -62,6 +65,7 @@ public class FreshOrder extends AppCompatActivity {
         for (int i = 0; i < FreshMenuOption.spreadNames.length; i++){
             spreadChecks[i] = new CheckBox(getApplicationContext());
             spreadChecks[i].setText(FreshMenuOption.spreadNames[i]);
+            spreadChecks[i].setId(View.generateViewId());
             spread.addView(spreadChecks[i]);
         }
         final TextView spreadShown = new TextView(getApplicationContext());
@@ -88,6 +92,7 @@ public class FreshOrder extends AppCompatActivity {
         for (int i = 0; i < FreshMenuOption.toppingNames.length; i++){
             toppingChecks[i] = new CheckBox(getApplicationContext());
             toppingChecks[i].setText(FreshMenuOption.toppingNames[i]);
+            toppingChecks[i].setId(View.generateViewId());
             topping.addView(toppingChecks[i]);
         }
         final TextView toppingShown = new TextView(getApplicationContext());
@@ -111,10 +116,11 @@ public class FreshOrder extends AppCompatActivity {
         protein.setOrientation(LinearLayout.VERTICAL);
 
         final RadioGroup proteinGroup = new RadioGroup(getApplicationContext());
-        RadioButton[] proteinButtons = new RadioButton[FreshMenuOption.proteinNames.length];
+        final RadioButton[] proteinButtons = new RadioButton[FreshMenuOption.proteinNames.length];
         for (int i = 0; i < FreshMenuOption.proteinNames.length; i++){
             proteinButtons[i] = new RadioButton(getApplicationContext());
             proteinButtons[i].setText(FreshMenuOption.proteinNames[i]);
+            proteinButtons[i].setId(View.generateViewId());
             proteinGroup.addView(proteinButtons[i]);
         }
         final TextView proteinShown = new TextView(getApplicationContext());
@@ -140,10 +146,11 @@ public class FreshOrder extends AppCompatActivity {
         dressing.setOrientation(LinearLayout.VERTICAL);
 
         final RadioGroup dressingGroup = new RadioGroup(getApplicationContext());
-        RadioButton[] dressingButtons = new RadioButton[FreshMenuOption.dressingNames.length];
+        final RadioButton[] dressingButtons = new RadioButton[FreshMenuOption.dressingNames.length];
         for (int i = 0; i < FreshMenuOption.dressingNames.length; i++){
             dressingButtons[i] = new RadioButton(getApplicationContext());
             dressingButtons[i].setText(FreshMenuOption.dressingNames[i]);
+            dressingButtons[i].setId(View.generateViewId());
             dressingGroup.addView(dressingButtons[i]);
         }
         final TextView dressingShown = new TextView(getApplicationContext());
@@ -286,9 +293,11 @@ public class FreshOrder extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     MenuOption selected;
-                    selected = getChoices(baseGroup, spreadChecks, toppingChecks, proteinGroup, dressingGroup);
+                    selected = getChoices(baseButtons, spreadChecks, toppingChecks, proteinButtons, dressingButtons);
                     Intent intent = new Intent(FreshOrder.this, ConfirmOrder.class);
-                    intent.putExtra("MenuOption", selected);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("selected", selected);
+                    intent.putExtras(bundle);
                     startActivity(intent);
                 }
             });
@@ -296,10 +305,14 @@ public class FreshOrder extends AppCompatActivity {
 
     }
 
-    public FreshMenuOption getChoices(RadioGroup baseGroup, CheckBox[] spreadChecks, CheckBox[] toppingChecks,
-                                      RadioGroup proteinGroup, RadioGroup dressingGroup) {
-
-        int base = baseGroup.indexOfChild(findViewById(baseGroup.getCheckedRadioButtonId()));
+    public FreshMenuOption getChoices(RadioButton[] baseButtons, CheckBox[] spreadChecks, CheckBox[] toppingChecks,
+                                      RadioButton[] proteinButtons, RadioButton[] dressingButtons) {
+        int base = -1;
+        for (int i = 0; i < baseButtons.length; i++) {
+            if(baseButtons[i].isChecked()) {
+                base = i;
+            }
+        }
         int[] spreads = new int[spreadChecks.length];
         for (int i = 0; i < spreadChecks.length; i++) {
             if(spreadChecks[i].isChecked()) {
@@ -312,8 +325,18 @@ public class FreshOrder extends AppCompatActivity {
                 toppings[i] = 1;
             }
         }
-        int protein = baseGroup.indexOfChild(findViewById(proteinGroup.getCheckedRadioButtonId()));
-        int dressing = baseGroup.indexOfChild(findViewById(dressingGroup.getCheckedRadioButtonId()));
+        int protein = -1;
+        for (int i = 0; i < proteinButtons.length; i++) {
+            if(proteinButtons[i].isChecked()) {
+                protein = i;
+            }
+        }
+        int dressing = -1;
+        for (int i = 0; i < dressingButtons.length; i++) {
+            if(dressingButtons[i].isChecked()) {
+                dressing = i;
+            }
+        }
         return new FreshMenuOption(base, spreads, toppings, protein, dressing);
     }
 
