@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
+import android.widget.TextView;
 
 public class ConfirmOrder extends AppCompatActivity {
 
@@ -17,5 +19,7 @@ public class ConfirmOrder extends AppCompatActivity {
         MenuOption selected = (MenuOption) bundle.getSerializable("selected");
         Log.d("description", selected.description);
         Log.d("title", selected.title);
+        TextView txt = findViewById(R.id.textView);
+        txt.setText(Html.fromHtml(selected.description));
     }
 }
