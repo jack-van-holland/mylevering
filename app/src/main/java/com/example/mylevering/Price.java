@@ -8,6 +8,7 @@ public class Price {
         dollars = 0;
         cents = 0;
     }
+
     public Price(int d, int c) {
         if (c > 99) {
             d += (c / 100);

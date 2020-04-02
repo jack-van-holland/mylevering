@@ -10,11 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.example.mylevering.MainActivity"
+            android:name=".FreshOrder"
+            android:parentActivityName=".MainActivity"
+                ></activity>
+        <activity
+            android:name=".MainActivity"
             android:label="@string/kitchens"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
-        <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />

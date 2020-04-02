@@ -1,9 +1,11 @@
 package com.example.mylevering;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
@@ -16,6 +18,16 @@ public class KitchensFrag extends Fragment {
         if (main != null) {
             main.setTitle("Kitchens");
         }
-        return inflater.inflate(R.layout.fragment_kitchens, container, false);
+        View currView = inflater.inflate(R.layout.fragment_kitchens, container, false);
+        ImageView freshButton = (ImageView) currView.findViewById(R.id.fresh);
+        freshButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), FreshOrder.class);
+                startActivity(intent);
+            }
+        });
+
+        return currView;
     }
 }

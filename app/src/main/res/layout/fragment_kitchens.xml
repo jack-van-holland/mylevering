@@ -46,6 +46,8 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="60dp"
         android:contentDescription="@string/fresh"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintBottom_toTopOf="@+id/go"
         app:layout_constraintEnd_toStartOf="@+id/toastee"
         app:layout_constraintHorizontal_bias="0.5"
