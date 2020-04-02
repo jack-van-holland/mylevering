@@ -1,12 +1,12 @@
 package com.example.mylevering;
 
 public class FreshMenuOption extends MenuOption {
-    public String[] baseNames = {"Brown Rice", "Farro", "Quinoa", "Spinach", "Mixed Greens", "No Base"};
-    public String[] spreadNames = {"Sesame Hummus", "Spicy Hummus", "Crazy Feta", "Tzatziki","Harissa", "No Spreads"};
-    public String[] toppingNames = {"Bell Peppers", "Feta Cheese", "Cucumbers", "Pita Chips", "Olives", "Beans", "Chickpeas",
+    public static final String[] baseNames = {"Brown Rice", "Farro", "Quinoa", "Spinach", "Mixed Greens", "No Base"};
+    public static final String[] spreadNames = {"Sesame Hummus", "Spicy Hummus", "Crazy Feta", "Tzatziki","Harissa", "No Spreads"};
+    public static final String[] toppingNames = {"Bell Peppers", "Feta Cheese", "Cucumbers", "Pita Chips", "Olives", "Beans", "Chickpeas",
                                     "Broccoli", "Carrots", "Baby Corn", "Croutons", "No Toppings"};
-    public String[] proteinNames = {"Falafel", "Herb Chicken", "Tofu", "No Protein"};
-    public String[] dressingNames = {"Italian", "Caesar", "Ranch", "Tahini", "Balsamic Vinaigrette", "No Dressing"};
+    public static final String[] proteinNames = {"Falafel", "Herb Chicken", "Tofu", "No Protein"};
+    public static final String[] dressingNames = {"Italian", "Caesar", "Ranch", "Tahini", "Balsamic Vinaigrette", "No Dressing"};
     private int base;
     private int[] spreads;
     private int[] toppings;
