@@ -1,6 +1,8 @@
 package com.example.mylevering;
 
-public class MenuOption {
+import java.io.Serializable;
+
+public class MenuOption implements Serializable {
     protected String title;
     protected String description;
     protected Price price;

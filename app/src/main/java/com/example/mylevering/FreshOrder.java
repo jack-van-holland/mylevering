@@ -2,11 +2,13 @@ package com.example.mylevering;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,12 +30,12 @@ public class FreshOrder extends AppCompatActivity {
         final LinearLayout base = new LinearLayout(getApplicationContext());
         base.setOrientation(LinearLayout.VERTICAL);
 
-        RadioGroup group = new RadioGroup(getApplicationContext());
-        RadioButton[] buttons = new RadioButton[FreshMenuOption.baseNames.length];
+        final RadioGroup baseGroup = new RadioGroup(getApplicationContext());
+        RadioButton[] baseButtons = new RadioButton[FreshMenuOption.baseNames.length];
         for (int i = 0; i < FreshMenuOption.baseNames.length; i++){
-            buttons[i] = new RadioButton(getApplicationContext());
-            buttons[i].setText(FreshMenuOption.baseNames[i]);
-            group.addView(buttons[i]);
+            baseButtons[i] = new RadioButton(getApplicationContext());
+            baseButtons[i].setText(FreshMenuOption.baseNames[i]);
+            baseGroup.addView(baseButtons[i]);
         }
         final TextView baseShown = new TextView(getApplicationContext());
         baseShown.setText("True");
@@ -48,31 +50,15 @@ public class FreshOrder extends AppCompatActivity {
         baseHeader.addView(baseToggle);
         baseHeader.setPadding(50, 50,0,0);
 
-
-
-        baseToggle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if ("True".equals(baseShown.getText().toString())) {
-                    fresh.removeView(base);
-                    baseToggle.setImageResource(R.drawable.baseline_arrow_drop_down_black_18dp);
-                    baseShown.setText("False");
-                } else {
-                    fresh.addView(base, 1);
-                    baseShown.setText("True");
-                    baseToggle.setImageResource(R.drawable.baseline_arrow_drop_up_black_18dp);
-                }
-            }
-        });
         fresh.addView(baseHeader);
-        base.addView(group);
+        base.addView(baseGroup);
         base.setPadding(50,0,0,0);
         fresh.addView(base);
 
         final LinearLayout spread = new LinearLayout(getApplicationContext());
         spread.setOrientation(LinearLayout.VERTICAL);
 
-        CheckBox[] spreadChecks = new CheckBox[FreshMenuOption.spreadNames.length];
+        final CheckBox[] spreadChecks = new CheckBox[FreshMenuOption.spreadNames.length];
         for (int i = 0; i < FreshMenuOption.spreadNames.length; i++){
             spreadChecks[i] = new CheckBox(getApplicationContext());
             spreadChecks[i].setText(FreshMenuOption.spreadNames[i]);
@@ -91,26 +77,6 @@ public class FreshOrder extends AppCompatActivity {
         spreadHeader.addView(spreadToggle);
         spreadHeader.setPadding(50, 50,0,0);
 
-
-
-        spreadToggle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if ("True".equals(spreadShown.getText().toString())) {
-                    fresh.removeView(spread);
-                    spreadToggle.setImageResource(R.drawable.baseline_arrow_drop_down_black_18dp);
-                    spreadShown.setText("False");
-                } else {
-                    int aboveViews = 2;
-                    if ("True".equals(baseShown.getText().toString())) {
-                        aboveViews += 1;
-                    }
-                    fresh.addView(spread, aboveViews);
-                    spreadShown.setText("True");
-                    spreadToggle.setImageResource(R.drawable.baseline_arrow_drop_up_black_18dp);
-                }
-            }
-        });
         fresh.addView(spreadHeader);
         spread.setPadding(50,0,0,0);
         fresh.addView(spread);
@@ -118,7 +84,7 @@ public class FreshOrder extends AppCompatActivity {
         final LinearLayout topping = new LinearLayout(getApplicationContext());
         topping.setOrientation(LinearLayout.VERTICAL);
 
-        CheckBox[] toppingChecks = new CheckBox[FreshMenuOption.toppingNames.length];
+        final CheckBox[] toppingChecks = new CheckBox[FreshMenuOption.toppingNames.length];
         for (int i = 0; i < FreshMenuOption.toppingNames.length; i++){
             toppingChecks[i] = new CheckBox(getApplicationContext());
             toppingChecks[i].setText(FreshMenuOption.toppingNames[i]);
@@ -137,29 +103,6 @@ public class FreshOrder extends AppCompatActivity {
         toppingHeader.addView(toppingToggle);
         toppingHeader.setPadding(50, 50,0,0);
 
-
-
-        toppingToggle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if ("True".equals(toppingShown.getText().toString())) {
-                    fresh.removeView(topping);
-                    toppingToggle.setImageResource(R.drawable.baseline_arrow_drop_down_black_18dp);
-                    toppingShown.setText("False");
-                } else {
-                    int aboveViews = 3;
-                    if ("True".equals(baseShown.getText().toString())) {
-                        aboveViews += 1;
-                    }
-                    if ("True".equals(spreadShown.getText().toString())) {
-                        aboveViews += 1;
-                    }
-                    fresh.addView(topping, aboveViews);
-                    toppingShown.setText("True");
-                    toppingToggle.setImageResource(R.drawable.baseline_arrow_drop_up_black_18dp);
-                }
-            }
-        });
         fresh.addView(toppingHeader);
         topping.setPadding(50,0,0,0);
         fresh.addView(topping);
@@ -167,7 +110,7 @@ public class FreshOrder extends AppCompatActivity {
         final LinearLayout protein = new LinearLayout(getApplicationContext());
         protein.setOrientation(LinearLayout.VERTICAL);
 
-        RadioGroup proteinGroup = new RadioGroup(getApplicationContext());
+        final RadioGroup proteinGroup = new RadioGroup(getApplicationContext());
         RadioButton[] proteinButtons = new RadioButton[FreshMenuOption.proteinNames.length];
         for (int i = 0; i < FreshMenuOption.proteinNames.length; i++){
             proteinButtons[i] = new RadioButton(getApplicationContext());
@@ -188,6 +131,100 @@ public class FreshOrder extends AppCompatActivity {
         proteinHeader.setPadding(50, 50,0,0);
 
 
+        fresh.addView(proteinHeader);
+        protein.addView(proteinGroup);
+        protein.setPadding(50,0,0,0);
+        fresh.addView(protein);
+
+        final LinearLayout dressing = new LinearLayout(getApplicationContext());
+        dressing.setOrientation(LinearLayout.VERTICAL);
+
+        final RadioGroup dressingGroup = new RadioGroup(getApplicationContext());
+        RadioButton[] dressingButtons = new RadioButton[FreshMenuOption.dressingNames.length];
+        for (int i = 0; i < FreshMenuOption.dressingNames.length; i++){
+            dressingButtons[i] = new RadioButton(getApplicationContext());
+            dressingButtons[i].setText(FreshMenuOption.dressingNames[i]);
+            dressingGroup.addView(dressingButtons[i]);
+        }
+        final TextView dressingShown = new TextView(getApplicationContext());
+        dressingShown.setText("True");
+        TextView dressingTitle = new TextView(getApplicationContext());
+        dressingTitle.setText(R.string.dressing);
+        final ImageView dressingToggle = new ImageView(getApplicationContext());
+        dressingToggle.setClickable(true);
+        dressingToggle.setImageResource(R.drawable.baseline_arrow_drop_up_black_18dp);
+
+        LinearLayout dressingHeader = new LinearLayout(getApplicationContext());
+        dressingHeader.addView(dressingTitle);
+        dressingHeader.addView(dressingToggle);
+        dressingHeader.setPadding(50, 50,0,0);
+
+
+        fresh.addView(dressingHeader);
+        dressing.addView(dressingGroup);
+        dressing.setPadding(50,0,0,0);
+        fresh.addView(dressing);
+
+        final Button orderButton = findViewById(R.id.orderButton);
+
+        baseToggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ("True".equals(baseShown.getText().toString())) {
+                    fresh.removeView(base);
+                    baseToggle.setImageResource(R.drawable.baseline_arrow_drop_down_black_18dp);
+                    baseShown.setText("False");
+                } else {
+                    fresh.addView(base, 1);
+                    baseShown.setText("True");
+                    baseToggle.setImageResource(R.drawable.baseline_arrow_drop_up_black_18dp);
+                }
+                changeButton(orderButton, baseGroup, spreadChecks, toppingChecks, proteinGroup, dressingGroup);
+            }
+        });
+
+        spreadToggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ("True".equals(spreadShown.getText().toString())) {
+                    fresh.removeView(spread);
+                    spreadToggle.setImageResource(R.drawable.baseline_arrow_drop_down_black_18dp);
+                    spreadShown.setText("False");
+                } else {
+                    int aboveViews = 2;
+                    if ("True".equals(baseShown.getText().toString())) {
+                        aboveViews += 1;
+                    }
+                    fresh.addView(spread, aboveViews);
+                    spreadShown.setText("True");
+                    spreadToggle.setImageResource(R.drawable.baseline_arrow_drop_up_black_18dp);
+                }
+                changeButton(orderButton, baseGroup, spreadChecks, toppingChecks, proteinGroup, dressingGroup);
+            }
+        });
+
+        toppingToggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ("True".equals(toppingShown.getText().toString())) {
+                    fresh.removeView(topping);
+                    toppingToggle.setImageResource(R.drawable.baseline_arrow_drop_down_black_18dp);
+                    toppingShown.setText("False");
+                } else {
+                    int aboveViews = 3;
+                    if ("True".equals(baseShown.getText().toString())) {
+                        aboveViews += 1;
+                    }
+                    if ("True".equals(spreadShown.getText().toString())) {
+                        aboveViews += 1;
+                    }
+                    fresh.addView(topping, aboveViews);
+                    toppingShown.setText("True");
+                    toppingToggle.setImageResource(R.drawable.baseline_arrow_drop_up_black_18dp);
+                }
+                changeButton(orderButton, baseGroup, spreadChecks, toppingChecks, proteinGroup, dressingGroup);
+            }
+        });
 
         proteinToggle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,37 +248,9 @@ public class FreshOrder extends AppCompatActivity {
                     proteinShown.setText("True");
                     proteinToggle.setImageResource(R.drawable.baseline_arrow_drop_up_black_18dp);
                 }
+                changeButton(orderButton, baseGroup, spreadChecks, toppingChecks, proteinGroup, dressingGroup);
             }
         });
-        fresh.addView(proteinHeader);
-        protein.addView(proteinGroup);
-        protein.setPadding(50,0,0,0);
-        fresh.addView(protein);
-
-        final LinearLayout dressing = new LinearLayout(getApplicationContext());
-        dressing.setOrientation(LinearLayout.VERTICAL);
-
-        RadioGroup dressingGroup = new RadioGroup(getApplicationContext());
-        RadioButton[] dressingButtons = new RadioButton[FreshMenuOption.dressingNames.length];
-        for (int i = 0; i < FreshMenuOption.dressingNames.length; i++){
-            dressingButtons[i] = new RadioButton(getApplicationContext());
-            dressingButtons[i].setText(FreshMenuOption.dressingNames[i]);
-            dressingGroup.addView(dressingButtons[i]);
-        }
-        final TextView dressingShown = new TextView(getApplicationContext());
-        dressingShown.setText("True");
-        TextView dressingTitle = new TextView(getApplicationContext());
-        dressingTitle.setText(R.string.dressing);
-        final ImageView dressingToggle = new ImageView(getApplicationContext());
-        dressingToggle.setClickable(true);
-        dressingToggle.setImageResource(R.drawable.baseline_arrow_drop_up_black_18dp);
-
-        LinearLayout dressingHeader = new LinearLayout(getApplicationContext());
-        dressingHeader.addView(dressingTitle);
-        dressingHeader.addView(dressingToggle);
-        dressingHeader.setPadding(50, 50,0,0);
-
-
 
         dressingToggle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -268,12 +277,97 @@ public class FreshOrder extends AppCompatActivity {
                     dressingShown.setText("True");
                     dressingToggle.setImageResource(R.drawable.baseline_arrow_drop_up_black_18dp);
                 }
+                changeButton(orderButton, baseGroup, spreadChecks, toppingChecks, proteinGroup, dressingGroup);
             }
         });
-        fresh.addView(dressingHeader);
-        dressing.addView(dressingGroup);
-        dressing.setPadding(50,0,0,0);
-        fresh.addView(dressing);
 
+        if (orderButton.isClickable()) {
+            orderButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MenuOption selected;
+                    selected = getChoices(baseGroup, spreadChecks, toppingChecks, proteinGroup, dressingGroup);
+                    Intent intent = new Intent(FreshOrder.this, ConfirmOrder.class);
+                    intent.putExtra("MenuOption", selected);
+                    startActivity(intent);
+                }
+            });
+        }
+
+    }
+
+    public FreshMenuOption getChoices(RadioGroup baseGroup, CheckBox[] spreadChecks, CheckBox[] toppingChecks,
+                                      RadioGroup proteinGroup, RadioGroup dressingGroup) {
+
+        int base = baseGroup.indexOfChild(findViewById(baseGroup.getCheckedRadioButtonId()));
+        int[] spreads = new int[spreadChecks.length];
+        for (int i = 0; i < spreadChecks.length; i++) {
+            if(spreadChecks[i].isChecked()) {
+                spreads[i] = 1;
+            }
+        }
+        int[] toppings = new int[toppingChecks.length];
+        for (int i = 0; i < toppingChecks.length; i++) {
+            if(toppingChecks[i].isChecked()) {
+                toppings[i] = 1;
+            }
+        }
+        int protein = baseGroup.indexOfChild(findViewById(proteinGroup.getCheckedRadioButtonId()));
+        int dressing = baseGroup.indexOfChild(findViewById(dressingGroup.getCheckedRadioButtonId()));
+        return new FreshMenuOption(base, spreads, toppings, protein, dressing);
+    }
+
+    public boolean validateChoices(RadioGroup baseGroup, CheckBox[] spreadChecks, CheckBox[] toppingChecks,
+                                   RadioGroup proteinGroup, RadioGroup dressingGroup) {
+        boolean base = false;
+        boolean spread = false;
+        int spreadCount = 0;
+        boolean topping = false;
+        int toppingCount = 0;
+        boolean protein = false;
+        boolean dressing = false;
+        if (baseGroup.getCheckedRadioButtonId() != -1) {
+            base = true;
+        }
+
+        for (int i = 0; i < spreadChecks.length; i++) {
+            if(spreadChecks[i].isChecked()) {
+                spreadCount++;
+            }
+        }
+
+        if (spreadCount <= 3 && spreadCount >= 1) {
+            spread = true;
+        }
+
+        for (int i = 0; i < toppingChecks.length; i++) {
+            if(toppingChecks[i].isChecked()) {
+                toppingCount++;
+            }
+        }
+
+        if (toppingCount <= 5 && toppingCount >= 1) {
+            topping = true;
+        }
+
+        if (proteinGroup.getCheckedRadioButtonId() != -1) {
+            protein = true;
+        }
+
+        if (dressingGroup.getCheckedRadioButtonId() != -1) {
+            dressing = true;
+        }
+        return base && spread && topping && protein && dressing;
+    }
+
+    public void changeButton(Button button, RadioGroup baseGroup, CheckBox[] spreadChecks, CheckBox[] toppingChecks,
+                             RadioGroup proteinGroup, RadioGroup dressingGroup) {
+        if(validateChoices(baseGroup, spreadChecks, toppingChecks, proteinGroup, dressingGroup)) {
+            button.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            button.setClickable(true);
+        } else {
+            button.setBackgroundColor(getResources().getColor(R.color.colorGray));
+            button.setClickable(false);
+        }
     }
 }

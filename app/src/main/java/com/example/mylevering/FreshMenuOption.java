@@ -12,12 +12,11 @@ public class FreshMenuOption extends MenuOption {
     private int[] toppings;
     private int protein;
     private int dressing;
-    public FreshMenuOption(int b, int[] s, int[] t, int p, int d, Price pr) {
+    public FreshMenuOption(int b, int[] s, int[] t, int p, int d) {
         base = b;
         spreads = s;
         toppings = t;
         protein = p;
-        price = pr;
         dressing = d;
         title = "Build-Your-Own-Salad";
         setDescription();
@@ -28,19 +27,25 @@ public class FreshMenuOption extends MenuOption {
         String baseName = baseNames[base];
         String speadString = "";
         for (int i = 0; i < spreads.length; i++) {
-            speadString += spreadNames[spreads[i]];
-            if (i != spreads.length - 1) {
-                speadString += ", ";
+            if (spreads[i] == 1) {
+                speadString += spreadNames[i];
+                if (i != spreads.length - 1) {
+                    speadString += ", ";
+                }
             }
         }
         String toppingString = "";
+        int countToppings = 0;
         for (int i = 0; i < toppings.length; i++){
-            toppingString += toppingNames[toppings[i]];
-            if (i != toppings.length - 1) {
-                toppingString += ", ";
-            }
-            if (i == 2) {
-                toppingString += "<br>    ";
+            if (toppings[i] == 1) {
+                toppingString += toppingNames[i];
+                if (i != toppings.length - 1) {
+                    toppingString += ", ";
+                }
+                if (i == 2) {
+                    toppingString += "<br>    ";
+                }
+                countToppings += 1;
             }
         }
         String proteinName = proteinNames[protein];
