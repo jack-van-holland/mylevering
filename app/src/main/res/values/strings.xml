@@ -28,4 +28,5 @@
     <string name="protein">Protein</string>
     <string name="dressing">Dressing</string>
     <string name="order">Order</string>
+    <string name="freshLabel">Fresh \t \t \t$7.29</string>
 </resources>

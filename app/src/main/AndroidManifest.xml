@@ -12,7 +12,9 @@
         <activity android:name=".ConfirmOrder"></activity>
         <activity
             android:name=".FreshOrder"
-            android:parentActivityName=".MainActivity" />
+            android:label="@string/freshLabel"
+            android:parentActivityName=".MainActivity"
+            android:launchMode="singleTop"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/kitchens"
