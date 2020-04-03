@@ -333,15 +333,19 @@ public class FreshOrder extends AppCompatActivity {
             }
         }
         int[] spreads = new int[spreadChecks.length];
+        int spreadCount = 0;
         for (int i = 0; i < spreadChecks.length; i++) {
             if(spreadChecks[i].isChecked()) {
                 spreads[i] = 1;
+                spreadCount++;
             }
         }
         int[] toppings = new int[toppingChecks.length];
+        int toppingCount = 0;
         for (int i = 0; i < toppingChecks.length; i++) {
             if(toppingChecks[i].isChecked()) {
                 toppings[i] = 1;
+                toppingCount++;
             }
         }
         int protein = -1;
@@ -356,7 +360,7 @@ public class FreshOrder extends AppCompatActivity {
                 dressing = i;
             }
         }
-        return new FreshMenuOption(base, spreads, toppings, protein, dressing);
+        return new FreshMenuOption(base, spreads, spreadCount, toppings, toppingCount, protein, dressing);
     }
 
     public boolean validateChoices(RadioGroup baseGroup, CheckBox[] spreadChecks, CheckBox[] toppingChecks,

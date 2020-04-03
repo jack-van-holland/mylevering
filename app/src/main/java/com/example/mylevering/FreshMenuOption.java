@@ -11,13 +11,17 @@ public class FreshMenuOption extends MenuOption {
     public static final String[] dressingNames = {"Italian", "Caesar", "Ranch", "Tahini", "Balsamic Vinaigrette", "No Dressing"};
     private int base;
     private int[] spreads;
+    private int spreadCount;
     private int[] toppings;
+    private int toppingCount;
     private int protein;
     private int dressing;
-    public FreshMenuOption(int b, int[] s, int[] t, int p, int d) {
+    public FreshMenuOption(int b, int[] s, int sc, int[] t, int tc, int p, int d) {
         base = b;
         spreads = s;
+        spreadCount = sc;
         toppings = t;
+        toppingCount = tc;
         protein = p;
         dressing = d;
         title = "Build-Your-Own-Salad";
@@ -27,27 +31,29 @@ public class FreshMenuOption extends MenuOption {
 
     public void setDescription() {
         String baseName = baseNames[base];
-        String speadString = "";
+        String spreadString = "";
+        int spreadsAdded = 0;
         for (int i = 0; i < spreads.length; i++) {
             if (spreads[i] == 1) {
-                speadString += spreadNames[i];
-                if (i != spreads.length - 1) {
-                    speadString += ", ";
+                spreadString += spreadNames[i];
+                if (spreadsAdded != spreadCount - 1) {
+                    spreadString += ", ";
                 }
+                spreadsAdded++;
             }
         }
         String toppingString = "";
-        int countToppings = 0;
+        int toppingsAdded = 0;
         for (int i = 0; i < toppings.length; i++){
             if (toppings[i] == 1) {
                 toppingString += toppingNames[i];
-                if (i != toppings.length - 1) {
+                if (toppingsAdded != toppingCount - 1) {
                     toppingString += ", ";
                 }
-                if (i == 2) {
+                if (toppingsAdded == 2) {
                     toppingString += "<br>    ";
                 }
-                countToppings += 1;
+                toppingsAdded += 1;
             }
         }
         String proteinName = proteinNames[protein];
@@ -56,7 +62,7 @@ public class FreshMenuOption extends MenuOption {
         description += "<b>Choice of Base</b><br>    ";
         description += baseName;
         description += "<br><b>Choice of Spreads</b><br>    ";
-        description += speadString;
+        description += spreadString;
         description += "<br><b>Choice of Toppings</b><br>    ";
         description += toppingString;
         description += "<br><b>Choice of Protein</b><br>    ";
