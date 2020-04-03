@@ -288,7 +288,7 @@ public class FreshOrder extends AppCompatActivity {
         View.OnClickListener checkSelection = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeButton(orderButton, baseGroup, spreadChecks, toppingChecks, proteinGroup, dressingGroup);
+                changeButtons(orderButton, baseGroup, spreadChecks, toppingChecks, proteinGroup, dressingGroup);
             }
         };
 
@@ -406,7 +406,7 @@ public class FreshOrder extends AppCompatActivity {
         return base && spread && topping && protein && dressing;
     }
 
-    public void changeButton(Button button, RadioGroup baseGroup, CheckBox[] spreadChecks, CheckBox[] toppingChecks,
+    public void changeButtons(Button button, RadioGroup baseGroup, CheckBox[] spreadChecks, CheckBox[] toppingChecks,
                              RadioGroup proteinGroup, RadioGroup dressingGroup) {
         if(validateChoices(baseGroup, spreadChecks, toppingChecks, proteinGroup, dressingGroup)) {
             button.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
@@ -414,6 +414,32 @@ public class FreshOrder extends AppCompatActivity {
         } else {
             button.setBackgroundColor(getResources().getColor(R.color.colorGray));
             button.setClickable(false);
+        }
+
+        if (spreadChecks[spreadChecks.length - 1].isChecked()) {
+            for (int i = 0; i < spreadChecks.length - 1; i++) {
+                spreadChecks[i].setChecked(false);
+                spreadChecks[i].setClickable(false);
+                spreadChecks[i].setTextColor(getResources().getColor(R.color.colorGray));
+            }
+        } else {
+            for (int i = 0; i < spreadChecks.length - 1; i++) {
+                spreadChecks[i].setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                spreadChecks[i].setClickable(true);
+            }
+        }
+
+        if (toppingChecks[toppingChecks.length - 1].isChecked()) {
+            for (int i = 0; i < toppingChecks.length - 1; i++) {
+                toppingChecks[i].setChecked(false);
+                toppingChecks[i].setClickable(false);
+                toppingChecks[i].setTextColor(getResources().getColor(R.color.colorGray));
+            }
+        } else {
+            for (int i = 0; i < toppingChecks.length - 1; i++) {
+                toppingChecks[i].setClickable(true);
+                toppingChecks[i].setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+            }
         }
     }
 }
