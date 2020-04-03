@@ -51,7 +51,7 @@ public class FreshMenuOption extends MenuOption {
                     toppingString += ", ";
                 }
                 if (toppingsAdded == 2) {
-                    toppingString += "<br>    ";
+                    toppingString += "<br>&emsp;";
                 }
                 toppingsAdded += 1;
             }
@@ -59,15 +59,15 @@ public class FreshMenuOption extends MenuOption {
         String proteinName = proteinNames[protein];
         String dressingName = dressingNames[dressing];
 
-        description += "<b>Choice of Base</b><br>    ";
+        description += "<b>Choice of Base</b><br>&emsp;";
         description += baseName;
-        description += "<br><b>Choice of Spreads</b><br>    ";
+        description += "<br><b>Choice of Spreads</b><br>&emsp;";
         description += spreadString;
-        description += "<br><b>Choice of Toppings</b><br>    ";
+        description += "<br><b>Choice of Toppings</b><br>&emsp;";
         description += toppingString;
-        description += "<br><b>Choice of Protein</b><br>    ";
+        description += "<br><b>Choice of Protein</b><br>&emsp;";
         description += proteinName;
-        description += "<br><b>Choice of Dressing</b><br>    ";
+        description += "<br><b>Choice of Dressing</b><br>&emsp;";
         description += dressingName;
     }
 }
