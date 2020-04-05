@@ -12,10 +12,5 @@ public class ButterflyOrder extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_butterfly_order);
 
-        final LinearLayout fresh = findViewById(R.id.butterflyOptions);
-        final LinearLayout base = new LinearLayout(getApplicationContext());
-        base.setOrientation(LinearLayout.VERTICAL);
-
-
     }
 }

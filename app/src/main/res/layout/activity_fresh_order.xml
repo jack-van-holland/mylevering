@@ -11,14 +11,13 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="0dp">
+        android:layout_height="0dp"
+        android:layout_weight="95">
 
         <LinearLayout
             android:id="@+id/freshOptions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:orientation="vertical">
 
         </LinearLayout>
@@ -28,6 +27,7 @@
         android:id="@+id/orderButton"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_weight="5"
         android:text="@string/order"
         android:textColor="@color/colorAccent"/>
 </LinearLayout>
