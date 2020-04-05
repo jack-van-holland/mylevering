@@ -1,7 +1,5 @@
 package com.example.mylevering;
 
-import android.view.View;
-
 public class FreshMenuOption extends MenuOption {
     public static final String[] baseNames = {"Brown Rice", "Farro", "Quinoa", "Spinach", "Mixed Greens", "No Base"};
     public static final String[] spreadNames = {"Sesame Hummus", "Spicy Hummus", "Crazy Feta", "Tzatziki","Harissa", "No Spreads"};
@@ -16,6 +14,7 @@ public class FreshMenuOption extends MenuOption {
     private int toppingCount;
     private int protein;
     private int dressing;
+
     public FreshMenuOption(int b, int[] s, int sc, int[] t, int tc, int p, int d) {
         base = b;
         spreads = s;
@@ -27,7 +26,6 @@ public class FreshMenuOption extends MenuOption {
         price = "7.29";
         title = "Build-Your-Own-Salad";
         setDescription();
-
     }
 
     public void setDescription() {

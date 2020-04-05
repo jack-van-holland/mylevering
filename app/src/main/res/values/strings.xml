@@ -29,4 +29,8 @@
     <string name="dressing">Dressing</string>
     <string name="order">Order</string>
     <string name="freshLabel">Fresh \t \t \t$7.29</string>
+
+    <string name="menu_option_title">Menu Option Title</string>
+    <string name="menu_option_calories">Calories</string>
+    <string name="menu_option_price">Price</string>
 </resources>
