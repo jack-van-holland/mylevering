@@ -9,12 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ConfirmOrder"></activity>
+        <activity android:name=".ButterflyOrder"></activity>
+        <activity android:name=".ConfirmOrder" />
         <activity
             android:name=".FreshOrder"
             android:label="@string/freshLabel"
-            android:parentActivityName=".MainActivity"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/kitchens"

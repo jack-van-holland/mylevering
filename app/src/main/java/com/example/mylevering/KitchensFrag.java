@@ -19,11 +19,21 @@ public class KitchensFrag extends Fragment {
             main.setTitle("Kitchens");
         }
         View currView = inflater.inflate(R.layout.fragment_kitchens, container, false);
+
         ImageView freshButton = (ImageView) currView.findViewById(R.id.fresh);
         freshButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), FreshOrder.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageView butterflyButton = (ImageView) currView.findViewById(R.id.butterfly);
+        butterflyButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ButterflyOrder.class);
                 startActivity(intent);
             }
         });
