@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.TextView;
+import androidx.appcompat.widget.Toolbar;
 
 public class ConfirmOrder extends AppCompatActivity {
 
@@ -14,6 +16,12 @@ public class ConfirmOrder extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm_order);
+
+        // Enable the back button. I need to do it this way because we could get this activity from
+        // multiple sources.
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         MenuOption selected = (MenuOption) bundle.getSerializable("selected");
@@ -29,5 +37,10 @@ public class ConfirmOrder extends AppCompatActivity {
         price.setText(selected.getPrice());
         type.setText(from);
 
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 }
