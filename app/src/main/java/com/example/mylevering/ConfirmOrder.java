@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 
@@ -45,12 +46,21 @@ public class ConfirmOrder extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Spinner time = findViewById(R.id.confirm_pick_up_time);
+                Spinner method = findViewById(R.id.confirm_payment_method);
+                String pickUpTime = time.getSelectedItem().toString();
+                String paymentMethod = method.getSelectedItem().toString();
                 Intent intent = new Intent(ConfirmOrder.this, MainActivity.class);
-                Order order = new Order(selected, "ex", 0);
+                Order order = new Order(selected, pickUpTime, paymentMethod, 0);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("order", order);
                 intent.addFlags(0);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
+
+
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {

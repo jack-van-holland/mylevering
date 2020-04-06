@@ -1,18 +1,22 @@
 package com.example.mylevering;
 
-public class Order {
+import java.io.Serializable;
+
+public class Order implements Serializable {
 
     private String title;
     private String description;
     private String price;
     private String scheduledTime;
+    private String paymentMethod;
     private int status;
 
-    public Order(MenuOption menuOption, String schedTime, int stat) {
+    public Order(MenuOption menuOption, String schedTime, String method, int stat) {
         title = menuOption.getTitle();
         description = menuOption.getDescription();
         price = menuOption.getPrice();
         scheduledTime = schedTime;
+        paymentMethod = method;
         status = stat;
     }
 

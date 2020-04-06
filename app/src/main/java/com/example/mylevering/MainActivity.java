@@ -54,6 +54,9 @@ public class MainActivity extends AppCompatActivity
         Intent intent = getIntent();
         int flag = intent.getFlags();
         if (flag == 0) {
+            Bundle bundle = intent.getExtras();
+            Order order = (Order) bundle.getSerializable("order");
+            ((MyOrderFrag) myOrderFrag).submitOrder(order);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, myOrderFrag).commit();
         } else {
