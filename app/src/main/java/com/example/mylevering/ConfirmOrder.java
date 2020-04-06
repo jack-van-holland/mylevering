@@ -54,6 +54,15 @@ public class ConfirmOrder extends AppCompatActivity {
             butterfly.setVisibility(View.VISIBLE);
         }
 
+        ImageView trash = findViewById(R.id.confirm_trash);
+        trash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ConfirmOrder.this , MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
         Button btn = findViewById(R.id.confirm_continue);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +75,7 @@ public class ConfirmOrder extends AppCompatActivity {
                 Order order = new Order(selected, pickUpTime, paymentMethod, 0);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("order", order);
-                intent.addFlags(0);
+                intent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

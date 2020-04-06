@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity
 
         Intent intent = getIntent();
         int flag = intent.getFlags();
-        if (flag == 0) {
+        if (flag == Intent.FLAG_ACTIVITY_TASK_ON_HOME) {
             Bundle bundle = intent.getExtras();
             Order order = (Order) bundle.getSerializable("order");
             ((MyOrderFrag) myOrderFrag).submitOrder(order);
