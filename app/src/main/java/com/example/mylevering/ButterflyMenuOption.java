@@ -3,10 +3,8 @@ package com.example.mylevering;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class ButterflyMenuOption implements Parcelable /*extends MenuOption*/ {
+public class ButterflyMenuOption extends MenuOption implements Parcelable {
 
-    private String title;
-    private String price;
     private String calories;
 
     ButterflyMenuOption(String t, String p, String c) {

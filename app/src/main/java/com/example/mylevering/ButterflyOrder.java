@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 
 import java.util.ArrayList;
 
@@ -47,7 +48,7 @@ public class ButterflyOrder extends AppCompatActivity implements ButterflyMenuLi
     @Override
     public void OnNoteClick(int position) {
         Intent intent = new Intent(this, ButterflyMenuItem.class);
-        intent.putExtra("menu_item_selected", butterflyMenuList.get(position));
+        intent.putExtra("menu_item_selected", (Parcelable) butterflyMenuList.get(position));
         startActivity(intent);
     }
 }
