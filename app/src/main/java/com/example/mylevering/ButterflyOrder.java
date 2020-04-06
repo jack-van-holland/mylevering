@@ -23,9 +23,9 @@ public class ButterflyOrder extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_butterfly_order);
-
         recyclerView = findViewById(R.id.menu_list);
         layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
 
         //list
         butterflyMenuList = new ArrayList<ButterflyMenuOption>();
@@ -34,8 +34,9 @@ public class ButterflyOrder extends AppCompatActivity {
         ButterflyMenuOption menuItem2 = new ButterflyMenuOption("Title2", "Price2", "250 Calories");
         butterflyMenuList.add(menuItem2);
         //list
-        recyclerView.setLayoutManager(layoutManager);
+
         adapter = new ButterflyMenuListAdapter(butterflyMenuList);
+        recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
     }
 }
