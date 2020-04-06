@@ -32,17 +32,17 @@ public class ButterflyOrder extends AppCompatActivity implements ButterflyMenuLi
 
         //list
         butterflyMenuList = new ArrayList<ButterflyMenuOption>();
-        ButterflyMenuOption tacoChicken = new ButterflyMenuOption("Chicken Taco", "$6.99", "350 Calories");
+        ButterflyMenuOption tacoChicken = new ButterflyMenuOption("Chicken Taco", "$6.99", "350");
         butterflyMenuList.add(tacoChicken);
-        ButterflyMenuOption tacoVeggie = new ButterflyMenuOption("Veggie Taco", "$5.99", "300 Calories");
+        ButterflyMenuOption tacoVeggie = new ButterflyMenuOption("Veggie Taco", "$5.99", "300");
         butterflyMenuList.add(tacoVeggie);
-        ButterflyMenuOption tacoPork = new ButterflyMenuOption("Pork Taco", "$7.99", "400 Calories");
+        ButterflyMenuOption tacoPork = new ButterflyMenuOption("Pork Taco", "$7.99", "400");
         butterflyMenuList.add(tacoPork);
-        ButterflyMenuOption tortaChicken = new ButterflyMenuOption("Chicken Torta", "$6.99", "350 Calories");
+        ButterflyMenuOption tortaChicken = new ButterflyMenuOption("Chicken Torta", "$6.99", "350");
         butterflyMenuList.add(tortaChicken);
-        ButterflyMenuOption tortaVeggie = new ButterflyMenuOption("Veggie Torta", "$5.99", "300 Calories");
+        ButterflyMenuOption tortaVeggie = new ButterflyMenuOption("Veggie Torta", "$5.99", "300");
         butterflyMenuList.add(tortaVeggie);
-        ButterflyMenuOption tortaPork = new ButterflyMenuOption("Pork Torta", "$7.99", "400 Calories");
+        ButterflyMenuOption tortaPork = new ButterflyMenuOption("Pork Torta", "$7.99", "400");
         butterflyMenuList.add(tortaPork);
         //list
 

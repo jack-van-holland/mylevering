@@ -5,7 +5,6 @@ public class ButterflyMenuOption extends MenuOption {
     private String title;
     private String price;
     private String calories;
-    private String description;
 
     ButterflyMenuOption(String t, String p, String c) {
         this.setAll(t, p, c);

@@ -1,11 +1,8 @@
 package com.example.mylevering;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,7 +32,7 @@ public class ButterflyMenuListAdapter extends RecyclerView.Adapter<ButterflyMenu
         ButterflyMenuOption menuItem = butterflyMenuList.get(position);
         holder.title.setText(menuItem.getTitle());
         holder.price.setText(menuItem.getPrice());
-        holder.calories.setText(menuItem.getCalories());
+        holder.calories.setText(menuItem.getCalories() + " Calories");
     }
 
     @Override
