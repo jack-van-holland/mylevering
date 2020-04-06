@@ -63,6 +63,16 @@ public class ConfirmOrder extends AppCompatActivity {
             }
         });
 
+        ImageView pencil = findViewById(R.id.confirm_pencil);
+        pencil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
+
         Button btn = findViewById(R.id.confirm_continue);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
