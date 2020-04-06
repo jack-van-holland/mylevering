@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 
@@ -37,6 +39,15 @@ public class ConfirmOrder extends AppCompatActivity {
         price.setText(selected.getPrice());
         type.setText(from);
 
+        Button btn = findViewById(R.id.confirm_continue);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ConfirmOrder.this, MainActivity.class);
+                intent.addFlags(0);
+                startActivity(intent);
+            }
+        });
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {

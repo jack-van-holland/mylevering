@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity
     private Fragment settingsFrag;
     private FragmentTransaction transaction;
 
+    private static int FROM_CONFIRM = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,11 +51,19 @@ public class MainActivity extends AppCompatActivity
         paymentFrag = new PaymentFrag();
         settingsFrag = new SettingsFrag();
 
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container, kitchenFrag).commit();
+        Intent intent = getIntent();
+        int flag = intent.getFlags();
+        if (flag == 0) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container, myOrderFrag).commit();
+        } else {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container, kitchenFrag).commit();
+        }
 
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     @Override
