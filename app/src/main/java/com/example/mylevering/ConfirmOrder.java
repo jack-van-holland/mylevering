@@ -14,6 +14,8 @@ import androidx.appcompat.widget.Toolbar;
 
 public class ConfirmOrder extends AppCompatActivity {
 
+    private MenuOption selected;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +28,7 @@ public class ConfirmOrder extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        MenuOption selected = (MenuOption) bundle.getSerializable("selected");
+        selected = (MenuOption) bundle.getSerializable("selected");
         String from = bundle.getString("from");
         Log.d("description", selected.getDescription());
         Log.d("title", selected.getTitle());
@@ -44,6 +46,7 @@ public class ConfirmOrder extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ConfirmOrder.this, MainActivity.class);
+                Order order = new Order(selected, "ex", 0);
                 intent.addFlags(0);
                 startActivity(intent);
             }

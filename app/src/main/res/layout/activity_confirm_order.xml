@@ -20,11 +20,11 @@
         android:id="@+id/confirm_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="109dp"
+        android:layout_marginTop="28dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirm_category" />
+        app:layout_constraintTop_toBottomOf="@+id/confirm_pick_up_time" />
 
     <TextView
         android:id="@+id/confirm_price"
@@ -55,4 +55,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/confirm_pick_up_time"
+        android:layout_width="281dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="16dp"
+        android:entries="@array/pick_up_time_options"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirm_category" />
+
+    <Spinner
+        android:id="@+id/confirm_payment_method"
+        android:layout_width="253dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="23dp"
+        android:entries="@array/payment_options"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/confirm_description" />
 </androidx.constraintlayout.widget.ConstraintLayout>

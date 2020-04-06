@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pick_up_time_options">
+        <item>ASAP</item>
+        <item>15 Minutes</item>
+        <item>30 Minutes</item>
+        <item>1 Hour</item>
+        <item>1 Hour 30 Minutes</item>
+        <item>2 Hours</item>
+    </string-array>
+
+    <string-array name="payment_options">
+        <item>JCash</item>
+        <item>Dining Dollars</item>
+        <item>GPay</item>
+    </string-array>
+</resources>
