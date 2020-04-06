@@ -4,14 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ButterflyOrder extends AppCompatActivity {
+public class ButterflyOrder extends AppCompatActivity implements ButterflyMenuListAdapter.OnNoteListener {
 
+    private static final String TAG = "";
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<ButterflyMenuOption> butterflyMenuList;
@@ -29,14 +32,30 @@ public class ButterflyOrder extends AppCompatActivity {
 
         //list
         butterflyMenuList = new ArrayList<ButterflyMenuOption>();
-        ButterflyMenuOption menuItem1 = new ButterflyMenuOption("Title1", "Price1", "250 Calories");
-        butterflyMenuList.add(menuItem1);
-        ButterflyMenuOption menuItem2 = new ButterflyMenuOption("Title2", "Price2", "250 Calories");
-        butterflyMenuList.add(menuItem2);
+        ButterflyMenuOption tacoChicken = new ButterflyMenuOption("Chicken Taco", "$6.99", "350 Calories");
+        butterflyMenuList.add(tacoChicken);
+        ButterflyMenuOption tacoVeggie = new ButterflyMenuOption("Veggie Taco", "$5.99", "300 Calories");
+        butterflyMenuList.add(tacoVeggie);
+        ButterflyMenuOption tacoPork = new ButterflyMenuOption("Pork Taco", "$7.99", "400 Calories");
+        butterflyMenuList.add(tacoPork);
+        ButterflyMenuOption tortaChicken = new ButterflyMenuOption("Chicken Torta", "$6.99", "350 Calories");
+        butterflyMenuList.add(tortaChicken);
+        ButterflyMenuOption tortaVeggie = new ButterflyMenuOption("Veggie Torta", "$5.99", "300 Calories");
+        butterflyMenuList.add(tortaVeggie);
+        ButterflyMenuOption tortaPork = new ButterflyMenuOption("Pork Torta", "$7.99", "400 Calories");
+        butterflyMenuList.add(tortaPork);
         //list
 
-        adapter = new ButterflyMenuListAdapter(butterflyMenuList);
+        adapter = new ButterflyMenuListAdapter(butterflyMenuList, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
+    }
+
+    @Override
+    public void OnNoteClick(int position) {
+        //butterflyMenuList.get(position);
+        Intent intent = new Intent(this, ButterflyMenuItem.class);
+        intent.putExtra("Menu Item:", butterflyMenuList.get(position));
+        startActivity(intent);
     }
 }

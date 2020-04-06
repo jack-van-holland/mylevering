@@ -7,9 +7,6 @@ public class ButterflyMenuOption extends MenuOption {
     private String calories;
     private String description;
 
-    //MenuOption ButterflyMenuItem = new MenuOption();
-    //ButterflyMenuOption.setTitle(title);
-
     ButterflyMenuOption(String t, String p, String c) {
         this.setAll(t, p, c);
     }
