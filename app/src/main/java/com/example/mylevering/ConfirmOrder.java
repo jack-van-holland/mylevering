@@ -17,13 +17,17 @@ public class ConfirmOrder extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         MenuOption selected = (MenuOption) bundle.getSerializable("selected");
+        String from = bundle.getString("from");
         Log.d("description", selected.getDescription());
         Log.d("title", selected.getTitle());
         TextView desc = findViewById(R.id.confirm_description);
         TextView title = findViewById(R.id.confirm_title);
         TextView price = findViewById(R.id.confirm_price);
+        TextView type = findViewById(R.id.confirm_category);
         desc.setText(Html.fromHtml(selected.getDescription()));
         title.setText(selected.getTitle());
         price.setText(selected.getPrice());
+        type.setText(from);
+
     }
 }

@@ -42,5 +42,4 @@ public class MenuOption implements Serializable {
     public void setDescription(String d) {
         description = d;
     }
-
 }

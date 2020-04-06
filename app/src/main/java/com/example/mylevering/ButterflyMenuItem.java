@@ -34,6 +34,7 @@ public class ButterflyMenuItem extends AppCompatActivity {
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("selected", order);
                     intent.putExtras(bundle);
+                    intent.putExtra("from", "Butterfly");
                     startActivity(intent);
                 }
             });

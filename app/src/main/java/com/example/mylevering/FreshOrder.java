@@ -317,6 +317,7 @@ public class FreshOrder extends AppCompatActivity {
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("selected", selected);
                     intent.putExtras(bundle);
+                    intent.putExtra("from", "Fresh");
                     startActivity(intent);
                 }
             });
