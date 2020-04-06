@@ -9,9 +9,9 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import androidx.appcompat.widget.Toolbar;
 
 public class ConfirmOrder extends AppCompatActivity {
 
@@ -42,7 +42,17 @@ public class ConfirmOrder extends AppCompatActivity {
         title.setText(selected.getTitle());
         price.setText(selected.getPrice());
         totalPrice.setText(selected.getPrice());
+
+        ImageView fresh = findViewById(R.id.confirm_fresh_image);
+        ImageView butterfly = findViewById(R.id.confirm_butterfly_image);
         type.setText(from);
+        if (from.equals("Fresh")) {
+            fresh.setVisibility(View.VISIBLE);
+            butterfly.setVisibility(View.INVISIBLE);
+        } else {
+            fresh.setVisibility(View.INVISIBLE);
+            butterfly.setVisibility(View.VISIBLE);
+        }
 
         Button btn = findViewById(R.id.confirm_continue);
         btn.setOnClickListener(new View.OnClickListener() {
