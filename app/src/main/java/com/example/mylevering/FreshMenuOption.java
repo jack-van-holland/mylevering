@@ -23,7 +23,7 @@ public class FreshMenuOption extends MenuOption {
         toppingCount = tc;
         protein = p;
         dressing = d;
-        price = "7.29";
+        price = "$7.29";
         title = "Build-Your-Own-Salad";
         setDescription();
     }

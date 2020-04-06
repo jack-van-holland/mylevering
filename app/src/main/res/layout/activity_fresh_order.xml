@@ -12,7 +12,7 @@
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="95">
+        android:layout_weight="96">
 
         <LinearLayout
             android:id="@+id/freshOptions"

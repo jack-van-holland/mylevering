@@ -19,7 +19,7 @@ public class Price {
     }
 
     public String toString() {
-        return dollars + "." + cents;
+        return "$" + dollars + "." + cents;
     }
 
     public void add(int d, int c){

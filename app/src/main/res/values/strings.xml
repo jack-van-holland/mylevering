@@ -37,4 +37,7 @@
     <string name="menu_option_ingredients">Ingredients</string>
     <string name="menu_option_nutrition">Nutrition Info</string>
     <string name="confirm_pick_up">Pick-up in:</string>
+    <string name="confirm_payment_method">Payment Method</string>
+    <string name="confirm_total">Total</string>
+    <string name="confirm_button_text">Submit Order</string>
 </resources>
