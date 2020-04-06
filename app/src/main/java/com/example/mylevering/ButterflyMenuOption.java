@@ -1,6 +1,9 @@
 package com.example.mylevering;
 
-public class ButterflyMenuOption extends MenuOption {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class ButterflyMenuOption implements Parcelable /*extends MenuOption*/ {
 
     private String title;
     private String price;
@@ -9,6 +12,24 @@ public class ButterflyMenuOption extends MenuOption {
     ButterflyMenuOption(String t, String p, String c) {
         this.setAll(t, p, c);
     }
+
+    protected ButterflyMenuOption(Parcel in) {
+        title = in.readString();
+        price = in.readString();
+        calories = in.readString();
+    }
+
+    public static final Creator<ButterflyMenuOption> CREATOR = new Creator<ButterflyMenuOption>() {
+        @Override
+        public ButterflyMenuOption createFromParcel(Parcel in) {
+            return new ButterflyMenuOption(in);
+        }
+
+        @Override
+        public ButterflyMenuOption[] newArray(int size) {
+            return new ButterflyMenuOption[size];
+        }
+    };
 
     private void setAll(String title, String price, String calories){
         this.title = title;
@@ -20,4 +41,15 @@ public class ButterflyMenuOption extends MenuOption {
     public String getPrice() { return price; }
     public String getCalories() { return calories; }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeString(price);
+        dest.writeString(calories);
+    }
 }

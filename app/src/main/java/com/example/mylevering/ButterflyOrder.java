@@ -6,20 +6,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.LinearLayout;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class ButterflyOrder extends AppCompatActivity implements ButterflyMenuListAdapter.OnNoteListener {
+public class ButterflyOrder extends AppCompatActivity implements ButterflyMenuListAdapter.OnMenuItemListener {
 
-    private static final String TAG = "";
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<ButterflyMenuOption> butterflyMenuList;
-
-    //
     private ButterflyMenuListAdapter adapter;
 
     @Override
@@ -30,7 +24,7 @@ public class ButterflyOrder extends AppCompatActivity implements ButterflyMenuLi
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        //list
+        // Create list and add stuff to it
         butterflyMenuList = new ArrayList<ButterflyMenuOption>();
         ButterflyMenuOption tacoChicken = new ButterflyMenuOption("Chicken Taco", "$6.99", "350");
         butterflyMenuList.add(tacoChicken);
@@ -44,7 +38,6 @@ public class ButterflyOrder extends AppCompatActivity implements ButterflyMenuLi
         butterflyMenuList.add(tortaVeggie);
         ButterflyMenuOption tortaPork = new ButterflyMenuOption("Pork Torta", "$7.99", "400");
         butterflyMenuList.add(tortaPork);
-        //list
 
         adapter = new ButterflyMenuListAdapter(butterflyMenuList, this);
         recyclerView.setAdapter(adapter);
@@ -53,9 +46,8 @@ public class ButterflyOrder extends AppCompatActivity implements ButterflyMenuLi
 
     @Override
     public void OnNoteClick(int position) {
-        //butterflyMenuList.get(position);
         Intent intent = new Intent(this, ButterflyMenuItem.class);
-        intent.putExtra("Menu Item:", butterflyMenuList.get(position));
+        intent.putExtra("menu_item_selected", butterflyMenuList.get(position));
         startActivity(intent);
     }
 }

@@ -13,10 +13,10 @@ import java.util.ArrayList;
 public class ButterflyMenuListAdapter extends RecyclerView.Adapter<ButterflyMenuListAdapter.MyViewHolder> {
 
     private ArrayList<ButterflyMenuOption> butterflyMenuList;
-    private OnNoteListener mOnNoteListener;
-    ButterflyMenuListAdapter(ArrayList<ButterflyMenuOption> butterflyMenuList, OnNoteListener onNoteListener) {
+    private OnMenuItemListener mOnMenuItemListener;
+    ButterflyMenuListAdapter(ArrayList<ButterflyMenuOption> butterflyMenuList, OnMenuItemListener onMenuItemListener) {
         this.butterflyMenuList = butterflyMenuList;
-        this.mOnNoteListener = onNoteListener;
+        this.mOnMenuItemListener = onMenuItemListener;
     }
 
     @NonNull
@@ -24,15 +24,16 @@ public class ButterflyMenuListAdapter extends RecyclerView.Adapter<ButterflyMenu
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.butterfly_menu_item,parent,false);
-        return new MyViewHolder(view, mOnNoteListener);
+        return new MyViewHolder(view, mOnMenuItemListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         ButterflyMenuOption menuItem = butterflyMenuList.get(position);
+        String cal = menuItem.getCalories() + " Calories";
         holder.title.setText(menuItem.getTitle());
         holder.price.setText(menuItem.getPrice());
-        holder.calories.setText(menuItem.getCalories() + " Calories");
+        holder.calories.setText(cal);
     }
 
     @Override
@@ -49,25 +50,25 @@ public class ButterflyMenuListAdapter extends RecyclerView.Adapter<ButterflyMenu
         TextView title;
         TextView price;
         TextView calories;
-        OnNoteListener onNoteListener;
+        OnMenuItemListener onMenuItemListener;
 
-        private MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
+        private MyViewHolder(@NonNull View itemView, OnMenuItemListener onMenuItemListener) {
             super(itemView);
             title = itemView.findViewById(R.id.menu_item_title);
             price = itemView.findViewById(R.id.menu_item_price);
             calories = itemView.findViewById(R.id.menu_item_calories);
 
-            this.onNoteListener = onNoteListener;
+            this.onMenuItemListener = onMenuItemListener;
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            onNoteListener.OnNoteClick(getAdapterPosition());
+            onMenuItemListener.OnNoteClick(getAdapterPosition());
         }
     }
 
-    public interface OnNoteListener {
+    public interface OnMenuItemListener {
         void OnNoteClick(int position);
     }
 

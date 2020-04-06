@@ -11,15 +11,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/menu_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="95" />
-
-    <Button
-        android:id="@+id/orderButton"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_weight="5"
-        android:text="@string/order"
-        android:textColor="@color/colorAccent" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>
