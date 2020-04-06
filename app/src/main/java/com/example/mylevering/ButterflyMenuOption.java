@@ -11,17 +11,17 @@ public class ButterflyMenuOption extends MenuOption {
     //ButterflyMenuOption.setTitle(title);
 
     ButterflyMenuOption(String t, String p, String c) {
-        this.setAll(t,p,c);
+        this.setAll(t, p, c);
     }
 
-    public String getTitle() {return title;}
-    public String getPrice() {return price;}
-    public String getCalories() {return calories;}
-
-    public void setAll(String title, String price, String calories){
+    private void setAll(String title, String price, String calories){
         this.title = title;
         this.price = price;
         this.calories = calories;
     }
+
+    public String getTitle() { return title; }
+    public String getPrice() { return price; }
+    public String getCalories() { return calories; }
 
 }

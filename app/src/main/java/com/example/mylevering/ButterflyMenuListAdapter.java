@@ -16,8 +16,7 @@ import java.util.ArrayList;
 public class ButterflyMenuListAdapter extends RecyclerView.Adapter<ButterflyMenuListAdapter.MyViewHolder> {
 
     private ArrayList<ButterflyMenuOption> butterflyMenuList;
-
-    public ButterflyMenuListAdapter(ArrayList<ButterflyMenuOption> butterflyMenuList) {
+    ButterflyMenuListAdapter(ArrayList<ButterflyMenuOption> butterflyMenuList) {
         this.butterflyMenuList = butterflyMenuList;
     }
 
@@ -27,13 +26,15 @@ public class ButterflyMenuListAdapter extends RecyclerView.Adapter<ButterflyMenu
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.butterfly_menu_item,parent,false);
         //LinearLayout linearLayout = (LinearLayout) LayoutInflater.from(
           //      parent.getContext()).inflate(R.layout.butterfly_menu_item,parent,false);
-        MyViewHolder myViewHolder = new MyViewHolder(view);
-        return myViewHolder;
+        return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.setMenuItemDetails(butterflyMenuList.get(position));
+        ButterflyMenuOption menuItem = butterflyMenuList.get(position);
+        holder.title.setText(menuItem.getTitle());
+        holder.price.setText(menuItem.getPrice());
+        holder.calories.setText(menuItem.getCalories());
     }
 
     @Override
@@ -41,25 +42,23 @@ public class ButterflyMenuListAdapter extends RecyclerView.Adapter<ButterflyMenu
         return butterflyMenuList.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
-        //LinearLayout butterflyMenuItem;
+    /*
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+    }
+     */
+
+    static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView title;
         TextView price;
         TextView calories;
 
-        private void setMenuItemDetails(ButterflyMenuOption menuOption) {
-            title.setText(menuOption.getTitle());
-            price.setText(menuOption.getPrice());
-            calories.setText(menuOption.getCalories());
-        }
-
-        public MyViewHolder(@NonNull View itemView) {
+        private MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            //butterflyMenuItem = itemView.findViewById(R.id.menu_item);
             title = itemView.findViewById(R.id.menu_item_title);
             price = itemView.findViewById(R.id.menu_item_price);
             calories = itemView.findViewById(R.id.menu_item_calories);
-
         }
     }
 }
