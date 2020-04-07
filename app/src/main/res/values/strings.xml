@@ -29,7 +29,7 @@
     <string name="protein">Protein</string>
     <string name="dressing">Dressing</string>
     <string name="order">Order</string>
-    <string name="freshLabel">Fresh \t \t \t$7.29</string>
+    <string name="freshLabel">Fresh</string>
 
     <string name="menu_option_title">Menu Item Title</string>
     <string name="menu_option_calories">Calories</string>
