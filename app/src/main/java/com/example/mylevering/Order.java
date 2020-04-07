@@ -10,14 +10,16 @@ public class Order implements Serializable {
     private String scheduledTime;
     private String paymentMethod;
     private int status;
+    private boolean favorite;
 
-    public Order(MenuOption menuOption, String schedTime, String method, int stat) {
+    public Order(MenuOption menuOption, String schedTime, String method, int stat, boolean fav) {
         title = menuOption.getTitle();
         description = menuOption.getDescription();
         price = menuOption.getPrice();
         scheduledTime = schedTime;
         paymentMethod = method;
         status = stat;
+        favorite = fav;
     }
 
     public String getTitle() {
@@ -59,4 +61,20 @@ public class Order implements Serializable {
     public void setStatus(int status) {
         this.status = status;
     }
+
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
 }

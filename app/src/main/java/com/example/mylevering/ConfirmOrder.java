@@ -19,6 +19,8 @@ public class ConfirmOrder extends AppCompatActivity {
     private ImageView heart;
     private ImageView heartFilled;
 
+    private boolean favorited;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +75,7 @@ public class ConfirmOrder extends AppCompatActivity {
             }
         });
 
+        favorited = false;
         heart = findViewById(R.id.confirm_heart);
         heartFilled = findViewById(R.id.confirm_heart_filled);
         heart.setClickable(true);
@@ -81,6 +84,7 @@ public class ConfirmOrder extends AppCompatActivity {
         heart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                favorited = true;
                 heart.setClickable(false);
                 heart.setVisibility(View.INVISIBLE);
                 heartFilled.setClickable(true);
@@ -90,6 +94,7 @@ public class ConfirmOrder extends AppCompatActivity {
         heartFilled.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                favorited = false;
                 heart.setClickable(true);
                 heart.setVisibility(View.VISIBLE);
                 heartFilled.setClickable(false);
@@ -108,7 +113,7 @@ public class ConfirmOrder extends AppCompatActivity {
                 String pickUpTime = time.getSelectedItem().toString();
                 String paymentMethod = method.getSelectedItem().toString();
                 Intent intent = new Intent(ConfirmOrder.this, MainActivity.class);
-                Order order = new Order(selected, pickUpTime, paymentMethod, 0);
+                Order order = new Order(selected, pickUpTime, paymentMethod, 0, favorited);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("order", order);
                 intent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);
