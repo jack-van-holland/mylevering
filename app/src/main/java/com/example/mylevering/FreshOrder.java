@@ -173,7 +173,7 @@ public class FreshOrder extends AppCompatActivity {
         fresh.addView(dressing);
 
         final Button orderButton = findViewById(R.id.orderButton);
-
+        //orderButton.setClickable(false);
 
 
         baseToggle.setOnClickListener(new View.OnClickListener() {
@@ -289,7 +289,7 @@ public class FreshOrder extends AppCompatActivity {
         View.OnClickListener checkSelection = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeButtons(orderButton, baseGroup, spreadChecks, toppingChecks, proteinGroup, dressingGroup);
+                changeButtons(orderButton, baseButtons, spreadChecks, toppingChecks, proteinButtons, dressingButtons);
             }
         };
 
@@ -308,22 +308,6 @@ public class FreshOrder extends AppCompatActivity {
         for (int i = 0; i < dressingButtons.length; i++) {
             dressingButtons[i].setOnClickListener(checkSelection);
         }
-        if (orderButton.isClickable()) {
-            orderButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    MenuOption selected;
-                    selected = getChoices(baseButtons, spreadChecks, toppingChecks, proteinButtons, dressingButtons);
-                    Intent intent = new Intent(FreshOrder.this, ConfirmOrder.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("selected", selected);
-                    intent.putExtras(bundle);
-                    intent.putExtra("from", "Fresh");
-                    startActivity(intent);
-                }
-            });
-        }
-
     }
 
     public FreshMenuOption getChoices(RadioButton[] baseButtons, CheckBox[] spreadChecks, CheckBox[] toppingChecks,
@@ -365,8 +349,8 @@ public class FreshOrder extends AppCompatActivity {
         return new FreshMenuOption(base, spreads, spreadCount, toppings, toppingCount, protein, dressing);
     }
 
-    public boolean validateChoices(RadioGroup baseGroup, CheckBox[] spreadChecks, CheckBox[] toppingChecks,
-                                   RadioGroup proteinGroup, RadioGroup dressingGroup) {
+    public boolean validateChoices(RadioButton[] baseGroup, CheckBox[] spreadChecks, CheckBox[] toppingChecks,
+                                   RadioButton[] proteinGroup, RadioButton[] dressingGroup) {
         boolean base = false;
         boolean spread = false;
         int spreadCount = 0;
@@ -374,8 +358,10 @@ public class FreshOrder extends AppCompatActivity {
         int toppingCount = 0;
         boolean protein = false;
         boolean dressing = false;
-        if (baseGroup.getCheckedRadioButtonId() != -1) {
-            base = true;
+        for(int i = 0; i < baseGroup.length; i++) {
+            if (baseGroup[i].isChecked()) {
+                base = true;
+            }
         }
 
         for (int i = 0; i < spreadChecks.length; i++) {
@@ -398,18 +384,22 @@ public class FreshOrder extends AppCompatActivity {
             topping = true;
         }
 
-        if (proteinGroup.getCheckedRadioButtonId() != -1) {
-            protein = true;
+        for(int i = 0; i < proteinGroup.length; i++) {
+            if (proteinGroup[i].isChecked()) {
+                protein = true;
+            }
         }
 
-        if (dressingGroup.getCheckedRadioButtonId() != -1) {
-            dressing = true;
+        for(int i = 0; i < dressingGroup.length; i++) {
+            if (dressingGroup[i].isChecked()) {
+                dressing = true;
+            }
         }
         return base && spread && topping && protein && dressing;
     }
 
-    public void changeButtons(Button button, RadioGroup baseGroup, CheckBox[] spreadChecks, CheckBox[] toppingChecks,
-                             RadioGroup proteinGroup, RadioGroup dressingGroup) {
+    public void changeButtons(Button button, final RadioButton[] baseButtons, final CheckBox[] spreadChecks, final CheckBox[] toppingChecks,
+                              final RadioButton[] proteinButtons, final RadioButton[] dressingButtons) {
         if (spreadChecks[spreadChecks.length - 1].isChecked()) {
             for (int i = 0; i < spreadChecks.length - 1; i++) {
                 spreadChecks[i].setChecked(false);
@@ -436,12 +426,28 @@ public class FreshOrder extends AppCompatActivity {
             }
         }
 
-        if(validateChoices(baseGroup, spreadChecks, toppingChecks, proteinGroup, dressingGroup)) {
+        if(validateChoices(baseButtons, spreadChecks, toppingChecks, proteinButtons, dressingButtons)) {
             button.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
             button.setClickable(true);
         } else {
             button.setBackgroundColor(getResources().getColor(R.color.colorGray));
             button.setClickable(false);
+        }
+
+        if (button.isClickable()) {
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MenuOption selected;
+                    selected = getChoices(baseButtons, spreadChecks, toppingChecks, proteinButtons, dressingButtons);
+                    Intent intent = new Intent(FreshOrder.this, ConfirmOrder.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("selected", selected);
+                    intent.putExtras(bundle);
+                    intent.putExtra("from", "Fresh");
+                    startActivity(intent);
+                }
+            });
         }
     }
 }

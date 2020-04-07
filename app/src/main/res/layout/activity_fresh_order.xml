@@ -29,5 +29,8 @@
         android:layout_height="50dp"
         android:layout_weight="5"
         android:text="@string/order"
-        android:textColor="@color/colorAccent"/>
+        android:background="@color/colorGray"
+        android:textColor="@color/colorAccent"
+        android:clickable="false"
+        />
 </LinearLayout>
