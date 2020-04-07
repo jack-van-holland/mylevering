@@ -16,6 +16,8 @@ import android.widget.TextView;
 public class ConfirmOrder extends AppCompatActivity {
 
     private MenuOption selected;
+    private ImageView heart;
+    private ImageView heartFilled;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,30 @@ public class ConfirmOrder extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        heart = findViewById(R.id.confirm_heart);
+        heartFilled = findViewById(R.id.confirm_heart_filled);
+        heart.setClickable(true);
+        heartFilled.setClickable(false);
+        heartFilled.setVisibility(View.INVISIBLE);
+        heart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                heart.setClickable(false);
+                heart.setVisibility(View.INVISIBLE);
+                heartFilled.setClickable(true);
+                heartFilled.setVisibility(View.VISIBLE);
+            }
+        });
+        heartFilled.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                heart.setClickable(true);
+                heart.setVisibility(View.VISIBLE);
+                heartFilled.setClickable(false);
+                heartFilled.setVisibility(View.INVISIBLE);
             }
         });
 

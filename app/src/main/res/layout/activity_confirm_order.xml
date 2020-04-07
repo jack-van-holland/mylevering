@@ -182,4 +182,22 @@
         app:layout_constraintEnd_toStartOf="@+id/confirm_trash"
         app:srcCompat="@drawable/pencil" />
 
+    <ImageView
+        android:id="@+id/confirm_heart"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/confirm_title"
+        app:layout_constraintEnd_toStartOf="@+id/confirm_pencil"
+        app:srcCompat="@drawable/heart" />
+
+    <ImageView
+        android:id="@+id/confirm_heart_filled"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/confirm_title"
+        app:layout_constraintEnd_toStartOf="@+id/confirm_pencil"
+        app:srcCompat="@drawable/heart_filled" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
