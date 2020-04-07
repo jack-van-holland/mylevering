@@ -285,6 +285,7 @@ public class FreshOrder extends AppCompatActivity {
             }
         });
 
+        //changeButtons(orderButton, baseGroup, spreadChecks, toppingChecks, proteinGroup, dressingGroup);
         View.OnClickListener checkSelection = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -409,14 +410,6 @@ public class FreshOrder extends AppCompatActivity {
 
     public void changeButtons(Button button, RadioGroup baseGroup, CheckBox[] spreadChecks, CheckBox[] toppingChecks,
                              RadioGroup proteinGroup, RadioGroup dressingGroup) {
-        if(validateChoices(baseGroup, spreadChecks, toppingChecks, proteinGroup, dressingGroup)) {
-            button.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-            button.setClickable(true);
-        } else {
-            button.setBackgroundColor(getResources().getColor(R.color.colorGray));
-            button.setClickable(false);
-        }
-
         if (spreadChecks[spreadChecks.length - 1].isChecked()) {
             for (int i = 0; i < spreadChecks.length - 1; i++) {
                 spreadChecks[i].setChecked(false);
@@ -441,6 +434,14 @@ public class FreshOrder extends AppCompatActivity {
                 toppingChecks[i].setClickable(true);
                 toppingChecks[i].setTextColor(getResources().getColor(R.color.colorPrimaryDark));
             }
+        }
+
+        if(validateChoices(baseGroup, spreadChecks, toppingChecks, proteinGroup, dressingGroup)) {
+            button.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            button.setClickable(true);
+        } else {
+            button.setBackgroundColor(getResources().getColor(R.color.colorGray));
+            button.setClickable(false);
         }
     }
 }
