@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -23,11 +24,31 @@ public class MyOrderFrag extends Fragment {
 
 
     public void onStart() {
+        ImageView heart = getActivity().findViewById(R.id.my_order_heart);
+        ImageView typeImage = getActivity().findViewById(R.id.my_order_type_image);
+        heart.setVisibility(View.INVISIBLE);
+        typeImage.setVisibility(View.INVISIBLE);
         super.onStart();
         if (order != null) {
-            String title = order.getTitle();
-            TextView tv = getActivity().findViewById(R.id.my_order_title);
-            tv.setText(title);
+            String t = order.getTitle();
+            TextView title = getActivity().findViewById(R.id.my_order_title);
+            title.setText(t);
+            String type = order.getType();
+            TextView typeTv = getActivity().findViewById(R.id.my_order_type);
+            typeTv.setText(type);
+            heart.setVisibility(View.VISIBLE);
+            typeImage.setVisibility(View.VISIBLE);
+            if (order.isFavorite()) {
+                heart.setImageResource(R.drawable.heart_filled);
+            } else {
+                heart.setImageResource(R.drawable.heart);
+            }
+            if (order.getType().equals("Fresh")) {
+                typeImage.setImageResource(R.drawable.fresh);
+            } else {
+                typeImage.setImageResource(R.drawable.butterfly);
+            }
+
         }
     }
 
