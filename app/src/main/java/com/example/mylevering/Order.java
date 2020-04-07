@@ -11,9 +11,11 @@ public class Order implements Serializable {
     private String paymentMethod;
     private int status;
     private boolean favorite;
+    private String type;
 
-    public Order(MenuOption menuOption, String schedTime, String method, int stat, boolean fav) {
+    public Order(MenuOption menuOption, String from, String schedTime, String method, int stat, boolean fav) {
         title = menuOption.getTitle();
+        type = from;
         description = menuOption.getDescription();
         price = menuOption.getPrice();
         scheduledTime = schedTime;
@@ -65,6 +67,7 @@ public class Order implements Serializable {
     public String getPaymentMethod() {
         return paymentMethod;
     }
+
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
@@ -76,5 +79,14 @@ public class Order implements Serializable {
     public void setFavorite(boolean favorite) {
         this.favorite = favorite;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
 
 }

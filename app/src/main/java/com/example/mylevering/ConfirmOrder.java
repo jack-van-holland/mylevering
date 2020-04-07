@@ -16,6 +16,7 @@ import android.widget.TextView;
 public class ConfirmOrder extends AppCompatActivity {
 
     private MenuOption selected;
+    private String from;
     private ImageView heart;
     private ImageView heartFilled;
 
@@ -34,7 +35,7 @@ public class ConfirmOrder extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         selected = (MenuOption) bundle.getSerializable("selected");
-        String from = bundle.getString("from");
+        from = bundle.getString("from");
         Log.d("description", selected.getDescription());
         Log.d("title", selected.getTitle());
         TextView desc = findViewById(R.id.confirm_description);
@@ -103,7 +104,6 @@ public class ConfirmOrder extends AppCompatActivity {
         });
 
 
-
         Button btn = findViewById(R.id.confirm_continue);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +113,7 @@ public class ConfirmOrder extends AppCompatActivity {
                 String pickUpTime = time.getSelectedItem().toString();
                 String paymentMethod = method.getSelectedItem().toString();
                 Intent intent = new Intent(ConfirmOrder.this, MainActivity.class);
-                Order order = new Order(selected, pickUpTime, paymentMethod, 0, favorited);
+                Order order = new Order(selected, from, pickUpTime, paymentMethod, 0, favorited);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("order", order);
                 intent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);
