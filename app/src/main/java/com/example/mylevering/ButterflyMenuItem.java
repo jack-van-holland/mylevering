@@ -29,7 +29,6 @@ public class ButterflyMenuItem extends AppCompatActivity {
             orderBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO pass to Confirm Order page
                     Intent intent = new Intent(ButterflyMenuItem.this, ConfirmOrder.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("selected", order);
