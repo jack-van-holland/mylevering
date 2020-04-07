@@ -20,7 +20,9 @@
             android:launchMode="singleTop"
             android:parentActivityName=".MainActivity">
         </activity>
-        <activity android:name=".ConfirmOrder" />
+        <activity
+            android:name=".ConfirmOrder"
+            android:label="@string/confirm_order_label"/>
         <activity
             android:name=".FreshOrder"
             android:label="@string/freshLabel"
