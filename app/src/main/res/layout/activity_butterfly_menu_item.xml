@@ -53,7 +53,8 @@
                 android:layout_marginTop="50dp"
                 android:text="@string/menu_option_ingredients"
                 android:textAlignment="center"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/menu_item_ingredients"
@@ -71,7 +72,8 @@
                 android:layout_marginTop="150dp"
                 android:text="@string/menu_option_nutrition"
                 android:textAlignment="center"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>
