@@ -12,6 +12,12 @@ import androidx.fragment.app.Fragment;
 public class MyOrderFrag extends Fragment {
     private Order order;
 
+    public static int UNSENT = 0;
+    public static int SENT = 1;
+    public static int IN_QUEUE = 2;
+    public static int IN_PROGRESS = 3;
+    public static int COMPLETED = 4;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -26,10 +32,22 @@ public class MyOrderFrag extends Fragment {
     public void onStart() {
         ImageView heart = getActivity().findViewById(R.id.my_order_heart);
         ImageView typeImage = getActivity().findViewById(R.id.my_order_type_image);
+        ImageView chefs = getActivity().findViewById(R.id.my_order_chefs);
+        ImageView prog1 = getActivity().findViewById(R.id.my_order_prog1);
+        ImageView prog2 = getActivity().findViewById(R.id.my_order_prog2);
+        ImageView prog3 = getActivity().findViewById(R.id.my_order_prog3);
+        ImageView prog4 = getActivity().findViewById(R.id.my_order_prog4);
         heart.setVisibility(View.INVISIBLE);
         typeImage.setVisibility(View.INVISIBLE);
+        chefs.setVisibility(View.INVISIBLE);
+        prog1.setVisibility(View.INVISIBLE);
+        prog2.setVisibility(View.INVISIBLE);
+        prog3.setVisibility(View.INVISIBLE);
+        prog4.setVisibility(View.INVISIBLE);
+        setStatus(UNSENT);
         super.onStart();
         if (order != null) {
+            setStatus(IN_PROGRESS);
             String t = order.getTitle();
             TextView title = getActivity().findViewById(R.id.my_order_title);
             title.setText(t);
@@ -38,6 +56,11 @@ public class MyOrderFrag extends Fragment {
             typeTv.setText(type);
             heart.setVisibility(View.VISIBLE);
             typeImage.setVisibility(View.VISIBLE);
+            chefs.setVisibility(View.VISIBLE);
+            prog1.setVisibility(View.VISIBLE);
+            prog2.setVisibility(View.VISIBLE);
+            prog3.setVisibility(View.VISIBLE);
+            prog4.setVisibility(View.VISIBLE);
             if (order.isFavorite()) {
                 heart.setImageResource(R.drawable.heart_filled);
             } else {
@@ -52,6 +75,38 @@ public class MyOrderFrag extends Fragment {
         }
     }
 
+    public void setStatus(int status) {
+        ImageView prog1 = getActivity().findViewById(R.id.my_order_prog1);
+        ImageView prog2 = getActivity().findViewById(R.id.my_order_prog2);
+        ImageView prog3 = getActivity().findViewById(R.id.my_order_prog3);
+        ImageView prog4 = getActivity().findViewById(R.id.my_order_prog4);
+        if (status == UNSENT) { // has not left the phone yet
+            prog1.setImageResource(R.drawable.progbar_incomplete);
+            prog2.setImageResource(R.drawable.progbar_incomplete);
+            prog3.setImageResource(R.drawable.progbar_incomplete);
+            prog4.setImageResource(R.drawable.progbar_incomplete);
+        } else if (status == SENT) { // sent to the restaurant
+            prog1.setImageResource(R.drawable.progbar1);
+            prog2.setImageResource(R.drawable.progbar_incomplete);
+            prog3.setImageResource(R.drawable.progbar_incomplete);
+            prog4.setImageResource(R.drawable.progbar_incomplete);
+        } else if (status == IN_QUEUE) { // accepted by the restaurant
+            prog1.setImageResource(R.drawable.progbar1);
+            prog2.setImageResource(R.drawable.progbar2);
+            prog3.setImageResource(R.drawable.progbar_incomplete);
+            prog4.setImageResource(R.drawable.progbar_incomplete);
+        } else if (status == IN_PROGRESS) {
+            prog1.setImageResource(R.drawable.progbar1);
+            prog2.setImageResource(R.drawable.progbar2);
+            prog3.setImageResource(R.drawable.progbar3);
+            prog4.setImageResource(R.drawable.progbar_incomplete);
+        } else if (status == COMPLETED) {
+            prog1.setImageResource(R.drawable.progbar1);
+            prog2.setImageResource(R.drawable.progbar2);
+            prog3.setImageResource(R.drawable.progbar3);
+            prog4.setImageResource(R.drawable.progbar4);
+        }
+    }
 
     public void submitOrder(Order ord) {
         order = ord;
