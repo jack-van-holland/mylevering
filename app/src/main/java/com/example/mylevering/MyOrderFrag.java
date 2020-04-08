@@ -22,6 +22,7 @@ public class MyOrderFrag extends Fragment {
     public static int COMPLETED = 4;
 
     private boolean favorite;
+    private boolean orderStatusStarted;
     private int currentStatus;
 
     @Override
@@ -52,7 +53,6 @@ public class MyOrderFrag extends Fragment {
         prog2.setVisibility(View.INVISIBLE);
         prog3.setVisibility(View.INVISIBLE);
         prog4.setVisibility(View.INVISIBLE);
-        setStatus(UNSENT);
         if (order != null) {
             favorite = order.isFavorite();
             String t = order.getTitle();
@@ -89,8 +89,11 @@ public class MyOrderFrag extends Fragment {
             } else {
                 typeImage.setImageResource(R.drawable.butterfly);
             }
-            OrderStatus os = new OrderStatus((MainActivity) getActivity());
-            os.start();
+            if (!orderStatusStarted) {
+                orderStatusStarted = true;
+                OrderStatus os = new OrderStatus(this);
+                os.start();
+            }
         }
     }
 
@@ -105,6 +108,7 @@ public class MyOrderFrag extends Fragment {
 
 
     public void setStatus(int status) {
+        currentStatus = status;
         ImageView prog1 = getActivity().findViewById(R.id.my_order_prog1);
         ImageView prog2 = getActivity().findViewById(R.id.my_order_prog2);
         ImageView prog3 = getActivity().findViewById(R.id.my_order_prog3);
