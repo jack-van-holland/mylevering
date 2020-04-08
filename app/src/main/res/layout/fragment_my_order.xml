@@ -20,7 +20,7 @@
         android:id="@+id/my_order_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="60dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/my_order_type_image"
@@ -48,33 +48,25 @@
         app:layout_constraintTop_toTopOf="@+id/my_order_title"
         app:srcCompat="@drawable/heart" />
 
-    <TextView
-        android:id="@+id/my_order_time_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="@+id/my_order_title"
-        app:layout_constraintStart_toStartOf="@+id/my_order_heart"
-        app:layout_constraintTop_toBottomOf="@+id/my_order_title" />
-
     <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/my_order_chefs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/chefs_cooking"
+        android:id="@+id/my_order_image"
+        android:layout_width="164dp"
+        android:layout_height="164dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/chef1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_order_time_left" />
+        app:layout_constraintTop_toBottomOf="@+id/my_order_heart" />
 
     <TextView
         android:id="@+id/my_order_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_order_chefs" />
+        app:layout_constraintTop_toBottomOf="@+id/my_order_image" />
 
     <ImageView
         android:id="@+id/my_order_prog4"
@@ -122,9 +114,24 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/my_order_complete"
         app:layout_constraintEnd_toStartOf="@+id/my_order_prog2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_order_status"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/progbar1" />
+
+    <Button
+        android:id="@+id/my_order_complete"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/mark_order"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -50,4 +50,5 @@ Contains: Meat, Gluten</string>
     <string name="in_queue">Order accepted by kitchen!</string>
     <string name="in_progress">Order is being prepared!</string>
     <string name="complete">Your order is ready for pick-up!</string>
+    <string name="mark_order">Mark order as picked up</string>
 </resources>

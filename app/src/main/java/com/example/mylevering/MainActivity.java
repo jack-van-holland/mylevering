@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity
     private Fragment settingsFrag;
     private FragmentTransaction transaction;
 
-    private static int FROM_CONFIRM = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

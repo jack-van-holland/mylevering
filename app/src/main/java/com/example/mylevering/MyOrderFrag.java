@@ -4,12 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import java.util.concurrent.TimeUnit;
+import pl.droidsonroids.gif.GifImageView;
 
 public class MyOrderFrag extends Fragment {
     private Order order;
@@ -41,11 +42,14 @@ public class MyOrderFrag extends Fragment {
         super.onStart();
         heart = getActivity().findViewById(R.id.my_order_heart);
         ImageView typeImage = getActivity().findViewById(R.id.my_order_type_image);
-        ImageView chefs = getActivity().findViewById(R.id.my_order_chefs);
+        ImageView chefs = getActivity().findViewById(R.id.my_order_image);
         ImageView prog1 = getActivity().findViewById(R.id.my_order_prog1);
         ImageView prog2 = getActivity().findViewById(R.id.my_order_prog2);
         ImageView prog3 = getActivity().findViewById(R.id.my_order_prog3);
         ImageView prog4 = getActivity().findViewById(R.id.my_order_prog4);
+        TextView status = getActivity().findViewById(R.id.my_order_status);
+        Button completeOrder = getActivity().findViewById(R.id.my_order_complete);
+
         heart.setVisibility(View.INVISIBLE);
         typeImage.setVisibility(View.INVISIBLE);
         chefs.setVisibility(View.INVISIBLE);
@@ -53,6 +57,30 @@ public class MyOrderFrag extends Fragment {
         prog2.setVisibility(View.INVISIBLE);
         prog3.setVisibility(View.INVISIBLE);
         prog4.setVisibility(View.INVISIBLE);
+        status.setVisibility(View.INVISIBLE);
+        completeOrder.setVisibility(View.INVISIBLE);
+
+        heart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (favorite) {
+                    heart.setImageResource(R.drawable.heart);
+                } else {
+                    heart.setImageResource(R.drawable.heart_filled);
+                }
+                favorite = !favorite;
+            }
+        });
+        completeOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                order = null;
+                favorite = false;
+                orderStatusStarted = false;
+                currentStatus = UNSENT;
+            }
+        });
+
         if (order != null) {
             favorite = order.isFavorite();
             String t = order.getTitle();
@@ -68,22 +96,13 @@ public class MyOrderFrag extends Fragment {
             prog2.setVisibility(View.VISIBLE);
             prog3.setVisibility(View.VISIBLE);
             prog4.setVisibility(View.VISIBLE);
+            status.setVisibility(View.VISIBLE);
             if (favorite) {
                 heart.setImageResource(R.drawable.heart_filled);
             } else {
                 heart.setImageResource(R.drawable.heart);
             }
-            heart.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (favorite) {
-                        heart.setImageResource(R.drawable.heart);
-                    } else {
-                        heart.setImageResource(R.drawable.heart_filled);
-                    }
-                    favorite = !favorite;
-                }
-            });
+
             if (order.getType().equals("Fresh")) {
                 typeImage.setImageResource(R.drawable.fresh);
             } else {
@@ -109,6 +128,7 @@ public class MyOrderFrag extends Fragment {
 
     public void setStatus(int status) {
         currentStatus = status;
+        GifImageView im = getActivity().findViewById(R.id.my_order_image);
         ImageView prog1 = getActivity().findViewById(R.id.my_order_prog1);
         ImageView prog2 = getActivity().findViewById(R.id.my_order_prog2);
         ImageView prog3 = getActivity().findViewById(R.id.my_order_prog3);
@@ -120,30 +140,37 @@ public class MyOrderFrag extends Fragment {
             prog3.setImageResource(R.drawable.progbar_incomplete);
             prog4.setImageResource(R.drawable.progbar_incomplete);
             progress.setText(R.string.unsent);
+            im.setImageResource(R.drawable.mailsending);
         } else if (status == SENT) { // sent to the restaurant
             prog1.setImageResource(R.drawable.progbar1);
             prog2.setImageResource(R.drawable.progbar_incomplete);
             prog3.setImageResource(R.drawable.progbar_incomplete);
             prog4.setImageResource(R.drawable.progbar_incomplete);
             progress.setText(R.string.sent);
+            im.setImageResource(R.drawable.chef2);
         } else if (status == IN_QUEUE) { // accepted by the restaurant
             prog1.setImageResource(R.drawable.progbar1);
             prog2.setImageResource(R.drawable.progbar2);
             prog3.setImageResource(R.drawable.progbar_incomplete);
             prog4.setImageResource(R.drawable.progbar_incomplete);
             progress.setText(R.string.in_queue);
+            im.setImageResource(R.drawable.chef2);
         } else if (status == IN_PROGRESS) {
             prog1.setImageResource(R.drawable.progbar1);
             prog2.setImageResource(R.drawable.progbar2);
             prog3.setImageResource(R.drawable.progbar3);
             prog4.setImageResource(R.drawable.progbar_incomplete);
             progress.setText(R.string.in_progress);
+            im.setImageResource(R.drawable.chef1);
         } else if (status == COMPLETED) {
             prog1.setImageResource(R.drawable.progbar1);
             prog2.setImageResource(R.drawable.progbar2);
             prog3.setImageResource(R.drawable.progbar3);
             prog4.setImageResource(R.drawable.progbar4);
             progress.setText(R.string.complete);
+            im.setImageResource(R.drawable.ready_for_pickup);
+            Button completeOrder = getActivity().findViewById(R.id.my_order_complete);
+            completeOrder.setVisibility(View.VISIBLE);
         }
     }
 
