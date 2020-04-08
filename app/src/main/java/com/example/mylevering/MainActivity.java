@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity
 
     private NavigationView navigationView;
     private Fragment kitchenFrag;
-    private Fragment myOrderFrag;
+    Fragment myOrderFrag;
     private Fragment pastOrdersFrag;
     private Fragment paymentFrag;
     private Fragment settingsFrag;

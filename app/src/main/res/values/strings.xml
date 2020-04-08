@@ -45,4 +45,9 @@
     <string name="pork_taco_description">Authentic Mexican tacos with pulled pork, marinated al pastor style</string>
     <string name="pork_taco_ingredients">Flour tortilla, marinated pulled pork, black beans, shredded mozarella, cilantro, lime juice, pico de gallo
 Contains: Meat, Gluten</string>
+    <string name="unsent">Waiting for Order to send...</string>
+    <string name="sent">Order sent to kitchen!</string>
+    <string name="in_queue">Order accepted by kitchen!</string>
+    <string name="in_progress">Order is being prepared!</string>
+    <string name="complete">Your order is ready for pick-up!</string>
 </resources>
