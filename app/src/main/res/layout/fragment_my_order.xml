@@ -50,8 +50,8 @@
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/my_order_image"
-        android:layout_width="164dp"
-        android:layout_height="164dp"
+        android:layout_width="193dp"
+        android:layout_height="207dp"
         android:layout_marginTop="24dp"
         android:src="@drawable/chef1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -124,7 +124,7 @@
     <Button
         android:id="@+id/my_order_complete"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="76dp"
         android:background="@color/colorPrimary"
         android:text="@string/mark_order"
         android:textColor="#FFFFFF"

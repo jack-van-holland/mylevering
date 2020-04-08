@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -50,26 +51,32 @@ public class MainActivity extends AppCompatActivity
         paymentFrag = new PaymentFrag();
         settingsFrag = new SettingsFrag();
 
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        Menu menu = navigationView.getMenu();
+
         Intent intent = getIntent();
         int flag = intent.getFlags();
         if (flag == Intent.FLAG_ACTIVITY_TASK_ON_HOME) {
             Bundle bundle = intent.getExtras();
             Order order = (Order) bundle.getSerializable("order");
             ((MyOrderFrag) myOrderFrag).submitOrder(order);
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, myOrderFrag).commit();
+            transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, myOrderFrag);
+            transaction.addToBackStack(null);
+            transaction.commit();
+            menu.findItem(R.id.my_order).setVisible(true);
         } else {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, kitchenFrag).commit();
+            menu.findItem(R.id.my_order).setVisible(false);
         }
-
-        navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
 
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
         int id = item.getItemId();
 
         if (id == R.id.my_order) {
@@ -106,5 +113,14 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void returnToKictchen() {
+        transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, kitchenFrag);
+        transaction.addToBackStack(null);
+        transaction.commit();
+        Menu menu = navigationView.getMenu();
+        menu.findItem(R.id.my_order).setVisible(false);
     }
 }
