@@ -11,12 +11,15 @@ import androidx.fragment.app.Fragment;
 
 public class MyOrderFrag extends Fragment {
     private Order order;
+    private ImageView heart;
 
     public static int UNSENT = 0;
     public static int SENT = 1;
     public static int IN_QUEUE = 2;
     public static int IN_PROGRESS = 3;
     public static int COMPLETED = 4;
+
+    private boolean favorite;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -25,12 +28,14 @@ public class MyOrderFrag extends Fragment {
         if (main != null) {
             main.setTitle("My Order");
         }
+        favorite = false;
         return inflater.inflate(R.layout.fragment_my_order, container, false);
     }
 
 
     public void onStart() {
-        ImageView heart = getActivity().findViewById(R.id.my_order_heart);
+        super.onStart();
+        heart = getActivity().findViewById(R.id.my_order_heart);
         ImageView typeImage = getActivity().findViewById(R.id.my_order_type_image);
         ImageView chefs = getActivity().findViewById(R.id.my_order_chefs);
         ImageView prog1 = getActivity().findViewById(R.id.my_order_prog1);
@@ -45,9 +50,9 @@ public class MyOrderFrag extends Fragment {
         prog3.setVisibility(View.INVISIBLE);
         prog4.setVisibility(View.INVISIBLE);
         setStatus(UNSENT);
-        super.onStart();
         if (order != null) {
             setStatus(IN_PROGRESS);
+            favorite = order.isFavorite();
             String t = order.getTitle();
             TextView title = getActivity().findViewById(R.id.my_order_title);
             title.setText(t);
@@ -61,11 +66,22 @@ public class MyOrderFrag extends Fragment {
             prog2.setVisibility(View.VISIBLE);
             prog3.setVisibility(View.VISIBLE);
             prog4.setVisibility(View.VISIBLE);
-            if (order.isFavorite()) {
+            if (favorite) {
                 heart.setImageResource(R.drawable.heart_filled);
             } else {
                 heart.setImageResource(R.drawable.heart);
             }
+            heart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (favorite) {
+                        heart.setImageResource(R.drawable.heart);
+                    } else {
+                        heart.setImageResource(R.drawable.heart_filled);
+                    }
+                    favorite = !favorite;
+                }
+            });
             if (order.getType().equals("Fresh")) {
                 typeImage.setImageResource(R.drawable.fresh);
             } else {
