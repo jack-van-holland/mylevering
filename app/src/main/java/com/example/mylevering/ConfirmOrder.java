@@ -18,7 +18,6 @@ public class ConfirmOrder extends AppCompatActivity {
     private MenuOption selected;
     private String from;
     private ImageView heart;
-    private ImageView heartFilled;
 
     private boolean favorited;
 
@@ -48,15 +47,12 @@ public class ConfirmOrder extends AppCompatActivity {
         price.setText(selected.getPrice());
         totalPrice.setText(selected.getPrice());
 
-        ImageView fresh = findViewById(R.id.confirm_fresh_image);
-        ImageView butterfly = findViewById(R.id.confirm_butterfly_image);
+        ImageView image = findViewById(R.id.confirm_image);
         type.setText(from);
         if (from.equals("Fresh")) {
-            fresh.setVisibility(View.VISIBLE);
-            butterfly.setVisibility(View.INVISIBLE);
+            image.setImageResource(R.drawable.fresh);
         } else {
-            fresh.setVisibility(View.INVISIBLE);
-            butterfly.setVisibility(View.VISIBLE);
+            image.setImageResource(R.drawable.butterfly);
         }
 
         ImageView trash = findViewById(R.id.confirm_trash);
@@ -78,28 +74,16 @@ public class ConfirmOrder extends AppCompatActivity {
 
         favorited = false;
         heart = findViewById(R.id.confirm_heart);
-        heartFilled = findViewById(R.id.confirm_heart_filled);
-        heart.setClickable(true);
-        heartFilled.setClickable(false);
-        heartFilled.setVisibility(View.INVISIBLE);
         heart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                favorited = true;
-                heart.setClickable(false);
-                heart.setVisibility(View.INVISIBLE);
-                heartFilled.setClickable(true);
-                heartFilled.setVisibility(View.VISIBLE);
-            }
-        });
-        heartFilled.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                favorited = false;
-                heart.setClickable(true);
-                heart.setVisibility(View.VISIBLE);
-                heartFilled.setClickable(false);
-                heartFilled.setVisibility(View.INVISIBLE);
+                if (!favorited) {
+                    favorited = true;
+                    heart.setImageResource(R.drawable.heart_filled);
+                } else {
+                    favorited = false;
+                    heart.setImageResource(R.drawable.heart);
+                }
             }
         });
 
