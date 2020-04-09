@@ -75,11 +75,15 @@ public class MyOrderFrag extends Fragment {
         completeOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                order = null;
+                order.setFavorite(favorite);
+
+                // TODO: Send order to database of past orders!
+
                 favorite = false;
                 orderStatusStarted = false;
                 currentStatus = UNSENT;
                 ((MainActivity) getActivity()).returnToKictchen();
+                order = null;
             }
         });
 
