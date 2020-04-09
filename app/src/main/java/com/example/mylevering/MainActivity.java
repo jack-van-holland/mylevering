@@ -10,7 +10,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -66,10 +68,18 @@ public class MainActivity extends AppCompatActivity
             transaction.addToBackStack(null);
             transaction.commit();
             menu.findItem(R.id.my_order).setVisible(true);
+            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            SharedPreferences.Editor pe = sp.edit();
+            pe.putBoolean("orderable", false);
+            pe.commit();
         } else {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, kitchenFrag).commit();
             menu.findItem(R.id.my_order).setVisible(false);
+            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            SharedPreferences.Editor pe = sp.edit();
+            pe.putBoolean("orderable", true);
+            pe.commit();
         }
 
     }

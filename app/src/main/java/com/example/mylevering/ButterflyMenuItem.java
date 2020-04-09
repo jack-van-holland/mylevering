@@ -3,14 +3,18 @@ package com.example.mylevering;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ButterflyMenuItem extends AppCompatActivity {
     private ButterflyMenuOption order;
+
+    private boolean orderable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,15 +30,28 @@ public class ButterflyMenuItem extends AppCompatActivity {
             itemTitle.setText(order.getTitle());
             itemPrice.setText(order.getPrice());
 
+            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            orderable = sp.getBoolean("orderable", true);
+
+            if (!orderable) {
+                orderBtn.setBackgroundColor(getResources().getColor(R.color.colorGray));
+            }
+
             orderBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(ButterflyMenuItem.this, ConfirmOrder.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("selected", order);
-                    intent.putExtras(bundle);
-                    intent.putExtra("from", "Butterfly");
-                    startActivity(intent);
+                    if (orderable) {
+                        Intent intent = new Intent(ButterflyMenuItem.this, ConfirmOrder.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("selected", order);
+                        intent.putExtras(bundle);
+                        intent.putExtra("from", "Butterfly");
+                        startActivity(intent);
+                    } else {
+                        Toast toast = Toast.makeText(getApplicationContext(),
+                                "Pick up your order before ordering again.", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
                 }
             });
         }
