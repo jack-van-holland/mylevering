@@ -132,5 +132,10 @@ public class MainActivity extends AppCompatActivity
         transaction.commit();
         Menu menu = navigationView.getMenu();
         menu.findItem(R.id.my_order).setVisible(false);
+        menu.findItem(R.id.my_order).setVisible(false);
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor pe = sp.edit();
+        pe.putBoolean("orderable", true);
+        pe.commit();
     }
 }
