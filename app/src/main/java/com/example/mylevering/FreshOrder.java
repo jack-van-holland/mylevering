@@ -3,8 +3,10 @@ package com.example.mylevering;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +19,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.resources.TextAppearance;
 
@@ -429,6 +432,12 @@ public class FreshOrder extends AppCompatActivity {
         if(validateChoices(baseButtons, spreadChecks, toppingChecks, proteinButtons, dressingButtons)) {
             button.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
             button.setClickable(true);
+            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            boolean orderable = sp.getBoolean("orderable", true);
+
+            if (!orderable) {
+                button.setBackgroundColor(getResources().getColor(R.color.colorGray));
+            }
         } else {
             button.setBackgroundColor(getResources().getColor(R.color.colorGray));
             button.setClickable(false);
@@ -438,14 +447,22 @@ public class FreshOrder extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MenuOption selected;
-                    selected = getChoices(baseButtons, spreadChecks, toppingChecks, proteinButtons, dressingButtons);
-                    Intent intent = new Intent(FreshOrder.this, ConfirmOrder.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("selected", selected);
-                    intent.putExtras(bundle);
-                    intent.putExtra("from", "Fresh");
-                    startActivity(intent);
+                    SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    boolean orderable = sp.getBoolean("orderable", true);
+                    if (orderable) {
+                        MenuOption selected;
+                        selected = getChoices(baseButtons, spreadChecks, toppingChecks, proteinButtons, dressingButtons);
+                        Intent intent = new Intent(FreshOrder.this, ConfirmOrder.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("selected", selected);
+                        intent.putExtras(bundle);
+                        intent.putExtra("from", "Fresh");
+                        startActivity(intent);
+                    } else {
+                        Toast toast = Toast.makeText(getApplicationContext(),
+                                "Pick up your order before ordering again.", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
                 }
             });
         }
