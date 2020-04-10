@@ -35,6 +35,8 @@ public class ButterflyMenuItem extends AppCompatActivity {
             itemTitle.setText(order.getTitle());
             itemPrice.setText(order.getPrice());
             itemNutrition.setText("Calories: " + order.getCalories());
+            //String itemDescriptionandNote = order.getDescription();
+            //itemDescriptionandNote += itemInstruction.getText().toString();
             String note = itemInstruction.getText().toString();
             order.addDescriptionNote(note);
             itemIngredients.setText(order.getDescription());
