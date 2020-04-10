@@ -16,6 +16,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
             android:orientation="vertical" >
 
             <TextView
@@ -43,14 +44,15 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="30sp"
                 android:paddingRight="30sp"
-                android:text="@string/pork_taco_description"
-                android:textSize="18sp" />
+                android:text="@string/butterfly_description"
+                android:textAlignment="center"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/menu_item_ingredients2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="25dp"
                 android:text="@string/menu_option_ingredients"
                 android:textAlignment="center"
                 android:textSize="24sp"
@@ -60,20 +62,49 @@
                 android:id="@+id/menu_item_ingredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="30sp"
+                android:paddingStart="30sp"
                 android:paddingEnd="30sp"
-                android:text="@string/pork_taco_ingredients"
                 android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="@string/butterfly_instructions"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/special_instructions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="@string/butterfly_customize"
+                android:imeOptions="actionDone"
+                android:inputType="textShortMessage"
+                android:paddingStart="30sp"
+                android:paddingEnd="30sp"
+                android:singleLine="true" />
 
             <TextView
                 android:id="@+id/menu_item_nutrition_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="150dp"
+                android:layout_marginTop="25dp"
                 android:text="@string/menu_option_nutrition"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/menu_item_nutrition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="30sp"
+                android:paddingEnd="30sp"
+                android:textSize="18sp" />
 
         </LinearLayout>
     </ScrollView>

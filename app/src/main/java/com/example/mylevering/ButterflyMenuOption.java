@@ -6,6 +6,7 @@ import android.os.Parcelable;
 public class ButterflyMenuOption extends MenuOption implements Parcelable {
 
     private String calories;
+    private String instructions;
 
     ButterflyMenuOption(String t, String p, String c, String d) {
         this.setAll(t, p, c, d);
@@ -42,6 +43,10 @@ public class ButterflyMenuOption extends MenuOption implements Parcelable {
     public String getCalories() { return calories; }
     public String getDescription() { return description; }
 
+    public void addDescriptionNote(String note) {
+        this.instructions = ("\nSpecial Instructions: ").concat(note);
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -53,5 +58,6 @@ public class ButterflyMenuOption extends MenuOption implements Parcelable {
         dest.writeString(price);
         dest.writeString(calories);
         dest.writeString(description);
+        dest.writeString(instructions);
     }
 }

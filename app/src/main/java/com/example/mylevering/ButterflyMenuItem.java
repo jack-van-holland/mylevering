@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,12 +24,20 @@ public class ButterflyMenuItem extends AppCompatActivity {
 
         TextView itemTitle = findViewById(R.id.menu_item_title);
         TextView itemPrice = findViewById(R.id.menu_item_price);
+        TextView itemIngredients = findViewById(R.id.menu_item_ingredients);
+        TextView itemNutrition = findViewById(R.id.menu_item_nutrition);
+        EditText itemInstruction = findViewById(R.id.special_instructions);
         Button orderBtn = findViewById(R.id.orderButton);
+
 
         if(getIntent().hasExtra("menu_item_selected")) {
             order = getIntent().getParcelableExtra("menu_item_selected");
             itemTitle.setText(order.getTitle());
             itemPrice.setText(order.getPrice());
+            itemNutrition.setText("Calories: " + order.getCalories());
+            String note = itemInstruction.getText().toString();
+            order.addDescriptionNote(note);
+            itemIngredients.setText(order.getDescription());
 
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             orderable = sp.getBoolean("orderable", true);

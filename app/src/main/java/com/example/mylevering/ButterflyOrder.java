@@ -27,18 +27,29 @@ public class ButterflyOrder extends AppCompatActivity implements ButterflyMenuLi
 
         // Create list and add stuff to it
         butterflyMenuList = new ArrayList<ButterflyMenuOption>();
-        ButterflyMenuOption tacoChicken = new ButterflyMenuOption("Chicken Taco", "$6.99", "350", "");
+        ButterflyMenuOption tacoChicken = new ButterflyMenuOption("Chicken Taco", "$6.99", "350",
+                "Corn tortilla, marinated pulled chicken, black beans, shredded mozzarella, cilantro, lime juice, pico de gallo\n" +
+                "Contains: Meat");
         butterflyMenuList.add(tacoChicken);
-        ButterflyMenuOption tacoVeggie = new ButterflyMenuOption("Veggie Taco", "$5.99", "300","");
+        ButterflyMenuOption tacoVeggie = new ButterflyMenuOption("Veggie Taco", "$5.99", "300",
+                "Flour tortilla, bell peppers, black beans, shredded mozzarella, cilantro, lime juice, pico de gallo\n" +
+                        "Contains: Gluten");
         butterflyMenuList.add(tacoVeggie);
-        ButterflyMenuOption tacoPork = new ButterflyMenuOption("Pork Taco", "$7.99", "400", "Flour tortilla, marinated pulled pork, black beans, shredded mozzarella, cilantro, lime juice, pico de gallo\n" +
+        ButterflyMenuOption tacoPork = new ButterflyMenuOption("Pork Taco", "$7.99", "400",
+                "Flour tortilla, marinated pulled pork, black beans, shredded mozzarella, cilantro, lime juice, pico de gallo\n" +
                 "Contains: Meat, Gluten");
         butterflyMenuList.add(tacoPork);
-        ButterflyMenuOption tortaChicken = new ButterflyMenuOption("Chicken Torta", "$6.99", "350", "");
+        ButterflyMenuOption tortaChicken = new ButterflyMenuOption("Chicken Torta", "$6.99", "350",
+                "Bread, seasoned pulled chicken, black beans, avocado, pico de gallo\n" +
+                        "Contains: Meat, Gluten");
         butterflyMenuList.add(tortaChicken);
-        ButterflyMenuOption tortaVeggie = new ButterflyMenuOption("Veggie Torta", "$5.99", "300", "");
+        ButterflyMenuOption tortaVeggie = new ButterflyMenuOption("Veggie Torta", "$5.99", "300",
+                "Bread, seasoned bell peppers, black beans, avocado, pico de gallo\n" +
+                "Contains: Gluten");
         butterflyMenuList.add(tortaVeggie);
-        ButterflyMenuOption tortaPork = new ButterflyMenuOption("Pork Torta", "$7.99", "400", "");
+        ButterflyMenuOption tortaPork = new ButterflyMenuOption("Pork Torta", "$7.99", "400",
+                "Bread, marinated pulled pork, black beans, avocado, pico de gallo\n" +
+                "Contains: Meat, Gluten");
         butterflyMenuList.add(tortaPork);
 
         adapter = new ButterflyMenuListAdapter(butterflyMenuList, this);

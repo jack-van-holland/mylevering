@@ -42,9 +42,9 @@
     <string name="confirm_button_text">Submit Order</string>
     <string name="confirm_order_label">Confirm Order</string>
 
-    <string name="pork_taco_description">Authentic Mexican tacos with pulled pork, marinated al pastor style</string>
-    <string name="pork_taco_ingredients">Flour tortilla, marinated pulled pork, black beans, shredded mozarella, cilantro, lime juice, pico de gallo
-Contains: Meat, Gluten</string>
+    <string name="butterfly_description">Butterfly Tacos y Tortas features the authentic flavors of Mexican street cuisine and the culinary prowess of renowned chef José Andrés</string>
+    <string name="butterfly_instructions">Special Instructions</string>
+    <string name="butterfly_customize">Add note...</string>
     <string name="unsent">Waiting for Order to send...</string>
     <string name="sent">Order sent to kitchen!</string>
     <string name="in_queue">Order accepted by kitchen!</string>
