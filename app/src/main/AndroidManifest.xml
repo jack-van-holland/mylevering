@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.login.LoginActivity"
+            android:label="@string/title_activity_login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".ButterflyMenuItem"
             android:label="@string/menu_item"
             android:parentActivityName=".ButterflyOrder">
@@ -22,7 +31,7 @@
         </activity>
         <activity
             android:name=".ConfirmOrder"
-            android:label="@string/confirm_order_label"/>
+            android:label="@string/confirm_order_label" />
         <activity
             android:name=".FreshOrder"
             android:label="@string/freshLabel"
@@ -33,11 +42,6 @@
             android:label="@string/kitchens"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
