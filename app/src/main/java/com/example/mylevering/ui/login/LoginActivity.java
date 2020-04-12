@@ -25,9 +25,6 @@ import android.widget.Toast;
 
 import com.example.mylevering.MainActivity;
 import com.example.mylevering.R;
-import com.example.mylevering.WelcomeLanding;
-import com.example.mylevering.ui.login.LoginViewModel;
-import com.example.mylevering.ui.login.LoginViewModelFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -41,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
                 .get(LoginViewModel.class);
 
         final EditText usernameEditText = findViewById(R.id.username);
-        final EditText passwordEditText = findViewById(R.id.password);
+        final EditText passwordEditText = findViewById(R.id.pass);
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
 

@@ -24,7 +24,7 @@ public class SignUp extends AppCompatActivity {
         firstName = findViewById(R.id.first_name);
         lastName = findViewById(R.id.last_name);
         email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
+        password = findViewById(R.id.pass);
         password2 = findViewById(R.id.password2);
     }
 
@@ -36,7 +36,7 @@ public class SignUp extends AppCompatActivity {
         String pwd2 = password2.getText().toString();
 
         if (fn.equals("") || ln.equals("") || em.equals("") || pwd.equals("") || pwd2.equals("")) {
-            String notFilled = "Please fill in all the fields above";
+            String notFilled = "Missing fields";
             Toast.makeText(getApplicationContext(), notFilled, Toast.LENGTH_SHORT).show();
             return;
         }
@@ -57,8 +57,5 @@ public class SignUp extends AppCompatActivity {
         intent.putExtra("email", em);
         intent.putExtra("pwd", pwd);
         startActivity(intent);
-
-        String welcome = "Welcome, " + fn + "!";
-        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_SHORT).show();
     }
 }

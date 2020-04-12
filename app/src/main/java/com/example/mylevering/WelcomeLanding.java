@@ -17,7 +17,7 @@ public class WelcomeLanding extends AppCompatActivity {
     }
 
     public void launchLogIn(View v) {
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, LogIn.class);
         startActivity(intent);
     }
 
