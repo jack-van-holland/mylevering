@@ -56,6 +56,9 @@ public class SignUp extends AppCompatActivity {
         intent.putExtra("lastName", ln);
         intent.putExtra("email", em);
         intent.putExtra("pwd", pwd);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        setResult(RESULT_OK);
         startActivity(intent);
+        finish();
     }
 }

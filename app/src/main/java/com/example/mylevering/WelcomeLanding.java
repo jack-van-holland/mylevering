@@ -10,6 +10,9 @@ import com.example.mylevering.ui.login.LoginActivity;
 
 public class WelcomeLanding extends AppCompatActivity {
 
+    public static final int LOG_IN = 0;
+    public static final int SIGN_UP = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,11 +21,19 @@ public class WelcomeLanding extends AppCompatActivity {
 
     public void launchLogIn(View v) {
         Intent intent = new Intent(this, LogIn.class);
-        startActivity(intent);
+        startActivityForResult(intent, LOG_IN);
     }
 
     public void launchSignUp(View v) {
         Intent intent = new Intent(this, SignUp.class);
-        startActivity(intent);
+        startActivityForResult(intent, SIGN_UP);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            finish();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
