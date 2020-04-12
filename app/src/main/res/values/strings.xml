@@ -52,11 +52,10 @@
     <string name="complete">Your order is ready for pick-up!</string>
     <string name="mark_order">Mark order as picked up</string>
     <string name="price">$</string>
-    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_login">Login to MyLevering</string>
     <string name="prompt_email">JHU Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_log_in">Log in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
@@ -66,4 +65,7 @@
     <string name="welcome_login">Log In</string>
     <string name="no_account">Don\'t have an account?</string>
     <string name="welcome_signup">Sign up</string>
+    <string name="title_activity_signup">Sign Up</string>
+    <string name="prompt_first_name">First Name</string>
+    <string name="prompt_last_name">Last Name</string>
 </resources>
