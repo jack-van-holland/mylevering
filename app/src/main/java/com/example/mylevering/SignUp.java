@@ -35,6 +35,11 @@ public class SignUp extends AppCompatActivity {
         String pwd = password.getText().toString();
         String pwd2 = password2.getText().toString();
 
+        if (fn.equals("") || ln.equals("") || em.equals("") || pwd.equals("") || pwd2.equals("")) {
+            String notFilled = "Please fill in all the fields above";
+            Toast.makeText(getApplicationContext(), notFilled, Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (!em.contains("@jhu.edu")) {
             String invalidEmail = "Invalid JHU email";
             Toast.makeText(getApplicationContext(), invalidEmail, Toast.LENGTH_SHORT).show();
