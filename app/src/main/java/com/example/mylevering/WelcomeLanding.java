@@ -4,10 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.mylevering.ui.login.LoginActivity;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeLanding extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,12 +16,13 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
     }
 
-    public void onPressLogIn() {
-        Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
+    public void launchLogIn(View v) {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
-    public void onPressSignUp(Intent intent) {
-
+    public void launchSignUp(View v) {
+        Intent intent = new Intent(this, SignUp.class);
+        startActivity(intent);
     }
 }
