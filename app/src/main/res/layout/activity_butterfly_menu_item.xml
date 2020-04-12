@@ -49,7 +49,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/menu_item_ingredients2"
+                android:id="@+id/menu_item_ingredients_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -67,6 +67,7 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/special_instructions_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -112,10 +113,10 @@
     <Button
         android:id="@+id/orderButton"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="30dp"
         android:layout_weight="5"
+        android:background="@color/colorPrimary"
         android:text="@string/order"
-        android:textColor="@color/colorAccent"
-        android:background="@color/colorPrimary" />
+        android:textColor="@color/colorAccent" />
 
 </LinearLayout>
