@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void returnToKictchen() {
+    public void returnToKitchen() {
         transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, kitchenFrag);
         transaction.addToBackStack(null);

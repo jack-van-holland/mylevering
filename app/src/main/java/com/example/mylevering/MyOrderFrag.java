@@ -82,7 +82,7 @@ public class MyOrderFrag extends Fragment {
                 favorite = false;
                 orderStatusStarted = false;
                 currentStatus = UNSENT;
-                ((MainActivity) getActivity()).returnToKictchen();
+                ((MainActivity) getActivity()).returnToKitchen();
                 order = null;
             }
         });
