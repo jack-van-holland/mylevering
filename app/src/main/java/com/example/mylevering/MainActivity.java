@@ -15,8 +15,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -31,7 +29,7 @@ public class MainActivity extends AppCompatActivity
     private Fragment paymentFrag;
     private Fragment settingsFrag;
     private FragmentTransaction transaction;
-
+    private SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +66,7 @@ public class MainActivity extends AppCompatActivity
             transaction.addToBackStack(null);
             transaction.commit();
             menu.findItem(R.id.my_order).setVisible(true);
-            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             SharedPreferences.Editor pe = sp.edit();
             pe.putBoolean("orderable", false);
             pe.commit();
@@ -76,7 +74,7 @@ public class MainActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, kitchenFrag).commit();
             menu.findItem(R.id.my_order).setVisible(false);
-            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             SharedPreferences.Editor pe = sp.edit();
             pe.putBoolean("orderable", true);
             pe.commit();
@@ -133,7 +131,7 @@ public class MainActivity extends AppCompatActivity
         Menu menu = navigationView.getMenu();
         menu.findItem(R.id.my_order).setVisible(false);
         menu.findItem(R.id.my_order).setVisible(false);
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor pe = sp.edit();
         pe.putBoolean("orderable", true);
         pe.commit();

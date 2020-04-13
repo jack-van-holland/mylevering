@@ -40,7 +40,6 @@ public class LogIn extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("email", usn);
         intent.putExtra("pwd", ps);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         setResult(RESULT_OK);
         startActivity(intent);
         finish();

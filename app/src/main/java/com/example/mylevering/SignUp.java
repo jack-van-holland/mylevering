@@ -51,14 +51,10 @@ public class SignUp extends AppCompatActivity {
             return;
         }
 
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("firstName", fn);
-        intent.putExtra("lastName", ln);
-        intent.putExtra("email", em);
-        intent.putExtra("pwd", pwd);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        setResult(RESULT_OK);
-        startActivity(intent);
+        //TODO: save user info in database
+
         finish();
+        String success = "Successfully signed up!";
+        Toast.makeText(getApplicationContext(), success, Toast.LENGTH_SHORT).show();
     }
 }
