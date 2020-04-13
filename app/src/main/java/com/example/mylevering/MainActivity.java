@@ -80,6 +80,8 @@ public class MainActivity extends AppCompatActivity
             pe.commit();
         }
 
+        //TODO: populate nav drawer name with user's name
+        //TODO: make MainActivity the landing page once user logs in
     }
 
     @Override

@@ -37,10 +37,10 @@ public class LogIn extends AppCompatActivity {
             return;
         }
 
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("email", usn);
-        intent.putExtra("pwd", ps);
+        //TODO: check database to see if username & password combination exists
+
         setResult(RESULT_OK);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
