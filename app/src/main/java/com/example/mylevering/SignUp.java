@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,10 +15,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity {
+
+    private static final String TAG = "SignUp";
 
     private EditText firstName;
     private EditText lastName;
@@ -29,8 +33,8 @@ public class SignUp extends AppCompatActivity {
     private String ln;
     private String em;
     private String pwd;
+    private String pwd2;
 
-    private DatabaseReference dbref;
     private FirebaseAuth auth;
 
     @Override
@@ -38,7 +42,6 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        dbref = FirebaseDatabase.getInstance().getReference();
         auth = FirebaseAuth.getInstance();
 
         firstName = findViewById(R.id.first_name);
@@ -53,7 +56,7 @@ public class SignUp extends AppCompatActivity {
         ln = lastName.getText().toString();
         em = email.getText().toString();
         pwd = password.getText().toString();
-        String pwd2 = password2.getText().toString();
+        pwd2 = password2.getText().toString();
 
         if (fn.equals("") || ln.equals("") || em.equals("") || pwd.equals("") || pwd2.equals("")) {
             String notFilled = "Missing fields";
@@ -85,10 +88,18 @@ public class SignUp extends AppCompatActivity {
     }
 
     private void onAuthSuccess(FirebaseUser user) {
-        // Write new user
-        String userId = user.getUid();
-        User us = new User(userId, fn, ln, em, pwd);
-        dbref.child("users").child(userId).setValue(us);
+        // Add name field to user
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setDisplayName(fn + " " + ln).build();
+        user.updateProfile(profileUpdates)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "User profile updated");
+                        }
+                    }
+                });
 
         // Go to MainActivity
         startActivity(new Intent(SignUp.this, MainActivity.class));
