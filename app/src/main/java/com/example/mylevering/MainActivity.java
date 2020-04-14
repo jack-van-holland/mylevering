@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class MainActivity extends AppCompatActivity
@@ -31,10 +32,14 @@ public class MainActivity extends AppCompatActivity
     private FragmentTransaction transaction;
     private SharedPreferences sp;
 
+    private FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        auth = FirebaseAuth.getInstance();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -118,6 +123,13 @@ public class MainActivity extends AppCompatActivity
             transaction.replace(R.id.fragment_container, settingsFrag);
             transaction.addToBackStack(null);
             transaction.commit();
+        }
+        else if (id == R.id.signout) {
+            //TODO: add "are you sure you want to sign out" box
+            auth.signOut();
+            Intent intent = new Intent(MainActivity.this, WelcomeLanding.class);
+            startActivity(intent);
+            finish();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

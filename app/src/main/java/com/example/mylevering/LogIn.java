@@ -56,7 +56,7 @@ public class LogIn extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             onAuthSuccess(task.getResult().getUser());
                         } else {
-                            Toast.makeText(LogIn.this, "Sign In Failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LogIn.this, "Log In Failed", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

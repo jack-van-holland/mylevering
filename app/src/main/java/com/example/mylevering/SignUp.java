@@ -95,7 +95,8 @@ public class SignUp extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "User profile updated");
+                            FirebaseUser us = auth.getCurrentUser();
+                            Log.d(TAG, "User profile updated as " + us.getDisplayName());
                         }
                     }
                 });
