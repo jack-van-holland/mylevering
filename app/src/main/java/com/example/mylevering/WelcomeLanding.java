@@ -5,12 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 
 public class WelcomeLanding extends AppCompatActivity {
@@ -18,7 +14,6 @@ public class WelcomeLanding extends AppCompatActivity {
     public static final int LOG_IN = 0;
 
     private FirebaseAuth auth;
-    private DatabaseReference dbref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,28 +21,17 @@ public class WelcomeLanding extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
 
         auth = FirebaseAuth.getInstance();
-        dbref = FirebaseDatabase.getInstance().getReference();
     }
 
     @Override
     public void onStart() {
         super.onStart();
 
-        // Check auth on Activity start
+        // User is signed in
         if (auth.getCurrentUser() != null) {
-            onAuthSuccess(auth.getCurrentUser());
+            startActivity(new Intent(WelcomeLanding.this, MainActivity.class));
+            finish();
         }
-    }
-
-    private void onAuthSuccess(FirebaseUser user) {
-        // Write new user
-        String userId = user.getUid();
-        User us = new User(userId, fn, ln, user.getEmail(), pwd);
-        dbref.child("users").child(userId).setValue(us);
-
-        // Go to MainActivity
-        startActivity(new Intent(WelcomeLanding.this, MainActivity.class));
-        finish();
     }
 
     public void launchLogIn(View v) {
