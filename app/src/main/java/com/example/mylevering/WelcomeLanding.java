@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -39,27 +40,14 @@ public class WelcomeLanding extends AppCompatActivity {
     }
 
     private void onAuthSuccess(FirebaseUser user) {
-        String username = usernameFromEmail(user.getEmail());
-
         // Write new user
-        writeNewUser(user.getUid(), username, user.getEmail());
+        String userId = user.getUid();
+        User us = new User(userId, fn, ln, user.getEmail(), pwd);
+        dbref.child("users").child(userId).setValue(us);
 
         // Go to MainActivity
         startActivity(new Intent(WelcomeLanding.this, MainActivity.class));
         finish();
-    }
-
-    private String usernameFromEmail(String email) {
-        if (email.contains("@")) {
-            return email.split("@")[0];
-        } else {
-            return email;
-        }
-    }
-
-    private void writeNewUser(String userId, String name, String email) {
-        User user = new User(name, email);
-        dbref.child("users").child(userId).setValue(user);
     }
 
     public void launchLogIn(View v) {
