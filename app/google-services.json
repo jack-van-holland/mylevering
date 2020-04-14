@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1013316213793",
+    "firebase_url": "https://my-levering.firebaseio.com",
+    "project_id": "my-levering",
+    "storage_bucket": "my-levering.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013316213793:android:9d79a78c24a17bc1209760",
+        "android_client_info": {
+          "package_name": "com.example.mylevering"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013316213793-gjnav6qda9oh31qdm0foqropj329916g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaCj2fEWhox7Fz2ZGTEfvST2e_w8GBGdQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013316213793-gjnav6qda9oh31qdm0foqropj329916g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
