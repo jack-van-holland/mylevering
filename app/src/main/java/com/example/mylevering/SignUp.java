@@ -20,8 +20,6 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class SignUp extends AppCompatActivity {
 
-    private static final String TAG = "SignUp";
-
     private EditText firstName;
     private EditText lastName;
     private EditText email;
@@ -90,19 +88,13 @@ public class SignUp extends AppCompatActivity {
         // Add name field to user
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setDisplayName(fn + " " + ln).build();
-        user.updateProfile(profileUpdates)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser us = auth.getCurrentUser();
-                            Log.d(TAG, "User profile updated as " + us.getDisplayName());
-                        }
-                    }
-                });
+        user.updateProfile(profileUpdates);
 
-        // Go to MainActivity
-        startActivity(new Intent(SignUp.this, MainActivity.class));
+        // Sign out so user can log in with created information
+        auth.signOut();
+
+        // Go to landing page to log in with created account
+        startActivity(new Intent(SignUp.this, WelcomeLanding.class));
         finish();
         String success = "Successfully signed up!";
         Toast.makeText(getApplicationContext(), success, Toast.LENGTH_SHORT).show();
