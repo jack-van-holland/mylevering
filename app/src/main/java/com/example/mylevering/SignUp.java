@@ -1,5 +1,6 @@
 package com.example.mylevering;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,6 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity {
 
@@ -16,10 +25,21 @@ public class SignUp extends AppCompatActivity {
     private EditText password;
     private EditText password2;
 
+    private String fn;
+    private String ln;
+    private String em;
+    private String pwd;
+
+    private DatabaseReference dbref;
+    private FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+        dbref = FirebaseDatabase.getInstance().getReference();
+        auth = FirebaseAuth.getInstance();
 
         firstName = findViewById(R.id.first_name);
         lastName = findViewById(R.id.last_name);
@@ -29,10 +49,10 @@ public class SignUp extends AppCompatActivity {
     }
 
     public void completeSignUp(View v) {
-        String fn = firstName.getText().toString();
-        String ln = lastName.getText().toString();
-        String em = email.getText().toString();
-        String pwd = password.getText().toString();
+        fn = firstName.getText().toString();
+        ln = lastName.getText().toString();
+        em = email.getText().toString();
+        pwd = password.getText().toString();
         String pwd2 = password2.getText().toString();
 
         if (fn.equals("") || ln.equals("") || em.equals("") || pwd.equals("") || pwd2.equals("")) {
@@ -51,10 +71,30 @@ public class SignUp extends AppCompatActivity {
             return;
         }
 
-        //TODO: save user info in database
+        auth.createUserWithEmailAndPassword(em, pwd)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            onAuthSuccess(task.getResult().getUser());
+                        } else {
+                            Toast.makeText(SignUp.this, "Sign Up Failed", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
 
+    private void onAuthSuccess(FirebaseUser user) {
+        // Write new user
+        String userId = user.getUid();
+        User us = new User(userId, fn, ln, em, pwd);
+        dbref.child("users").child(userId).setValue(us);
+
+        // Go to MainActivity
+        startActivity(new Intent(SignUp.this, MainActivity.class));
         finish();
         String success = "Successfully signed up!";
         Toast.makeText(getApplicationContext(), success, Toast.LENGTH_SHORT).show();
     }
+
 }
