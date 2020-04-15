@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         // Initialize logout dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogStyle);
         builder.setMessage(
                 "Are you sure you want to sign out?")
                 .setCancelable(false)
