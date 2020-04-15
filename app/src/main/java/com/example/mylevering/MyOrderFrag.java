@@ -2,7 +2,6 @@ package com.example.mylevering;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -11,9 +10,16 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import pl.droidsonroids.gif.GifImageView;
 
+
 public class MyOrderFrag extends Fragment {
+
     private Order order;
     private ImageView heart;
 
@@ -27,6 +33,11 @@ public class MyOrderFrag extends Fragment {
     private boolean orderStatusStarted;
     private int currentStatus;
 
+    private FirebaseDatabase dbase;
+    private DatabaseReference dbref;
+    private FirebaseAuth auth;
+    private FirebaseUser user;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,9 +49,14 @@ public class MyOrderFrag extends Fragment {
         return inflater.inflate(R.layout.fragment_my_order, container, false);
     }
 
-
     public void onStart() {
         super.onStart();
+
+        dbase = FirebaseDatabase.getInstance();
+        dbref = dbase.getReference();
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+
         heart = getActivity().findViewById(R.id.my_order_heart);
         ImageView typeImage = getActivity().findViewById(R.id.my_order_type_image);
         ImageView chefs = getActivity().findViewById(R.id.my_order_image);
@@ -77,7 +93,9 @@ public class MyOrderFrag extends Fragment {
             public void onClick(View v) {
                 order.setFavorite(favorite);
 
-                // TODO: Send order to database of past orders!
+                // Send order to database of past orders for current user
+                dbref.child("users").child(user.getUid()).child("pOrders")
+                        .child(order.getId()).setValue(order);
 
                 favorite = false;
                 orderStatusStarted = false;
@@ -130,7 +148,6 @@ public class MyOrderFrag extends Fragment {
     public void setStatusBackground(int status) {
         currentStatus = status;
     }
-
 
     public void setStatus(int status) {
         currentStatus = status;
