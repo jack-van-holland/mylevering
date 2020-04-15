@@ -65,6 +65,8 @@
         android:layout_marginTop="16dp"
         android:onClick="completeLogIn"
         android:text="@string/action_log_in"
+        android:backgroundTint="@color/colorPrimaryLight"
+        android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pass"
