@@ -70,4 +70,5 @@
     <string name="prompt_last_name">Last Name</string>
     <string name="prompt_password_again">Re-enter password</string>
     <string name="sign_out">Sign Out</string>
+    <string name="logout">Log Out</string>
 </resources>

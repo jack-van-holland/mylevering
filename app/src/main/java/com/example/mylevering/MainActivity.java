@@ -124,8 +124,8 @@ public class MainActivity extends AppCompatActivity
             transaction.addToBackStack(null);
             transaction.commit();
         }
-        else if (id == R.id.signout) {
-            //TODO: add "are you sure you want to sign out" box
+        else if (id == R.id.logout) {
+            //TODO: add "are you sure you want to log out" box
             auth.signOut();
             Intent intent = new Intent(MainActivity.this, WelcomeLanding.class);
             startActivity(intent);
