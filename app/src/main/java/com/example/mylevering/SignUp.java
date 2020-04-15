@@ -5,9 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,6 +32,7 @@ public class SignUp extends AppCompatActivity {
     private String pwd;
     private String pwd2;
 
+    private ProgressBar progress;
     private FirebaseAuth auth;
 
     @Override
@@ -46,9 +47,12 @@ public class SignUp extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.pass);
         password2 = findViewById(R.id.password2);
+        progress = findViewById(R.id.progress_bar);
     }
 
     public void completeSignUp(View v) {
+        progress.setVisibility(View.VISIBLE);
+
         fn = firstName.getText().toString();
         ln = lastName.getText().toString();
         em = email.getText().toString();
@@ -56,21 +60,25 @@ public class SignUp extends AppCompatActivity {
         pwd2 = password2.getText().toString();
 
         if (fn.equals("") || ln.equals("") || em.equals("") || pwd.equals("") || pwd2.equals("")) {
+            progress.setVisibility(View.GONE);
             String notFilled = "Missing fields";
             Toast.makeText(getApplicationContext(), notFilled, Toast.LENGTH_SHORT).show();
             return;
         }
         if (!em.contains("@jhu.edu")) {
+            progress.setVisibility(View.GONE);
             String invalidEmail = "Invalid JHU email";
             Toast.makeText(getApplicationContext(), invalidEmail, Toast.LENGTH_SHORT).show();
             return;
         }
         if (pwd.length() < 6) {
+            progress.setVisibility(View.GONE);
             String minChar = "Password must be at least 6 characters";
             Toast.makeText(getApplicationContext(), minChar, Toast.LENGTH_SHORT).show();
             return;
         }
         if (!pwd.equals(pwd2)) {
+            progress.setVisibility(View.GONE);
             String pwdMismatch = "Passwords do not match";
             Toast.makeText(getApplicationContext(), pwdMismatch, Toast.LENGTH_SHORT).show();
             return;
@@ -80,6 +88,8 @@ public class SignUp extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        progress.setVisibility(View.GONE);
+
                         if (task.isSuccessful()) {
                             onAuthSuccess(task.getResult().getUser());
                         } else {
