@@ -2,6 +2,7 @@ package com.example.mylevering;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -9,12 +10,14 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity
     private SharedPreferences sp;
 
     private FirebaseAuth auth;
+    AlertDialog signOutWarning;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,8 +89,18 @@ public class MainActivity extends AppCompatActivity
             pe.commit();
         }
 
-        //TODO: populate nav drawer name with user's name
-        //TODO: make MainActivity the landing page once user logs in
+        // Initialize logout dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(
+                "Are you sure you want to sign out?")
+                .setCancelable(false)
+                .setTitle(R.string.sign_out)
+                .setPositiveButton("Sign out", signOutListener)
+                .setNegativeButton("Not now", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+        signOutWarning = builder.create();
     }
 
     @Override
@@ -124,18 +138,24 @@ public class MainActivity extends AppCompatActivity
             transaction.addToBackStack(null);
             transaction.commit();
         }
-        else if (id == R.id.logout) {
-            //TODO: add "are you sure you want to log out" box
-            auth.signOut();
-            Intent intent = new Intent(MainActivity.this, WelcomeLanding.class);
-            startActivity(intent);
-            finish();
+        else if (id == R.id.signout) {
+            signOutWarning.show();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private DialogInterface.OnClickListener signOutListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            auth.signOut();
+            Intent intent = new Intent(MainActivity.this, WelcomeLanding.class);
+            startActivity(intent);
+            finish();
+        }
+    };
 
     public void returnToKitchen() {
         transaction = getSupportFragmentManager().beginTransaction();
