@@ -65,6 +65,11 @@ public class SignUp extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), invalidEmail, Toast.LENGTH_SHORT).show();
             return;
         }
+        if (pwd.length() < 6) {
+            String minChar = "Password must be at least 6 characters";
+            Toast.makeText(getApplicationContext(), minChar, Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (!pwd.equals(pwd2)) {
             String pwdMismatch = "Passwords do not match";
             Toast.makeText(getApplicationContext(), pwdMismatch, Toast.LENGTH_SHORT).show();
