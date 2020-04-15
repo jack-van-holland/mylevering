@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+
 public class ConfirmOrder extends AppCompatActivity {
 
     private MenuOption selected;
@@ -87,7 +88,6 @@ public class ConfirmOrder extends AppCompatActivity {
             }
         });
 
-
         Button btn = findViewById(R.id.confirm_continue);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,17 +96,17 @@ public class ConfirmOrder extends AppCompatActivity {
                 Spinner method = findViewById(R.id.confirm_payment_method);
                 String pickUpTime = time.getSelectedItem().toString();
                 String paymentMethod = method.getSelectedItem().toString();
-                Intent intent = new Intent(ConfirmOrder.this, MainActivity.class);
+
                 Order order = new Order(selected, from, pickUpTime, paymentMethod, 0, favorited);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("order", order);
+
+                Intent intent = new Intent(ConfirmOrder.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
-
-
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {

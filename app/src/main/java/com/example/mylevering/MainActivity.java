@@ -69,8 +69,12 @@ public class MainActivity extends AppCompatActivity
         TextView name = headerView.findViewById(R.id.id_name);
         name.setText(auth.getCurrentUser().getDisplayName());
 
+        sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor pe = sp.edit();
+
         Intent intent = getIntent();
         int flag = intent.getFlags();
+
         if (flag == Intent.FLAG_ACTIVITY_TASK_ON_HOME) {
             Bundle bundle = intent.getExtras();
             Order order = (Order) bundle.getSerializable("order");
@@ -80,16 +84,12 @@ public class MainActivity extends AppCompatActivity
             transaction.addToBackStack(null);
             transaction.commit();
             menu.findItem(R.id.my_order).setVisible(true);
-            sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-            SharedPreferences.Editor pe = sp.edit();
             pe.putBoolean("orderable", false);
             pe.commit();
         } else {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, kitchenFrag).commit();
             menu.findItem(R.id.my_order).setVisible(false);
-            sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-            SharedPreferences.Editor pe = sp.edit();
             pe.putBoolean("orderable", true);
             pe.commit();
         }
@@ -157,6 +157,7 @@ public class MainActivity extends AppCompatActivity
         public void onClick(DialogInterface dialog, int which) {
             auth.signOut();
             Intent intent = new Intent(MainActivity.this, WelcomeLanding.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
         }
