@@ -17,6 +17,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -62,6 +64,10 @@ public class MainActivity extends AppCompatActivity
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         Menu menu = navigationView.getMenu();
+
+        View headerView = navigationView.getHeaderView(0);
+        TextView name = headerView.findViewById(R.id.id_name);
+        name.setText(auth.getCurrentUser().getDisplayName());
 
         Intent intent = getIntent();
         int flag = intent.getFlags();
