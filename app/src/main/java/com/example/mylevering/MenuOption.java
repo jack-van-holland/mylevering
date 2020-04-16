@@ -32,6 +32,10 @@ public class MenuOption implements Serializable {
         return price;
     }
 
+    public String getInstructions() {
+        return instructions;
+    }
+
     public void setPrice(String p) {
         price = p;
     }
@@ -42,5 +46,9 @@ public class MenuOption implements Serializable {
 
     public void setDescription(String d) {
         description = d;
+    }
+
+    public void addDescriptionNote(String note) {
+        this.instructions = ("\nSpecial Instructions: ").concat(note);
     }
 }

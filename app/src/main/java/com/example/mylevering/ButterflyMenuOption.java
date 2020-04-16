@@ -45,9 +45,7 @@ public class ButterflyMenuOption extends MenuOption implements Serializable {
     public String getCalories() { return calories; }
     public String getDescription() { return description; }
 
-    public void addDescriptionNote(String note) {
-        this.instructions = ("\nSpecial Instructions: ").concat(note);
-    }
+
 
     /*
     @Override
