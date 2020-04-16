@@ -95,7 +95,7 @@ public class MyOrderFrag extends Fragment {
 
                 // Send order to database of past orders for current user
                 dbref.child("users").child(user.getUid()).child("pOrders")
-                        .child(order.getId()).setValue(order);
+                        .child(order.getId()) .setValue(order);
 
                 favorite = false;
                 orderStatusStarted = false;

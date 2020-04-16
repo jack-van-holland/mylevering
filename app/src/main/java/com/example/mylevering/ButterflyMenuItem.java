@@ -28,10 +28,13 @@ public class ButterflyMenuItem extends AppCompatActivity {
         TextView itemNutrition = findViewById(R.id.menu_item_nutrition);
         EditText itemInstruction = findViewById(R.id.special_instructions);
         Button orderBtn = findViewById(R.id.orderButton);
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        final ButterflyMenuOption order = (ButterflyMenuOption) bundle.getSerializable("selected");
 
-
-        if(getIntent().hasExtra("menu_item_selected")) {
-            order = getIntent().getParcelableExtra("menu_item_selected");
+        //if(getIntent().hasExtra("menu_item_selected")) {
+        if (order != null) {
+            //order = getIntent().getParcelableExtra("menu_item_selected");
             itemTitle.setText(order.getTitle());
             itemPrice.setText(order.getPrice());
             itemNutrition.setText("Calories: " + order.getCalories());

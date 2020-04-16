@@ -6,6 +6,7 @@ public class MenuOption implements Serializable {
     protected String title;
     protected String description;
     protected String price;
+    protected String instructions;
 
     public MenuOption() {
         title = "";

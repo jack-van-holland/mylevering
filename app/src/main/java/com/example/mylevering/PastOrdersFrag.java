@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -17,6 +19,8 @@ public class PastOrdersFrag extends Fragment {
 
     private FirebaseDatabase dbase;
     private DatabaseReference dbref;
+    private FirebaseAuth auth;
+    private FirebaseUser user;
     private List<Order> pOrders;
 
     @Override
@@ -25,7 +29,10 @@ public class PastOrdersFrag extends Fragment {
 
         dbase = FirebaseDatabase.getInstance();
         dbref = dbase.getReference();
+        auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
 
+        //for( dbref.child("users").child(user.getUid()).child("pOrders").
         //TODO(jack): create listview/recyclerview and populate with past orders from database
     }
 

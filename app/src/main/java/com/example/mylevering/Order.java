@@ -6,9 +6,8 @@ public class Order implements Serializable {
 
     private static long nextId = 0;
 
-    private String title;
-    private String description;
-    private String price;
+
+    private MenuOption menu;
     private String scheduledTime;
     private String paymentMethod;
     private int status;
@@ -17,9 +16,7 @@ public class Order implements Serializable {
     private String id;
 
     public Order(MenuOption menuOption, String from, String schedTime, String method, int stat, boolean fav) {
-        this.title = menuOption.getTitle();
-        this.description = menuOption.getDescription();
-        this.price = menuOption.getPrice();
+        menu = menuOption;
         this.scheduledTime = schedTime;
         this.paymentMethod = method;
         this.status = stat;
@@ -28,15 +25,33 @@ public class Order implements Serializable {
         this.id = String.format("o-%04d", ++nextId);
     }
 
+    public FreshMenuOption getFreshMenu() {
+        if (menu instanceof FreshMenuOption) {
+            return (FreshMenuOption) menu;
+        }
+        else {
+            return null;
+        }
+    }
+
+    public ButterflyMenuOption getButterflyMenu() {
+        if (menu instanceof ButterflyMenuOption) {
+            return (ButterflyMenuOption) menu;
+        }
+        else {
+            return null;
+        }
+    }
+
     public String getTitle() {
-        return this.title;
+        return menu.getTitle();
     }
 
     public String getDescription() {
-        return this.description;
+        return menu.getDescription();
     }
 
-    public String getPrice() { return this.price; }
+    public String getPrice() { return menu.getPrice(); }
 
     public String getScheduledTime() {
         return this.scheduledTime;
@@ -61,15 +76,15 @@ public class Order implements Serializable {
     public String getId() { return this.id; }
 
     public void setTitle(String title) {
-        this.title = title;
+        menu.setTitle(title);
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        menu.setDescription(description);
     }
 
     public void setPrice(String price) {
-        this.price = price;
+        menu.setPrice(price);
     }
 
     public void setScheduledTime(String scheduledTime) {

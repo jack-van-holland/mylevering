@@ -60,7 +60,10 @@ public class ButterflyOrder extends AppCompatActivity implements ButterflyMenuLi
     @Override
     public void OnNoteClick(int position) {
         Intent intent = new Intent(this, ButterflyMenuItem.class);
-        intent.putExtra("menu_item_selected", (Parcelable) butterflyMenuList.get(position));
+        //intent.putExtra("menu_item_selected", (Parcelable) butterflyMenuList.get(position));
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("selected", butterflyMenuList.get(position));
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 }
