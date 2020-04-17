@@ -1,11 +1,12 @@
 package com.example.mylevering;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Order implements Serializable {
-
-    private static long nextId = 0;
-
 
     private MenuOption menu;
     private String scheduledTime;
@@ -14,6 +15,10 @@ public class Order implements Serializable {
     private boolean favorite;
     private String type;
     private String id;
+    private OrderDate cal;
+
+
+    public Order() {}
 
     public Order(MenuOption menuOption, String from, String schedTime, String method, int stat, boolean fav) {
         menu = menuOption;
@@ -22,7 +27,11 @@ public class Order implements Serializable {
         this.status = stat;
         this.favorite = fav;
         this.type = from;
-        this.id = String.format("o-%04d", ++nextId);
+        cal = new OrderDate();
+        Date d = Calendar.getInstance().getTime();
+        cal.setDay(d.getDate());
+        cal.setMonth(d.getMonth() + 1);
+        cal.setYear(d.getYear() + 1900);
     }
 
     public FreshMenuOption getFreshMenu() {
@@ -43,15 +52,10 @@ public class Order implements Serializable {
         }
     }
 
-    public String getTitle() {
-        return menu.getTitle();
+    public OrderDate getCal() {
+        return cal;
     }
 
-    public String getDescription() {
-        return menu.getDescription();
-    }
-
-    public String getPrice() { return menu.getPrice(); }
 
     public String getScheduledTime() {
         return this.scheduledTime;
@@ -75,16 +79,20 @@ public class Order implements Serializable {
 
     public String getId() { return this.id; }
 
-    public void setTitle(String title) {
-        menu.setTitle(title);
+    public void setButterflyMenu(ButterflyMenuOption m) {
+        this.menu = m;
     }
 
-    public void setDescription(String description) {
-        menu.setDescription(description);
+    public void setFreshMenu(FreshMenuOption m) {
+        this.menu = m;
     }
 
-    public void setPrice(String price) {
-        menu.setPrice(price);
+    public void setCal(OrderDate c){
+        cal = c;
+    }
+
+    public void setID(String i) {
+        this.id = i;
     }
 
     public void setScheduledTime(String scheduledTime) {

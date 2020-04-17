@@ -8,6 +8,7 @@ public class MenuOption implements Serializable {
     protected String price;
     protected String instructions;
 
+
     public MenuOption() {
         title = "";
         description = "";
@@ -48,7 +49,7 @@ public class MenuOption implements Serializable {
         description = d;
     }
 
-    public void addDescriptionNote(String note) {
+    public void setInstructions(String note) {
         this.instructions = ("\nSpecial Instructions: ").concat(note);
     }
 }

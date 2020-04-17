@@ -8,9 +8,9 @@ import java.io.Serializable;
 public class ButterflyMenuOption extends MenuOption implements Serializable {
 
     private String calories;
+    public ButterflyMenuOption(){}
 
-
-    ButterflyMenuOption(String t, String p, String c, String d) {
+    public ButterflyMenuOption(String t, String p, String c, String d) {
         this.setAll(t, p, c, d);
     }
 
@@ -44,7 +44,9 @@ public class ButterflyMenuOption extends MenuOption implements Serializable {
     public String getPrice() { return price; }
     public String getCalories() { return calories; }
     public String getDescription() { return description; }
-
+    public void setCalories(String c) {
+        calories = c;
+    }
 
 
     /*

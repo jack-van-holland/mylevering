@@ -18,6 +18,8 @@ public class FreshMenuOption extends MenuOption implements Serializable {
     private int protein;
     private int dressing;
 
+    public FreshMenuOption(){}
+
     public FreshMenuOption(int b, int[] s, int sc, int[] t, int tc, int p, int d) {
         base = b;
         spreads = new ArrayList<>();

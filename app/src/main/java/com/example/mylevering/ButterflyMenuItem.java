@@ -41,7 +41,7 @@ public class ButterflyMenuItem extends AppCompatActivity {
             //String itemDescriptionandNote = order.getDescription();
             //itemDescriptionandNote += itemInstruction.getText().toString();
             String note = itemInstruction.getText().toString();
-            order.addDescriptionNote(note);
+            order.setInstructions(note);
             itemIngredients.setText(order.getDescription());
 
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());

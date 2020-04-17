@@ -4,13 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.Image;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -18,11 +14,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.material.resources.TextAppearance;
 
 public class FreshOrder extends AppCompatActivity {
 
@@ -360,7 +353,7 @@ public class FreshOrder extends AppCompatActivity {
             }
         }
         FreshMenuOption selected = new FreshMenuOption(base, spreads, spreadCount, toppings, toppingCount, protein, dressing);
-        selected.addDescriptionNote(instructions.getText().toString());
+        selected.setInstructions(instructions.getText().toString());
         return selected;
     }
 

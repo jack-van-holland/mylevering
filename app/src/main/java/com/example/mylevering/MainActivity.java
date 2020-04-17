@@ -1,6 +1,7 @@
 package com.example.mylevering;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +23,18 @@ import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity
@@ -35,9 +48,16 @@ public class MainActivity extends AppCompatActivity
     private Fragment settingsFrag;
     private FragmentTransaction transaction;
     private SharedPreferences sp;
+    public List<Order> pOrders = new ArrayList<>();;
 
+
+    private FirebaseDatabase dbase;
+    private DatabaseReference dbref;
     private FirebaseAuth auth;
+    private FirebaseUser user;
     AlertDialog signOutWarning;
+
+    public long nextId = pOrders.size() + 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +65,34 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         auth = FirebaseAuth.getInstance();
+
+        dbase = FirebaseDatabase.getInstance();
+        dbref = dbase.getReference();
+        user = auth.getCurrentUser();
+
+
+
+        dbref.child("users").child(user.getUid()).child("pOrders").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                pOrders.add(dataSnapshot.getValue(Order.class));
+                nextId = pOrders.size() + 1;
+                //String type = (String) map.get("type");
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) { }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) { }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) { }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
+        });
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

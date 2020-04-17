@@ -30,6 +30,8 @@
     <string name="order">Order</string>
     <string name="freshLabel">Fresh</string>
 
+    <string name="favs">Favorites</string>
+
     <string name="menu_option_title">Menu Item Title</string>
     <string name="menu_option_calories">Calories</string>
     <string name="menu_option_price">Price</string>

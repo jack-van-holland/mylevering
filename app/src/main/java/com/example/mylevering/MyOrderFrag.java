@@ -21,6 +21,7 @@ import pl.droidsonroids.gif.GifImageView;
 public class MyOrderFrag extends Fragment {
 
     private Order order;
+
     private ImageView heart;
 
     public static int UNSENT = 0;
@@ -92,10 +93,10 @@ public class MyOrderFrag extends Fragment {
             @Override
             public void onClick(View v) {
                 order.setFavorite(favorite);
-
+                order.setID(String.format("o-%04d", ((MainActivity)getActivity()).pOrders.size() + 1));
                 // Send order to database of past orders for current user
                 dbref.child("users").child(user.getUid()).child("pOrders")
-                        .child(order.getId()) .setValue(order);
+                        .child(order.getId()).setValue(order);
 
                 favorite = false;
                 orderStatusStarted = false;
@@ -107,7 +108,12 @@ public class MyOrderFrag extends Fragment {
 
         if (order != null) {
             favorite = order.isFavorite();
-            String t = order.getTitle();
+            String t;
+            if (order.getButterflyMenu() != null) {
+                t = order.getButterflyMenu().getTitle();
+            } else {
+                t = order.getFreshMenu().getTitle();
+            }
             TextView title = getActivity().findViewById(R.id.my_order_title);
             title.setText(t);
             String type = order.getType();
