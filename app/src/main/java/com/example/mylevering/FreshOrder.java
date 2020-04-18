@@ -17,6 +17,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class FreshOrder extends AppCompatActivity {
 
 
@@ -24,6 +26,10 @@ public class FreshOrder extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fresh_order);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        final FreshMenuOption pastOrder = (FreshMenuOption) bundle.getSerializable("selected");
 
         final LinearLayout fresh = findViewById(R.id.freshOptions);
         final LinearLayout base = new LinearLayout(getApplicationContext());
@@ -314,6 +320,8 @@ public class FreshOrder extends AppCompatActivity {
         for (int i = 0; i < dressingButtons.length; i++) {
             dressingButtons[i].setOnClickListener(checkSelection);
         }
+
+        populateOptions(orderButton, baseButtons, spreadChecks, toppingChecks, proteinButtons, dressingButtons, instructions, pastOrder);
     }
 
     public FreshMenuOption getChoices(RadioButton[] baseButtons, CheckBox[] spreadChecks, CheckBox[] toppingChecks,
@@ -471,5 +479,31 @@ public class FreshOrder extends AppCompatActivity {
                 }
             });
         }
+    }
+    private void populateOptions(Button button, final RadioButton[] baseButtons, final CheckBox[] spreadChecks, final CheckBox[] toppingChecks,
+                                 final RadioButton[] proteinButtons, final RadioButton[] dressingButtons, final EditText instructions, FreshMenuOption past) {
+        if (past == null) {
+            return;
+        }
+        int base = past.getBase();
+        baseButtons[base].setChecked(true);
+        ArrayList<Integer> spreads = past.getSpreads();
+        for (Integer j : spreads) {
+            spreadChecks[j].setChecked(true);
+        }
+
+        ArrayList<Integer> toppings = past.getToppings();
+        for (Integer k : toppings) {
+            toppingChecks[k].setChecked(true);
+        }
+        int protein = past.getProtein();
+        proteinButtons[protein].setChecked(true);
+
+        int dressing = past.getDressing();
+        dressingButtons[dressing].setChecked(true);
+
+        String instr = past.getInstructions();
+        instructions.setText(instr);
+        changeButtons(button, baseButtons, spreadChecks, toppingChecks, proteinButtons, dressingButtons, instructions);
     }
 }
