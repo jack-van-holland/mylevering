@@ -82,14 +82,12 @@ public class PastOrdersFrag extends Fragment {
             @Override
             public void onClick(View v) {
                 if (favOn) {
-                    clearList(favList);
                     favToggle.setChecked(false);
                     editor.putBoolean("fav", false);
                     editor.commit();
                     favOn = false;
                     populateList(favList);
                 } else {
-                    clearList(favList);
                     favToggle.setChecked(true);
                     editor.putBoolean("fav", true);
                     editor.commit();
@@ -101,20 +99,6 @@ public class PastOrdersFrag extends Fragment {
 
     }
 
-    private void clearList(ArrayList<Pair<LinearLayout, Boolean>> favList) {
-        if (favOn) {
-            for (Pair<LinearLayout, Boolean> pastOrder : favList) {
-                if (pastOrder.second) {
-                    pastOrderList.removeView(pastOrder.first);
-                }
-            }
-        } else {
-            for (Pair<LinearLayout, Boolean> pastOrder : favList) {
-                    pastOrderList.removeView(pastOrder.first);
-            }
-        }
-    }
-
     private void getPastOrders(ArrayList<Pair<LinearLayout, Boolean>> favList, View v, MainActivity a) {
         favList.clear();
         for (Order order : a.pOrders) {
@@ -123,6 +107,7 @@ public class PastOrdersFrag extends Fragment {
     }
 
     private void populateList(ArrayList<Pair<LinearLayout, Boolean>> favList) {
+        pastOrderList.removeAllViews();
         for (Pair<LinearLayout, Boolean> pastOrder : favList) {
             if (favOn) {
                 if (pastOrder.second) {
@@ -327,8 +312,7 @@ public class PastOrdersFrag extends Fragment {
 
                     dbref.child("users").child(user.getUid()).child("pOrders")
                             .child(newOrder.getId()).setValue(newOrder);
-                    clearList(favList);
-                    a.updateData();
+                    //a.updateData();
                     getPastOrders(favList, v, a);
                     populateList(favList);
 
@@ -338,8 +322,7 @@ public class PastOrdersFrag extends Fragment {
                     heart.setImageResource(R.drawable.heart_filled);
                     dbref.child("users").child(user.getUid()).child("pOrders")
                             .child(newOrder.getId()).setValue(newOrder);
-                    clearList(favList);
-                    a.updateData();
+                    //a.updateData();
                     getPastOrders(favList, v, a);
                     populateList(favList);
                 }

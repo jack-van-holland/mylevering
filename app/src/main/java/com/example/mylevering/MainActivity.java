@@ -207,6 +207,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void updateData() {
+        //pOrders.clear();
         dbref.child("users").child(user.getUid()).child("pOrders").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -219,12 +220,12 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Order newOrder = dataSnapshot.getValue(Order.class);
+                /*Order newOrder = dataSnapshot.getValue(Order.class);
                 for (Order changed: pOrders) {
-                    if (newOrder.getId() == changed.getId()) {
+                    if (newOrder.getId().equals(changed.getId())) {
                         pOrders.set(pOrders.indexOf(changed), newOrder);
                     }
-                }
+                }*/
             }
 
             @Override
