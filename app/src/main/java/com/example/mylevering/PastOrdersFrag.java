@@ -339,16 +339,22 @@ public class PastOrdersFrag extends Fragment {
 
     private String getDate(OrderDate d) {
         Date today = Calendar.getInstance().getTime();
+        String mins;
+        if (d.getMinute() < 10) {
+            mins = "0" + Integer.valueOf(d.getMinute()).toString();
+        } else {
+            mins = Integer.valueOf(d.getMinute()).toString();
+        }
         if (today.getMonth() + 1 == d.getMonth() && today.getYear() + 1900 == d.getYear()) {
             if (today.getDate() == d.getDay()){
-                return "Today at " + d.getHour() + ":" + d.getMinute() + " " + d.getAM();
+                return "Today at " + d.getHour() + ":" + mins + " " + d.getAM();
             } else if (today.getDate() + 1 == d.getDay()) {
-                return "Yesterday at" + d.getHour() + ":" + d.getMinute() + " " + d.getAM();
+                return "Yesterday at" + d.getHour() + ":" + mins + " " + d.getAM();
             } else {
-                return months[d.getMonth()] + " " + d.getDay() + ", " + d.getYear() + d.getHour() + ":" + d.getMinute() + " " + d.getAM();
+                return months[d.getMonth()] + " " + d.getDay() + ", " + d.getYear() + d.getHour() + ":" + mins + " " + d.getAM();
             }
         } else {
-            return months[d.getMonth()] + " " + d.getDay() + ", " + d.getYear() + d.getHour() + ":" + d.getMinute() + " " + d.getAM();
+            return months[d.getMonth()] + " " + d.getDay() + ", " + d.getYear() + d.getHour() + ":" + mins + " " + d.getAM();
         }
     }
     @Override

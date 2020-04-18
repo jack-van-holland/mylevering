@@ -31,9 +31,9 @@ public class Order implements Serializable, Comparable {
         cal.setMonth(d.getMonth() + 1);
         cal.setYear(d.getYear() + 1900);
         if (d.getHours() >= 12) {
-            cal.setAM("AM");
-        } else {
             cal.setAM("PM");
+        } else {
+            cal.setAM("AM");
         }
 
         if (d.getHours() == 0) {
@@ -136,21 +136,21 @@ public class Order implements Serializable, Comparable {
         else {
             Order other = (Order) o;
             if (getCal().getYear() != other.getCal().getYear()) {
-                return getCal().getYear() - other.getCal().getYear();
+                return  other.getCal().getYear() - getCal().getYear();
             } else if (getCal().getMonth() != other.getCal().getMonth()) {
-                return getCal().getMonth() - other.getCal().getMonth();
+                return  other.getCal().getMonth() - getCal().getMonth();
             } else if(getCal().getDay() != other.getCal().getDay()) {
-                return getCal().getDay() - other.getCal().getDay();
+                return  other.getCal().getDay() - getCal().getDay();
             } else if (!getCal().getAM().equals(other.getCal().getAM())) {
                 if (getCal().getAM().equals("AM")) {
-                    return -1;
-                } else {
                     return 1;
+                } else {
+                    return -1;
                 }
             } else if (getCal().getHour() != other.getCal().getHour()) {
-                return getCal().getHour() - other.getCal().getHour();
+                return  other.getCal().getHour() - getCal().getHour();
             } else if (getCal().getMinute() != other.getCal().getMinute()) {
-                return getCal().getMinute() - other.getCal().getMinute();
+                return  other.getCal().getMinute() - getCal().getMinute();
             } else {
                 return 0;
             }
