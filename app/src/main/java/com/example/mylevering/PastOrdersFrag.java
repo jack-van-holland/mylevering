@@ -176,13 +176,15 @@ public class PastOrdersFrag extends Fragment {
             kitchenName.setText("Butterfly");
             ButterflyMenuOption butterfly = o.getButterflyMenu();
             title.setText(butterfly.getTitle());
-            description.setText(Html.fromHtml(butterfly.getDescription()));
+            description.setText(Html.fromHtml(butterfly.getDescription() + butterfly.getInstructions()));
+
+
         } else {
             kitchen.setImageResource(R.drawable.fresh);
             kitchenName.setText("Fresh");
             FreshMenuOption fresh = o.getFreshMenu();
             title.setText(fresh.getTitle());
-            description.setText(Html.fromHtml(fresh.getDescription()));
+            description.setText(Html.fromHtml(fresh.getDescription() + fresh.getInstructions()));
         }
 
         Button reorder = new Button(c);

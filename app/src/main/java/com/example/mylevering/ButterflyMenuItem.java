@@ -26,7 +26,7 @@ public class ButterflyMenuItem extends AppCompatActivity {
         TextView itemPrice = findViewById(R.id.menu_item_price);
         TextView itemIngredients = findViewById(R.id.menu_item_ingredients);
         TextView itemNutrition = findViewById(R.id.menu_item_nutrition);
-        EditText itemInstruction = findViewById(R.id.special_instructions);
+        final EditText itemInstruction = findViewById(R.id.special_instructions);
         Button orderBtn = findViewById(R.id.orderButton);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -41,8 +41,7 @@ public class ButterflyMenuItem extends AppCompatActivity {
             itemInstruction.setText(order.getInstructions());
             //String itemDescriptionandNote = order.getDescription();
             //itemDescriptionandNote += itemInstruction.getText().toString();
-            String note = itemInstruction.getText().toString();
-            order.setInstructions(note);
+
             itemIngredients.setText(order.getDescription());
 
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -55,6 +54,9 @@ public class ButterflyMenuItem extends AppCompatActivity {
             orderBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (!itemInstruction.getText().toString().equals("")) {
+                        order.setInstructions(("<br><b>Special Instructions</b>: ").concat(itemInstruction.getText().toString()));
+                    }
                     if (orderable) {
                         Intent intent = new Intent(ButterflyMenuItem.this, ConfirmOrder.class);
                         Bundle bundle = new Bundle();

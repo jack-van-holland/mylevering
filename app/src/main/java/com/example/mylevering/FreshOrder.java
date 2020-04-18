@@ -363,7 +363,9 @@ public class FreshOrder extends AppCompatActivity {
             }
         }
         FreshMenuOption selected = new FreshMenuOption(base, spreads, spreadCount, toppings, toppingCount, protein, dressing);
-        selected.setInstructions(instructions.getText().toString());
+        if (!instructions.getText().toString().equals("")) {
+            selected.setInstructions(("<br><b>Special Instructions</b>: ").concat(instructions.getText().toString()));
+        }
         return selected;
     }
 

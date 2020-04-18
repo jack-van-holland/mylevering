@@ -43,7 +43,7 @@ public class ConfirmOrder extends AppCompatActivity {
         TextView price = findViewById(R.id.confirm_price);
         TextView totalPrice = findViewById(R.id.confirm_total_price);
         TextView type = findViewById(R.id.confirm_category);
-        desc.setText(Html.fromHtml(selected.getDescription()));
+        desc.setText(Html.fromHtml(selected.getDescription() + selected.getInstructions()));
         title.setText(selected.getTitle());
         price.setText(selected.getPrice());
         totalPrice.setText(selected.getPrice());
