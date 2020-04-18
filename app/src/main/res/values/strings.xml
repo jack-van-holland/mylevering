@@ -31,6 +31,8 @@
     <string name="freshLabel">Fresh</string>
 
     <string name="favs">Favorites</string>
+    <string name="reorder">Re-Order</string>
+
 
     <string name="menu_option_title">Menu Item Title</string>
     <string name="menu_option_calories">Calories</string>

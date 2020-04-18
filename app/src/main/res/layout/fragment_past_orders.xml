@@ -3,26 +3,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:layout_gravity="top">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
+
+    <Switch
+        android:id="@+id/favoriteToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
         android:layout_gravity="end"
-        android:layout_weight="1">
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="25dp"
+        android:thumbTint="@color/colorGray"
+        android:trackTint="@drawable/favorite_thumb"
 
-        <Switch
-            android:id="@+id/switch1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/favs" />
-    </LinearLayout>
+        android:text="@string/favs"
+        android:theme="@style/AppTheme" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/pastOrderList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

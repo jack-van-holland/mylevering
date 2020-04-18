@@ -32,6 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,29 +71,9 @@ public class MainActivity extends AppCompatActivity
         dbref = dbase.getReference();
         user = auth.getCurrentUser();
 
+        updateData();
 
 
-        dbref.child("users").child(user.getUid()).child("pOrders").addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                pOrders.add(dataSnapshot.getValue(Order.class));
-                nextId = pOrders.size() + 1;
-                //String type = (String) map.get("type");
-
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) { }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) { }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) { }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) { }
-        });
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -223,5 +204,37 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences.Editor pe = sp.edit();
         pe.putBoolean("orderable", true);
         pe.commit();
+    }
+
+    public void updateData() {
+        dbref.child("users").child(user.getUid()).child("pOrders").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                pOrders.add(dataSnapshot.getValue(Order.class));
+                nextId = pOrders.size() + 1;
+                Collections.sort(pOrders);
+                //String type = (String) map.get("type");
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                Order newOrder = dataSnapshot.getValue(Order.class);
+                for (Order changed: pOrders) {
+                    if (newOrder.getId() == changed.getId()) {
+                        pOrders.set(pOrders.indexOf(changed), newOrder);
+                    }
+                }
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) { }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) { }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
+        });
     }
 }

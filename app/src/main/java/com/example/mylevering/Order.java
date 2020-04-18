@@ -1,12 +1,10 @@
 package com.example.mylevering;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
-public class Order implements Serializable {
+public class Order implements Serializable, Comparable {
 
     private MenuOption menu;
     private String scheduledTime;
@@ -32,6 +30,21 @@ public class Order implements Serializable {
         cal.setDay(d.getDate());
         cal.setMonth(d.getMonth() + 1);
         cal.setYear(d.getYear() + 1900);
+        if (d.getHours() >= 12) {
+            cal.setAM("AM");
+        } else {
+            cal.setAM("PM");
+        }
+
+        if (d.getHours() == 0) {
+            cal.setHour(12);
+        } else if (d.getTime() > 12) {
+            cal.setHour(d.getHours() - 12);
+        } else {
+            cal.setHour(d.getHours());
+        }
+
+        cal.setMinute(d.getMinutes());
     }
 
     public FreshMenuOption getFreshMenu() {
@@ -115,5 +128,32 @@ public class Order implements Serializable {
         this.type = type;
     }
 
-
+    @Override
+    public int compareTo(Object o) {
+        if (!(o instanceof Order)) {
+            throw new RuntimeException();
+        }
+        else {
+            Order other = (Order) o;
+            if (getCal().getYear() != other.getCal().getYear()) {
+                return getCal().getYear() - other.getCal().getYear();
+            } else if (getCal().getMonth() != other.getCal().getMonth()) {
+                return getCal().getMonth() - other.getCal().getMonth();
+            } else if(getCal().getDay() != other.getCal().getDay()) {
+                return getCal().getDay() - other.getCal().getDay();
+            } else if (!getCal().getAM().equals(other.getCal().getAM())) {
+                if (getCal().getAM().equals("AM")) {
+                    return -1;
+                } else {
+                    return 1;
+                }
+            } else if (getCal().getHour() != other.getCal().getHour()) {
+                return getCal().getHour() - other.getCal().getHour();
+            } else if (getCal().getMinute() != other.getCal().getMinute()) {
+                return getCal().getMinute() - other.getCal().getMinute();
+            } else {
+                return 0;
+            }
+        }
+    }
 }
