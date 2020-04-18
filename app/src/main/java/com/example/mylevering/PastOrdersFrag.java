@@ -169,7 +169,7 @@ public class PastOrdersFrag extends Fragment {
         final TextView descriptionShown = new TextView(c);
         descriptionShown.setId(View.generateViewId());
         descriptionShown.setText("No");
-        description.setPadding(75, 0, 0, 0);
+        description.setPadding(75, 0, 0, 10);
 
         if(o.getType().equals("Butterfly")) {
             kitchen.setImageResource(R.drawable.butterfly);

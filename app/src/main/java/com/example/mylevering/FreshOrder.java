@@ -29,8 +29,10 @@ public class FreshOrder extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        final FreshMenuOption pastOrder = (FreshMenuOption) bundle.getSerializable("selected");
-
+        FreshMenuOption pastOrder = null;
+        if(bundle != null && bundle.get("selected") != null) {
+            pastOrder = (FreshMenuOption) bundle.getSerializable("selected");
+        }
         final LinearLayout fresh = findViewById(R.id.freshOptions);
         final LinearLayout base = new LinearLayout(getApplicationContext());
         base.setOrientation(LinearLayout.VERTICAL);
