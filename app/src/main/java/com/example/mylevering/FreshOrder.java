@@ -179,9 +179,11 @@ public class FreshOrder extends AppCompatActivity {
 
         final EditText instructions = new EditText(getApplicationContext());
         instructions.setHint(R.string.butterfly_customize);
+        instructions.setPadding(50, 0, 0, 25);
 
         TextView txt = new TextView((getApplicationContext()));
         txt.setText(R.string.butterfly_instructions);
+        txt.setPadding(50,50,0,0);
 
         fresh.addView(txt);
         fresh.addView(instructions);
@@ -507,6 +509,9 @@ public class FreshOrder extends AppCompatActivity {
         dressingButtons[dressing].setChecked(true);
 
         String instr = past.getInstructions();
+        if (!instr.equals("")) {
+            instr = instr.substring(instr.indexOf("</b>:") + 6);
+        }
         instructions.setText(instr);
         changeButtons(button, baseButtons, spreadChecks, toppingChecks, proteinButtons, dressingButtons, instructions);
     }

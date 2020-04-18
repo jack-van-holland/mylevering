@@ -38,11 +38,16 @@ public class ButterflyMenuItem extends AppCompatActivity {
             itemTitle.setText(order.getTitle());
             itemPrice.setText(order.getPrice());
             itemNutrition.setText("Calories: " + order.getCalories());
-            itemInstruction.setText(order.getInstructions());
+
+            String instr = order.getInstructions();
+            if (!instr.equals("")) {
+                instr = instr.substring(instr.indexOf("</b>:") + 6);
+            }
+            itemIngredients.setText(order.getDescription());
+
+            itemInstruction.setText(instr);
             //String itemDescriptionandNote = order.getDescription();
             //itemDescriptionandNote += itemInstruction.getText().toString();
-
-            itemIngredients.setText(order.getDescription());
 
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             orderable = sp.getBoolean("orderable", true);
