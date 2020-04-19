@@ -58,6 +58,7 @@ public class ButterflyMenuListAdapter extends RecyclerView.Adapter<ButterflyMenu
             price = itemView.findViewById(R.id.menu_item_price);
             calories = itemView.findViewById(R.id.menu_item_calories);
 
+
             this.onMenuItemListener = onMenuItemListener;
             itemView.setOnClickListener(this);
         }
