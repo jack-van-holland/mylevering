@@ -34,6 +34,10 @@ public class ButterflyMenuListAdapter extends RecyclerView.Adapter<ButterflyMenu
         holder.title.setText(menuItem.getTitle());
         holder.price.setText(menuItem.getPrice());
         holder.calories.setText(cal);
+
+        if (!menuItem.isAvailable()) {
+            holder.itemView.setBackgroundColor(holder.itemView.getResources().getColor(R.color.colorGray));
+        }
     }
 
     @Override
