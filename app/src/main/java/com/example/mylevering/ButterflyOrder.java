@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -59,11 +60,18 @@ public class ButterflyOrder extends AppCompatActivity implements ButterflyMenuLi
 
     @Override
     public void OnNoteClick(int position) {
-        Intent intent = new Intent(this, ButterflyMenuItem.class);
-        //intent.putExtra("menu_item_selected", (Parcelable) butterflyMenuList.get(position));
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("selected", butterflyMenuList.get(position));
-        intent.putExtras(bundle);
-        startActivity(intent);
+        ButterflyMenuOption bmo = butterflyMenuList.get(position);
+        if(bmo.isAvailable()) {
+            Intent intent = new Intent(this, ButterflyMenuItem.class);
+            //intent.putExtra("menu_item_selected", (Parcelable) butterflyMenuList.get(position));
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("selected", bmo);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "This item is not available to order right now.", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 }
