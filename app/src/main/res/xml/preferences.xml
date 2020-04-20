@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/pref_screen"
+    android:theme="@style/AppTheme.Settings">
+
+    <PreferenceCategory
+        android:id="@+id/pref_cat"
+        android:theme="@style/AppTheme.Settings"
+        android:title="@string/settings_notification_title"
+        app:title="@string/settings_notification_title">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:forceDarkAllowed="false"
+            android:key="check_box_preference_1"
+            android:theme="@style/AppTheme.Settings"
+            android:title="Check box preference" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

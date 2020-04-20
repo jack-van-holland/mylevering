@@ -14,4 +14,14 @@
         <item>Dining Dollars</item>
         <item>GPay</item>
     </string-array>
+
+    <string-array name="notification_preferences">
+        <item>Order is ready</item>
+        <item>Order accepted or declined</item>
+        <item>Order is being prepared</item>
+    </string-array>
+
+    <string-array name="notification_preferences_default">
+        <item>Order is ready</item>
+    </string-array>
 </resources>
