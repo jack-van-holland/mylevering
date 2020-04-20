@@ -2,19 +2,48 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/pref_screen"
+    android:gravity="center"
     android:theme="@style/AppTheme.Settings">
 
+    <PreferenceCategory android:title="Secret pref cat">
+
+    </PreferenceCategory>
     <PreferenceCategory
         android:id="@+id/pref_cat"
+        android:background="#FFFFFF"
         android:theme="@style/AppTheme.Settings"
         android:title="@string/settings_notification_title"
+        android:visibility="visible"
         app:title="@string/settings_notification_title">
+        <SwitchPreference
+            android:id="@+id/settings_notifications_allowed"
+            android:defaultValue="false"
+            android:key="settings_notifications_allowed"
+            android:title="Allow Notifcations?" />
         <CheckBoxPreference
             android:defaultValue="false"
-            android:forceDarkAllowed="false"
+            android:dependency="settings_notifications_allowed"
             android:key="check_box_preference_1"
-            android:theme="@style/AppTheme.Settings"
             android:title="Check box preference" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:dependency="settings_notifications_allowed"
+            android:key="check_box_preference_1"
+            android:title="Check box preference" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:dependency="settings_notifications_allowed"
+            android:key="check_box_preference_1"
+            android:title="Check box preference" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Dietary Restrictions">
+
+        <MultiSelectListPreference
+            android:entries="@array/dietary_restrictions"
+            android:entryValues="@array/dietary_restrictions"
+            android:key="settings_dietary_restrictions"
+            android:summary="Tap to edit"
+            android:title="Select Dietary Restrictions" />
     </PreferenceCategory>
 
 </PreferenceScreen>

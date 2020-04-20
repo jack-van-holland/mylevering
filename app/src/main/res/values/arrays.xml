@@ -24,4 +24,17 @@
     <string-array name="notification_preferences_default">
         <item>Order is ready</item>
     </string-array>
+
+    <string-array name="dietary_restrictions">
+        <item>Gluten-Free</item>
+        <item>Vegan</item>
+        <item>Halal</item>
+        <item>Nut Allergy</item>
+        <item>Vegetarian</item>
+        <item>Dairy-Free</item>
+        <item>Kosher</item>
+        <item>Shellfish Allergy</item>
+    </string-array>
+
+    <string-array name="dietary_restrictions_default"></string-array>
 </resources>
