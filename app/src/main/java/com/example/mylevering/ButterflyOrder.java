@@ -30,32 +30,36 @@ public class ButterflyOrder extends AppCompatActivity implements ButterflyMenuLi
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        HashSet<String> meatRestrictions = new HashSet<>();
-        meatRestrictions.add("Meat");
-        meatRestrictions.add("Gluten");
-        meatRestrictions.add("Dairy");
+        HashSet<String> chickenRestrictions = new HashSet<>();
+        chickenRestrictions.add("Chicken");
+        chickenRestrictions.add("Dairy");
+        chickenRestrictions.add("Gluten");
         HashSet<String> vegRestrictions = new HashSet<>();
         vegRestrictions.add("Gluten");
         vegRestrictions.add("Dairy");
+        HashSet<String> porkRestrictions = new HashSet<>();
+        porkRestrictions.add("Pork");
+        porkRestrictions.add("Dairy");
+        porkRestrictions.add("Gluten");
         // Create list and add stuff to it
         butterflyMenuList = new ArrayList<ButterflyMenuOption>();
         ButterflyMenuOption tacoChicken = new ButterflyMenuOption("Chicken Taco", "$6.99", "350",
-                "Corn tortilla, marinated pulled chicken, black beans, shredded mozzarella, cilantro, lime juice, pico de gallo\n", meatRestrictions, true);
+                "Corn tortilla, marinated pulled chicken, black beans, shredded mozzarella, cilantro, lime juice, pico de gallo\n", chickenRestrictions, true);
         butterflyMenuList.add(tacoChicken);
         ButterflyMenuOption tacoVeggie = new ButterflyMenuOption("Veggie Taco", "$5.99", "300",
                 "Flour tortilla, bell peppers, black beans, shredded mozzarella, cilantro, lime juice, pico de gallo\n", vegRestrictions, true);
         butterflyMenuList.add(tacoVeggie);
         ButterflyMenuOption tacoPork = new ButterflyMenuOption("Pork Taco", "$7.99", "400",
-                "Flour tortilla, marinated pulled pork, black beans, shredded mozzarella, cilantro, lime juice, pico de gallo\n", meatRestrictions, true);
+                "Flour tortilla, marinated pulled pork, black beans, shredded mozzarella, cilantro, lime juice, pico de gallo\n", porkRestrictions, true);
         butterflyMenuList.add(tacoPork);
         ButterflyMenuOption tortaChicken = new ButterflyMenuOption("Chicken Torta", "$6.99", "350",
-                "Bread, seasoned pulled chicken, black beans, avocado, pico de gallo\n", meatRestrictions, false);
+                "Bread, seasoned pulled chicken, black beans, avocado, pico de gallo\n", chickenRestrictions, false);
         butterflyMenuList.add(tortaChicken);
         ButterflyMenuOption tortaVeggie = new ButterflyMenuOption("Veggie Torta", "$5.99", "300",
                 "Bread, seasoned bell peppers, black beans, avocado, pico de gallo\n", vegRestrictions, true);
         butterflyMenuList.add(tortaVeggie);
         ButterflyMenuOption tortaPork = new ButterflyMenuOption("Pork Torta", "$7.99", "400",
-                "Bread, marinated pulled pork, black beans, avocado, pico de gallo\n", meatRestrictions, true);
+                "Bread, marinated pulled pork, black beans, avocado, pico de gallo\n", porkRestrictions, true);
         butterflyMenuList.add(tortaPork);
 
         adapter = new ButterflyMenuListAdapter(butterflyMenuList, this, getApplicationContext());

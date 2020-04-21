@@ -70,4 +70,36 @@ public class ButterflyMenuOption extends MenuOption implements Serializable {
         dest.writeString(description);
         dest.writeString(instructions);
     }*/
+
+    public boolean isKosher() {
+        return !restrictions.contains("Pork") || !(restrictions.contains("Chicken") && restrictions.contains("Dairy"));
+    }
+
+    public boolean isDairyFree() {
+        return !restrictions.contains("Dairy");
+    }
+
+    public boolean isVegetarian() {
+        return !(restrictions.contains("Pork") || restrictions.contains("Chicken"));
+    }
+
+    public boolean isVegan() {
+        return isDairyFree() && isVegetarian();
+    }
+
+    public boolean isHalal() {
+        return !restrictions.contains("Pork");
+    }
+
+    public boolean isGlutenFree() {
+        return !restrictions.contains("Gluten");
+    }
+
+    public boolean isNutAllergy() {
+        return false;
+    }
+
+    public boolean isShellfishAllergy() {
+        return false;
+    }
 }
