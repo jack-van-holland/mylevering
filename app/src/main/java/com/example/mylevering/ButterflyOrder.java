@@ -77,10 +77,6 @@ public class ButterflyOrder extends AppCompatActivity implements ButterflyMenuLi
             bundle.putSerializable("selected", bmo);
             intent.putExtras(bundle);
             startActivity(intent);
-        } else {
-            Toast toast = Toast.makeText(getApplicationContext(),
-                    "This item is not available to order right now.", Toast.LENGTH_SHORT);
-            toast.show();
         }
     }
 }
