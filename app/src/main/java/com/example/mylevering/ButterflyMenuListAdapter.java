@@ -48,15 +48,40 @@ public class ButterflyMenuListAdapter extends RecyclerView.Adapter<ButterflyMenu
 
         if (!menuItem.isAvailable()) {
             holder.itemView.setBackgroundColor(holder.itemView.getResources().getColor(R.color.colorGray));
+            holder.warningText.setText(R.string.out_of_stock);
         }else if (sp.contains("settings_dietary_restrictions")) {
             // do stuff for warnings
             Set<String> restrictions = sp.getStringSet("settings_dietary_restrictions",
                     Collections.<String>emptySet());
-            if (restrictions.contains("Vegetarian")) {
-                holder.itemView.setBackgroundColor(holder.itemView.getResources().getColor(R.color.warningBackground));
+            if (restrictions.contains("Kosher") && !menuItem.isKosher()) {
+                warn(holder, R.string.warning_kosher);
+            } else if (restrictions.contains("Halal") && !menuItem.isHalal()) {
+                warn(holder, R.string.warning_halal);
+            } else if (restrictions.contains("Nut Allergy") && menuItem.isNutAllergy()) {
+                warn(holder, R.string.warning_nut);
+            } else if (restrictions.contains("Shellfish Allergy") && menuItem.isShellfishAllergy() ) {
+                warn(holder, R.string.warning_shellfish);
+            } else if (restrictions.contains("Dairy-Free") && !menuItem.isDairyFree()) {
+                warn(holder, R.string.warning_dairy);
+            } else if (restrictions.contains("Gluten-Free") && !menuItem.isGlutenFree()) {
+                warn(holder, R.string.warning_gluten);
+            } else if (restrictions.contains("Vegan") && !menuItem.isVegan()) {
+                warn(holder, R.string.warning_vegan);
+            } else if (restrictions.contains("Vegetarian") && !menuItem.isVegetarian()) {
+                warn(holder, R.string.warning_vegetarian);
             }
+
         }
 
+    }
+
+    private void warn(@NonNull MyViewHolder holder, int message) {
+        holder.itemView.setBackgroundColor(holder.itemView.getResources().getColor(R.color.warningBackground));
+        holder.title.setTextColor(holder.itemView.getResources().getColor(R.color.warningForeground));
+        holder.price.setTextColor(holder.itemView.getResources().getColor(R.color.warningForeground));
+        holder.calories.setTextColor(holder.itemView.getResources().getColor(R.color.warningForeground));
+        holder.warningText.setTextColor(holder.itemView.getResources().getColor(R.color.warningForeground));
+        holder.warningText.setText(message);
     }
 
     @Override
@@ -73,6 +98,7 @@ public class ButterflyMenuListAdapter extends RecyclerView.Adapter<ButterflyMenu
         TextView title;
         TextView price;
         TextView calories;
+        TextView warningText;
         OnMenuItemListener onMenuItemListener;
 
         private MyViewHolder(@NonNull View itemView, OnMenuItemListener onMenuItemListener) {
@@ -80,6 +106,7 @@ public class ButterflyMenuListAdapter extends RecyclerView.Adapter<ButterflyMenu
             title = itemView.findViewById(R.id.menu_item_title);
             price = itemView.findViewById(R.id.menu_item_price);
             calories = itemView.findViewById(R.id.menu_item_calories);
+            warningText = itemView.findViewById(R.id.warning_text);
 
 
             this.onMenuItemListener = onMenuItemListener;

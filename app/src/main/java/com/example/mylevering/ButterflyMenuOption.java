@@ -72,7 +72,7 @@ public class ButterflyMenuOption extends MenuOption implements Serializable {
     }*/
 
     public boolean isKosher() {
-        return !restrictions.contains("Pork") || !(restrictions.contains("Chicken") && restrictions.contains("Dairy"));
+        return !restrictions.contains("Pork") && !(restrictions.contains("Chicken") && restrictions.contains("Dairy"));
     }
 
     public boolean isDairyFree() {

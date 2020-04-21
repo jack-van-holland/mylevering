@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/menu_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -8,7 +9,7 @@
     <LinearLayout
         android:layout_width="0sp"
         android:layout_height="wrap_content"
-        android:layout_weight="75"
+        android:layout_weight="65"
         android:orientation="vertical">
 
         <TextView
@@ -29,15 +30,32 @@
             android:text="@string/menu_option_calories" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/menu_item_price"
+    <LinearLayout
         android:layout_width="0sp"
         android:layout_height="match_parent"
-        android:layout_weight="25"
-        android:gravity="center"
-        android:paddingRight="10sp"
-        android:paddingLeft="10sp"
-        android:text="@string/menu_option_price"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_weight="35"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/menu_item_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|right"
+            android:paddingLeft="10sp"
+            android:paddingTop="12sp"
+            android:paddingRight="10sp"
+            android:text="@string/menu_option_price"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/warning_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom|right"
+            android:paddingRight="10sp"
+            android:textSize="10sp"
+            android:textStyle="italic"
+            tools:text="@string/out_of_stock" />
+    </LinearLayout>
 </LinearLayout>
