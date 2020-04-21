@@ -1,22 +1,31 @@
 package com.example.mylevering;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Set;
 
 public class ButterflyMenuListAdapter extends RecyclerView.Adapter<ButterflyMenuListAdapter.MyViewHolder> {
 
     private ArrayList<ButterflyMenuOption> butterflyMenuList;
     private OnMenuItemListener mOnMenuItemListener;
-    ButterflyMenuListAdapter(ArrayList<ButterflyMenuOption> butterflyMenuList, OnMenuItemListener onMenuItemListener) {
+    private Context context;
+
+    ButterflyMenuListAdapter(ArrayList<ButterflyMenuOption> butterflyMenuList, OnMenuItemListener onMenuItemListener,
+                             Context context) {
         this.butterflyMenuList = butterflyMenuList;
         this.mOnMenuItemListener = onMenuItemListener;
+        this.context = context;
     }
 
     @NonNull
@@ -29,15 +38,25 @@ public class ButterflyMenuListAdapter extends RecyclerView.Adapter<ButterflyMenu
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         ButterflyMenuOption menuItem = butterflyMenuList.get(position);
         String cal = menuItem.getCalories() + " Calories";
         holder.title.setText(menuItem.getTitle());
         holder.price.setText(menuItem.getPrice());
         holder.calories.setText(cal);
 
+
         if (!menuItem.isAvailable()) {
             holder.itemView.setBackgroundColor(holder.itemView.getResources().getColor(R.color.colorGray));
+        }else if (sp.contains("settings_dietary_restrictions")) {
+            // do stuff for warnings
+            Set<String> restrictions = sp.getStringSet("settings_dietary_restrictions",
+                    Collections.<String>emptySet());
+            if (restrictions.contains("Vegetarian")) {
+                holder.itemView.setBackgroundColor(holder.itemView.getResources().getColor(R.color.warningBackground));
+            }
         }
+
     }
 
     @Override

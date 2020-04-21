@@ -6,4 +6,6 @@
     <color name="colorAccent">#FFFFFF</color>
     <color name="colorGray">#D3D3D3</color>
     <color name="pastDate">#6699CC</color>
+    <color name="warningBackground">#FFDDDE</color>
+    <color name="warningForeground">#C35B5D</color>
 </resources>

@@ -1,15 +1,18 @@
 package com.example.mylevering;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class ButterflyOrder extends AppCompatActivity implements ButterflyMenuListAdapter.OnMenuItemListener {
 
@@ -53,7 +56,7 @@ public class ButterflyOrder extends AppCompatActivity implements ButterflyMenuLi
                 "Contains: Meat, Gluten", true);
         butterflyMenuList.add(tortaPork);
 
-        adapter = new ButterflyMenuListAdapter(butterflyMenuList, this);
+        adapter = new ButterflyMenuListAdapter(butterflyMenuList, this, getApplicationContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
     }
