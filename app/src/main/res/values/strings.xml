@@ -86,4 +86,19 @@
     <string name="warning_dairy">This item contains dairy</string>
     <string name="warning_gluten">This item contains gluten</string>
     <string name="warning_nut">This item contains nuts</string>
+    <string name="dietary_restrictions_help">Select  dietary restrictions from list below.</string>
+    <string name="dietary_restrictions_title">Dietary Restrictions</string>
+    <string name="prefs_gluten">Gluten-Free</string>
+    <string name="prefs_dairy">Dairy-Free</string>
+    <string name="prefs_kosher">Kosher</string>
+    <string name="prefs_halal">Halal</string>
+    <string name="prefs_vegan">Vegan</string>
+    <string name="prefs_nut">Nut Allergy</string>
+    <string name="prefs_shellfish">Shellfish Allergy</string>
+    <string name="prefs_vegetarian">Vegetarian</string>
+    <string name="prefs_order_sent">Order is sent</string>
+    <string name="prefs_in_queue">Order is in queue</string>
+    <string name="prefs_in_progress">Order is in progress</string>
+    <string name="prefs_order_complete">Order is complete</string>
+    <string name="prefs_notification_help">Notify me when...</string>
 </resources>

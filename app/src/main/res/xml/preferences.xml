@@ -8,42 +8,76 @@
     <PreferenceCategory android:title="Secret pref cat">
 
     </PreferenceCategory>
+    <SwitchPreference
+        android:id="@+id/settings_notifications_allowed"
+        android:defaultValue="false"
+        android:key="settings_notifications_allowed"
+        android:title="Allow Notifcations?" />
     <PreferenceCategory
         android:id="@+id/pref_cat"
         android:background="#FFFFFF"
+        android:summary="@string/prefs_notification_help"
         android:theme="@style/AppTheme.Settings"
         android:title="@string/settings_notification_title"
         android:visibility="visible"
+        app:dependency="settings_notifications_allowed"
         app:title="@string/settings_notification_title">
-        <SwitchPreference
-            android:id="@+id/settings_notifications_allowed"
-            android:defaultValue="false"
-            android:key="settings_notifications_allowed"
-            android:title="Allow Notifcations?" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:dependency="settings_notifications_allowed"
-            android:key="check_box_preference_1"
-            android:title="Check box preference" />
+            android:key="PREFS_SENT"
+            android:title="@string/prefs_order_sent" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:dependency="settings_notifications_allowed"
-            android:key="check_box_preference_1"
-            android:title="Check box preference" />
+            android:key="PREFS_IN_QUEUE"
+            android:title="@string/prefs_in_queue" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:dependency="settings_notifications_allowed"
-            android:key="check_box_preference_1"
-            android:title="Check box preference" />
+            android:key="PREFS_IN_PROGRESS"
+            android:title="@string/prefs_in_progress" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:dependency="settings_notifications_allowed"
+            android:key="PREFS_COMPLETE"
+            android:title="@string/prefs_order_complete" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="Dietary Restrictions">
-
-        <MultiSelectListPreference
-            android:entries="@array/dietary_restrictions"
-            android:entryValues="@array/dietary_restrictions"
-            android:key="settings_dietary_restrictions"
-            android:summary="Tap to edit"
-            android:title="Select Dietary Restrictions" />
+    <PreferenceCategory
+        android:summary="@string/dietary_restrictions_help"
+        android:title="@string/dietary_restrictions_title">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="PREFS_DAIRY"
+            android:title="@string/prefs_dairy" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="PREFS_GLUTEN"
+            android:title="@string/prefs_gluten" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="PREFS_HALAL"
+            android:title="@string/prefs_halal" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="PREFS_KOSHER"
+            android:title="@string/prefs_kosher" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="PREFS_NUT"
+            android:title="@string/prefs_nut" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="PREFS_SHELLFISH"
+            android:title="@string/prefs_shellfish" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="PREFS_VEGAN"
+            android:title="@string/prefs_vegan" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="PREFS_VEGETARIAN"
+            android:title="@string/prefs_vegetarian" />
     </PreferenceCategory>
 
 </PreferenceScreen>
