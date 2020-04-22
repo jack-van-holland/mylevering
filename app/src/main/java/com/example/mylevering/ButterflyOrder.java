@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ButterflyOrder extends AppCompatActivity implements ButterflyMenuListAdapter.OnMenuItemListener {
@@ -30,14 +31,14 @@ public class ButterflyOrder extends AppCompatActivity implements ButterflyMenuLi
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        HashSet<String> chickenRestrictions = new HashSet<>();
+        List<String> chickenRestrictions = new ArrayList<>();
         chickenRestrictions.add("Chicken");
         chickenRestrictions.add("Dairy");
         chickenRestrictions.add("Gluten");
-        HashSet<String> vegRestrictions = new HashSet<>();
+        List<String> vegRestrictions = new ArrayList<>();
         vegRestrictions.add("Gluten");
         vegRestrictions.add("Dairy");
-        HashSet<String> porkRestrictions = new HashSet<>();
+        List<String> porkRestrictions = new ArrayList<>();
         porkRestrictions.add("Pork");
         porkRestrictions.add("Dairy");
         porkRestrictions.add("Gluten");

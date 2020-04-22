@@ -4,16 +4,17 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 public class ButterflyMenuOption extends MenuOption implements Serializable {
 
     private String calories;
     private boolean available;
-    private Set<String> restrictions;
+    private List<String> restrictions;
     public ButterflyMenuOption(){}
 
-    public ButterflyMenuOption(String t, String p, String c, String d, Set<String> r, Boolean a) {
+    public ButterflyMenuOption(String t, String p, String c, String d, List<String> r, Boolean a) {
         this.setAll(t, p, c, d, r, a);
     }
 
@@ -36,7 +37,7 @@ public class ButterflyMenuOption extends MenuOption implements Serializable {
         }
     };*/
 
-    private void setAll(String title, String price, String calories, String description, Set<String> restrictions, boolean available){
+    private void setAll(String title, String price, String calories, String description, List<String> restrictions, boolean available){
         this.title = title;
         this.price = price;
         this.calories = calories;
@@ -49,7 +50,7 @@ public class ButterflyMenuOption extends MenuOption implements Serializable {
     public String getPrice() { return price; }
     public String getCalories() { return calories; }
     public String getDescription() { return description + "Contains: " + restrictions.toString().substring(1, restrictions.toString().length() - 1); }
-    public Set<String> getRestrictions() { return restrictions; }
+    public List<String> getRestrictions() { return restrictions; }
     public boolean isAvailable() { return available; }
     public void setCalories(String c) {
         calories = c;
