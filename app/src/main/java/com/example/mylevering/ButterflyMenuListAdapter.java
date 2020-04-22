@@ -49,30 +49,23 @@ public class ButterflyMenuListAdapter extends RecyclerView.Adapter<ButterflyMenu
         if (!menuItem.isAvailable()) {
             holder.itemView.setBackgroundColor(holder.itemView.getResources().getColor(R.color.colorGray));
             holder.warningText.setText(R.string.out_of_stock);
-        }else if (sp.contains("settings_dietary_restrictions")) {
-            // do stuff for warnings
-            Set<String> restrictions = sp.getStringSet("settings_dietary_restrictions",
-                    Collections.<String>emptySet());
-            if (restrictions.contains("Kosher") && !menuItem.isKosher()) {
+        }else if(sp.getBoolean("PREFS_KOSHER", false) && !menuItem.isKosher()) {
                 warn(holder, R.string.warning_kosher);
-            } else if (restrictions.contains("Halal") && !menuItem.isHalal()) {
-                warn(holder, R.string.warning_halal);
-            } else if (restrictions.contains("Nut Allergy") && menuItem.isNutAllergy()) {
-                warn(holder, R.string.warning_nut);
-            } else if (restrictions.contains("Shellfish Allergy") && menuItem.isShellfishAllergy() ) {
-                warn(holder, R.string.warning_shellfish);
-            } else if (restrictions.contains("Dairy-Free") && !menuItem.isDairyFree()) {
-                warn(holder, R.string.warning_dairy);
-            } else if (restrictions.contains("Gluten-Free") && !menuItem.isGlutenFree()) {
-                warn(holder, R.string.warning_gluten);
-            } else if (restrictions.contains("Vegan") && !menuItem.isVegan()) {
-                warn(holder, R.string.warning_vegan);
-            } else if (restrictions.contains("Vegetarian") && !menuItem.isVegetarian()) {
-                warn(holder, R.string.warning_vegetarian);
-            }
-
+        } else if (sp.getBoolean("PREFS_HALAL", false) && !menuItem.isHalal()) {
+            warn(holder, R.string.warning_halal);
+        } else if (sp.getBoolean("PREFS_NUT", false) && menuItem.isNutAllergy()) {
+            warn(holder, R.string.warning_nut);
+        } else if (sp.getBoolean("PREFS_SHELLFISH", false) && menuItem.isShellfishAllergy() ) {
+            warn(holder, R.string.warning_shellfish);
+        } else if (sp.getBoolean("PREFS_DAIRY", false) && !menuItem.isDairyFree()) {
+            warn(holder, R.string.warning_dairy);
+        } else if (sp.getBoolean("PREFS_GLUTEN", false) && !menuItem.isGlutenFree()) {
+            warn(holder, R.string.warning_gluten);
+        } else if (sp.getBoolean("PREFS_VEGAN", false) && !menuItem.isVegan()) {
+            warn(holder, R.string.warning_vegan);
+        } else if (sp.getBoolean("PREFS_VEGETARIAN", false) && !menuItem.isVegetarian()) {
+            warn(holder, R.string.warning_vegetarian);
         }
-
     }
 
     private void warn(@NonNull MyViewHolder holder, int message) {
