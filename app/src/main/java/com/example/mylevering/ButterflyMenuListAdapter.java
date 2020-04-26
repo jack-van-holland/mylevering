@@ -32,7 +32,7 @@ public class ButterflyMenuListAdapter extends RecyclerView.Adapter<ButterflyMenu
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.butterfly_menu_item,parent,false);
+                .inflate(R.layout.butterfly_menu_item, parent,false);
         return new MyViewHolder(view, mOnMenuItemListener);
     }
 
