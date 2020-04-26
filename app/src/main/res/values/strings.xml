@@ -33,9 +33,6 @@
     <string name="favs">Favorites</string>
     <string name="reorder">Re-Order</string>
 
-    <string name="payment_method_name">Payment Method Name</string>
-    <string name="payment_method_info">Payment Method Info</string>
-
 
     <string name="menu_option_title">Menu Item Title</string>
     <string name="menu_option_calories">Calories</string>
