@@ -33,6 +33,10 @@
     <string name="favs">Favorites</string>
     <string name="reorder">Re-Order</string>
 
+    <string name="jcard">J-Card</string>
+    <string name="jcard_balance"> <b>J-Cash Balance: </b>$75</string>
+    <string name="jcard_meal_plan"> <b>Meal Plan: </b> 14 Meal Swipes per Week</string>
+    <string name="jcard_dining_balance"> <b>Dining Dollars Balance: </b>$150</string>
 
     <string name="menu_option_title">Menu Item Title</string>
     <string name="menu_option_calories">Calories</string>
