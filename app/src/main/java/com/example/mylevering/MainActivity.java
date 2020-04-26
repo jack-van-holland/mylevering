@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity
     private Fragment pastOrdersFrag;
     private Fragment paymentFrag;
     private Fragment settingsFrag;
+    private Fragment myAccountFrag;
     private FragmentTransaction transaction;
     private SharedPreferences sp;
     public List<Order> pOrders = new ArrayList<>();;
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity
         pastOrdersFrag = new PastOrdersFrag();
         paymentFrag = new PaymentFrag();
         settingsFrag = new SettingsFrag();
+        myAccountFrag = new AccountFrag();
 
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -97,6 +99,19 @@ public class MainActivity extends AppCompatActivity
         View headerView = navigationView.getHeaderView(0);
         TextView name = headerView.findViewById(R.id.id_name);
         name.setText(auth.getCurrentUser().getDisplayName());
+
+        TextView viewAccount = headerView.findViewById(R.id.id_account);
+        viewAccount.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, myAccountFrag);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                DrawerLayout drawer = findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+            }
+        });
+
 
         sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor pe = sp.edit();
