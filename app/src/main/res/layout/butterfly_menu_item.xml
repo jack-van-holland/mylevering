@@ -19,7 +19,7 @@
             android:paddingLeft="10sp"
             android:paddingRight="10sp"
             android:text="@string/menu_option_title"
-            android:textSize="28sp" />
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/menu_item_calories"
