@@ -13,7 +13,7 @@
         android:layout_height="50dp"
         android:layout_gravity="end"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginEnd="0dp"
         android:thumbTint="@color/colorGray"
         android:trackTint="@drawable/favorite_thumb"
 

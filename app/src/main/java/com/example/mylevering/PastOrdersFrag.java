@@ -142,7 +142,7 @@ public class PastOrdersFrag extends Fragment {
         TextView date = new TextView(c);
         date.setId(View.generateViewId());
         date.setText(getDate(o.getCal()));
-        date.setTextColor(getResources().getColor(R.color.colorGray));
+        date.setTextColor(getResources().getColor(R.color.colorAccent));
         date.setPadding(25, 25, 0, 0);
         header.addView(date);
 
@@ -159,11 +159,12 @@ public class PastOrdersFrag extends Fragment {
         kitchen.setPadding(0, 0, 0, 0);
         TextView kitchenName = new TextView(c);
         kitchenName.setId(View.generateViewId());
-        kitchenName.setPadding(0, 25, 0, 0);
-        kitchenName.setTextSize(12f);
+        kitchenName.setPadding(0, 10, 0, 0);
+        kitchenName.setTextSize(20f);
         TextView title = new TextView(c);
         title.setId(View.generateViewId());
         title.setPadding(10, 0, 0, 10);
+        title.setTextSize(18f);
         final TextView description = new TextView(c);
         description.setId(View.generateViewId());
         final TextView descriptionShown = new TextView(c);
@@ -351,10 +352,10 @@ public class PastOrdersFrag extends Fragment {
             } else if (today.getDate() + 1 == d.getDay()) {
                 return "Yesterday at" + d.getHour() + ":" + mins + " " + d.getAM();
             } else {
-                return months[d.getMonth()] + " " + d.getDay() + ", " + d.getYear() + d.getHour() + ":" + mins + " " + d.getAM();
+                return months[d.getMonth()] + " " + d.getDay() + ", " + d.getYear() + " at " + d.getHour() + ":" + mins + " " + d.getAM();
             }
         } else {
-            return months[d.getMonth()] + " " + d.getDay() + ", " + d.getYear() + d.getHour() + ":" + mins + " " + d.getAM();
+            return months[d.getMonth()] + " " + d.getDay() + ", " + d.getYear() + " at " + d.getHour() + ":" + mins + " " + d.getAM();
         }
     }
     @Override

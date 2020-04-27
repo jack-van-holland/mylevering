@@ -30,7 +30,7 @@
     <string name="order">Order</string>
     <string name="freshLabel">Fresh</string>
 
-    <string name="favs">Favorites</string>
+    <string name="favs">Filter by Favorites</string>
     <string name="reorder">Re-Order</string>
 
     <string name="jcard">J-Card</string>
