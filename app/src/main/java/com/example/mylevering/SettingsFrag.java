@@ -23,5 +23,4 @@ public class SettingsFrag extends PreferenceFragmentCompat {
             main.setTitle("Settings");
         }
     }
-
 }

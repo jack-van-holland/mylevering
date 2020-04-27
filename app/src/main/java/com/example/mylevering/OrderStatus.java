@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 public class OrderStatus extends Thread {
 
     private MyOrderFrag frag;
+    private static final int DELAY = 3;
 
     public OrderStatus(MyOrderFrag myOrder) {
         frag = myOrder;
@@ -26,7 +27,7 @@ public class OrderStatus extends Thread {
             }
         });
         try {
-            TimeUnit.SECONDS.sleep(5);
+            TimeUnit.SECONDS.sleep(DELAY);
             frag.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -37,7 +38,7 @@ public class OrderStatus extends Thread {
                     }
                 }
             });
-            TimeUnit.SECONDS.sleep(5);
+            TimeUnit.SECONDS.sleep(DELAY);
             frag.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -48,7 +49,7 @@ public class OrderStatus extends Thread {
                     }
                 }
             });
-            TimeUnit.SECONDS.sleep(5);
+            TimeUnit.SECONDS.sleep(DELAY);
             frag.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -59,7 +60,7 @@ public class OrderStatus extends Thread {
                     }
                 }
             });
-            TimeUnit.SECONDS.sleep(5);
+            TimeUnit.SECONDS.sleep(DELAY);
             frag.getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
