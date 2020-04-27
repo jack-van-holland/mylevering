@@ -15,6 +15,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class LogIn extends AppCompatActivity {
@@ -78,6 +83,20 @@ public class LogIn extends AppCompatActivity {
         finish();
         String success = "Welcome, " + name + "!";
         Toast.makeText(getApplicationContext(), success, Toast.LENGTH_SHORT).show();
+
+//        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference();
+//        dbref.child("users").child(user.getUid()).child("PREFS_KOSHER").addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                System.out.println(dataSnapshot);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+
     }
 
 }

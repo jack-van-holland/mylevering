@@ -11,7 +11,7 @@
     <SwitchPreference
         android:id="@+id/settings_notifications_allowed"
         android:defaultValue="false"
-        android:key="settings_notifications_allowed"
+        android:key="PREFS_NOTIFICATIONS_ALLOWED"
         android:title="Allow Notifcations?" />
     <PreferenceCategory
         android:id="@+id/pref_cat"
