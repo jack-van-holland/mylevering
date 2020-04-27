@@ -92,19 +92,6 @@ public class LogIn extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), success, Toast.LENGTH_SHORT).show();
 
         // load in preference info
-
-
-//        dbref.child("users").child(user.getUid()).child("PREFS_KOSHER").addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                System.out.println(dataSnapshot);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
         DatabaseReference dbref = FirebaseDatabase.getInstance().getReference();
         DatabaseReference ref = dbref.child("users").child(user.getUid()).child("prefs");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
