@@ -13,6 +13,10 @@ public class SettingsFrag extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.preferences, rootKey);
+        MainActivity main = (MainActivity) getActivity();
+        if (main != null) {
+            main.setTitle("Settings");
+        }
     }
 
 //    @Override
