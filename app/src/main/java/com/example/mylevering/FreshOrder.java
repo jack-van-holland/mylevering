@@ -494,13 +494,17 @@ public class FreshOrder extends AppCompatActivity {
         int base = past.getBase();
         baseButtons[base].setChecked(true);
         ArrayList<Integer> spreads = past.getSpreads();
-        for (Integer j : spreads) {
-            spreadChecks[j].setChecked(true);
+        for (int j = 0; j < spreads.size(); j++) {
+            if(spreads.get(j) == 1) {
+                spreadChecks[j].setChecked(true);
+            }
         }
 
         ArrayList<Integer> toppings = past.getToppings();
-        for (Integer k : toppings) {
-            toppingChecks[k].setChecked(true);
+        for (int j = 0; j < toppings.size(); j++) {
+            if(toppings.get(j) == 1) {
+                toppingChecks[j].setChecked(true);
+            }
         }
         int protein = past.getProtein();
         proteinButtons[protein].setChecked(true);
