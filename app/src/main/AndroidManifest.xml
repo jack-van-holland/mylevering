@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WelcomeLanding">
+        <activity android:name=".WelcomeLanding"
+            android:screenOrientation="locked">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -17,36 +18,43 @@
         </activity>
         <activity
             android:name=".LogIn"
-            android:label="@string/title_activity_login">
+            android:label="@string/title_activity_login"
+            android:screenOrientation="locked">
         </activity>
         <activity
             android:name=".SignUp"
-            android:label="@string/title_activity_signup">
+            android:label="@string/title_activity_signup"
+            android:screenOrientation="locked">
         </activity>
         <activity
             android:name=".ButterflyMenuItem"
             android:label="@string/menu_item"
-            android:parentActivityName=".ButterflyOrder">
+            android:parentActivityName=".ButterflyOrder"
+            android:screenOrientation="locked">
         </activity>
         <activity
             android:name=".ButterflyOrder"
             android:label="@string/butterfly"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="locked">
         </activity>
         <activity
             android:name=".ConfirmOrder"
-            android:label="@string/confirm_order_label" />
+            android:label="@string/confirm_order_label"
+            android:screenOrientation="locked"/>
         <activity
             android:name=".FreshOrder"
             android:label="@string/freshLabel"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="locked"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/kitchens"
             android:launchMode="singleTop"
-            android:theme="@style/AppTheme.Settings">
+            android:theme="@style/AppTheme.Settings"
+            android:screenOrientation="locked">
         </activity>
     </application>
 
