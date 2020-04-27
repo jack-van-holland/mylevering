@@ -2,8 +2,10 @@ package com.example.mylevering;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -15,9 +17,19 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class LogIn extends AppCompatActivity {
+
+    private static final String[] prefs = {"PREFS_NOTIFICATIONS_ALLOWED", "PREFS_SENT",
+            "PREFS_IN_QUEUE", "PREFS_IN_PROGRESS", "PREFS_COMPLETE", "PREFS_DAIRY", "PREFS_GLUTEN",
+            "PREFS_HALAL", "PREFS_KOSHER", "PREFS_NUT", "PREFS_SHELLFISH", "PREFS_VEGAN",
+            "PREFS_VEGETARIAN"};
 
     private EditText username;
     private EditText pass;
@@ -78,6 +90,45 @@ public class LogIn extends AppCompatActivity {
         finish();
         String success = "Welcome, " + name + "!";
         Toast.makeText(getApplicationContext(), success, Toast.LENGTH_SHORT).show();
+
+        // load in preference info
+
+
+//        dbref.child("users").child(user.getUid()).child("PREFS_KOSHER").addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                System.out.println(dataSnapshot);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference ref = dbref.child("users").child(user.getUid()).child("prefs");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor pe = sp.edit();
+                for (String pref : prefs) {
+                    if (dataSnapshot.child(pref).getValue() != null) {
+                        System.out.println("yeah baby");
+                        pe.putBoolean(pref, (boolean) dataSnapshot.child(pref).getValue());
+                    } else {
+                        pe.putBoolean(pref, false);
+                    }
+                }
+                pe.commit();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
 }

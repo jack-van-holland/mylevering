@@ -40,6 +40,10 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private static final String[] prefs = {"PREFS_NOTIFICATIONS_ALLOWED", "PREFS_SENT",
+            "PREFS_IN_QUEUE", "PREFS_IN_PROGRESS", "PREFS_COMPLETE", "PREFS_DAIRY", "PREFS_GLUTEN",
+            "PREFS_HALAL", "PREFS_KOSHER", "PREFS_NUT", "PREFS_SHELLFISH", "PREFS_VEGAN",
+            "PREFS_VEGETARIAN"};
 
     private NavigationView navigationView;
     private Fragment kitchenFrag;
@@ -50,7 +54,7 @@ public class MainActivity extends AppCompatActivity
     private Fragment myAccountFrag;
     private FragmentTransaction transaction;
     private SharedPreferences sp;
-    public List<Order> pOrders = new ArrayList<>();;
+    public List<Order> pOrders = new ArrayList<>();
 
 
     private FirebaseDatabase dbase;
@@ -197,6 +201,11 @@ public class MainActivity extends AppCompatActivity
     private DialogInterface.OnClickListener signOutListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
+            // update changes in preferences
+            DatabaseReference ref = dbref.child("users").child(user.getUid()).child("prefs");
+            for (String pref : prefs) {
+               ref.child(pref).setValue(sp.getBoolean(pref, false));
+            }
             auth.signOut();
             Intent intent = new Intent(MainActivity.this, WelcomeLanding.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
