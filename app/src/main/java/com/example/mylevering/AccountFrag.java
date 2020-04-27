@@ -22,12 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AccountFrag extends Fragment {
 
-    private FirebaseDatabase dbase;
-    private DatabaseReference dbref;
     private FirebaseAuth auth;
-    private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseUser user;
-    private String userID;
 
     private TextView name, email, password;
     private Button applyChanges;
