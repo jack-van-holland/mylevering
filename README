@@ -1,14 +1,17 @@
-General state of app: working implementation with basic functionality (able to order)
+General state of app: full working implementation with complete functionality (minor style edits to be made)
 
-(Sprint 1) Features completed so far
+(Sprint 1) Features completed
     - general layout of the whole app w/ navigation menu
     - menu view for two kitchens (Butterfly & Fresh) with different layout style (list & BYO)
     - user can place a full order (everything from choosing menu item --> order --> submit order)
     - My Order page that shows up on nav menu only when an order is placed
 
-(Sprint 2) Features to implement
+(Sprint 2) Features completed
     - Login & sign-in
     - Past Orders (+ database to store orders)
     - Payment
     - Settings
     - My Account
+
+(Sprint 3) Features to be implemented
+    - consistent styling across whole app (layout, font, text size, etc)
