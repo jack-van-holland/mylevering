@@ -31,7 +31,6 @@ public class LogIn extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
 
         auth = FirebaseAuth.getInstance();
-
         username = findViewById(R.id.username);
         pass = findViewById(R.id.pass);
         progress = findViewById(R.id.progress_bar);

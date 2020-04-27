@@ -74,8 +74,6 @@ public class MainActivity extends AppCompatActivity
 
         updateData();
 
-
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -100,6 +98,7 @@ public class MainActivity extends AppCompatActivity
         TextView name = headerView.findViewById(R.id.id_name);
         name.setText(auth.getCurrentUser().getDisplayName());
 
+        // View Account
         TextView viewAccount = headerView.findViewById(R.id.id_account);
         viewAccount.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -111,7 +110,6 @@ public class MainActivity extends AppCompatActivity
                 drawer.closeDrawer(GravityCompat.START);
             }
         });
-
 
         sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor pe = sp.edit();
