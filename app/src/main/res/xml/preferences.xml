@@ -20,26 +20,26 @@
         android:theme="@style/AppTheme.Settings"
         android:title="@string/settings_notification_title"
         android:visibility="visible"
-        app:dependency="settings_notifications_allowed"
+        app:dependency="PREFS_NOTIFICATIONS_ALLOWED"
         app:title="@string/settings_notification_title">
         <CheckBoxPreference
             android:defaultValue="false"
-            android:dependency="settings_notifications_allowed"
+            android:dependency="PREFS_NOTIFICATIONS_ALLOWED"
             android:key="PREFS_SENT"
             android:title="@string/prefs_order_sent" />
         <CheckBoxPreference
             android:defaultValue="false"
-            android:dependency="settings_notifications_allowed"
+            android:dependency="PREFS_NOTIFICATIONS_ALLOWED"
             android:key="PREFS_IN_QUEUE"
             android:title="@string/prefs_in_queue" />
         <CheckBoxPreference
             android:defaultValue="false"
-            android:dependency="settings_notifications_allowed"
+            android:dependency="PREFS_NOTIFICATIONS_ALLOWED"
             android:key="PREFS_IN_PROGRESS"
             android:title="@string/prefs_in_progress" />
         <CheckBoxPreference
             android:defaultValue="false"
-            android:dependency="settings_notifications_allowed"
+            android:dependency="PREFS_NOTIFICATIONS_ALLOWED"
             android:key="PREFS_COMPLETE"
             android:title="@string/prefs_order_complete" />
     </PreferenceCategory>
