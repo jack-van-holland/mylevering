@@ -13,19 +13,15 @@ public class SettingsFrag extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.preferences, rootKey);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         MainActivity main = (MainActivity) getActivity();
         if (main != null) {
             main.setTitle("Settings");
         }
     }
 
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        MainActivity main = (MainActivity) getActivity();
-//        if (main != null) {
-//            main.setTitle("Settings");
-//        }
-//        return inflater.inflate(R.layout.fragment_settings, container, false);
-//    }
 }
