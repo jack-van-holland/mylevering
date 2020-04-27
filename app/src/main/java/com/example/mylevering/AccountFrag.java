@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -38,16 +39,15 @@ public class AccountFrag extends Fragment {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
-        //auth.addAuthStateListener(authStateListener);
 
-        MainActivity main = (MainActivity) getActivity();
+        final MainActivity main = (MainActivity) getActivity();
         if (main != null) {
             main.setTitle("My Account");
         }
 
         name = view.findViewById(R.id.enter_name);
         email = view.findViewById(R.id.enter_email);
-        password = view.findViewById(R.id.edit_password);
+        //password = view.findViewById(R.id.edit_password);
         applyChanges = view.findViewById(R.id.submit);
 
         name.setText(auth.getCurrentUser().getDisplayName());
@@ -72,8 +72,13 @@ public class AccountFrag extends Fragment {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        //Log.d(TAG, "User profile updated.");
                                         name.setText(user.getDisplayName());
+                                        NavigationView navigationView = main.findViewById(R.id.nav_view);
+                                        View headerView = navigationView.getHeaderView(0);
+                                        TextView headerName = headerView.findViewById(R.id.id_name);
+                                        headerName.setText(user.getDisplayName());
+
+                                        Toast.makeText(getContext(), "Changes Applied", Toast.LENGTH_SHORT).show();
                                     } else {
                                         Toast.makeText(getContext(), "Name Update Failed", Toast.LENGTH_SHORT).show();
                                     }
@@ -91,8 +96,8 @@ public class AccountFrag extends Fragment {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        //Log.d(TAG, "User email address updated.");
                                         email.setText(user.getEmail());
+                                        Toast.makeText(getContext(), "Changes Applied", Toast.LENGTH_SHORT).show();
                                     } else {
                                         Toast.makeText(getContext(), "Email Update Failed", Toast.LENGTH_SHORT).show();
                                     }
@@ -109,28 +114,9 @@ public class AccountFrag extends Fragment {
                                 }
                             }
                         });
-
                  */
-
             }
         });
-
-
-        /*
-        authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                user = firebaseAuth.getCurrentUser();
-                userID = user.getUid();
-                dbref = FirebaseDatabase.getInstance().getReference().child("Accounts").child("user").child(userID);
-
-                if (user != null) {
-
-                }
-            }
-        };
-
-        */
 
         return view;
     }

@@ -57,6 +57,7 @@
             android:inputType="textEmailAddress"
             android:hint="Email"/>
 
+        <!--
         <EditText
             android:id="@+id/edit_password"
             android:layout_width="match_parent"
@@ -66,6 +67,7 @@
             android:ems="10"
             android:inputType="textPassword"
             android:hint="Password"/>
+            -->
 
         <Button
             android:id="@+id/submit"
