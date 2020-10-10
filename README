@@ -1,17 +1,10 @@
-General state of app: full working implementation with complete functionality (minor style edits to be made)
+This is a high-fidelity prototype of a mobile ordering app for Levering Kitchens, an on-campus dining locations at JHU. 
+Developed with the scrum process and user-centered design based on user surveys and research.
+This models Levering Kitchen, a food court-esque dining hall composed of different restaurants.
+Only Fresh and Butterfly, the salad and taco restaurants, were fully developed for the sake of this prototype.
+Also links to a Firebase database to store user's past orders for ease in re-ordering.
+Menus and ordering implemented with object-oriented design, utilizing inheritance, polymorphism, and serializability to
+interact with the database. 
 
-(Sprint 1) Features completed
-    - general layout of the whole app w/ navigation menu
-    - menu view for two kitchens (Butterfly & Fresh) with different layout style (list & BYO)
-    - user can place a full order (everything from choosing menu item --> order --> submit order)
-    - My Order page that shows up on nav menu only when an order is placed
 
-(Sprint 2) Features completed
-    - Login & sign-in
-    - Past Orders (+ database to store orders)
-    - Payment
-    - Settings
-    - My Account
-
-(Sprint 3) Features to be implemented
-    - consistent styling across whole app (layout, font, text size, etc)
+Created with Camila Camacho, Soo-yeon Kim, and Gabe Givelber for User Interfaces and Mobile Applications at JHU.
