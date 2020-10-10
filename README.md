@@ -6,5 +6,7 @@ Also links to a Firebase database to store user's past orders for ease in re-ord
 Menus and ordering implemented with object-oriented design, utilizing inheritance, polymorphism, and serializability to
 interact with the database. 
 
+![Image of Welcome Screen](/leveringWelcome.png)
+![Image of App](/leveringPhoto.png)
 
 Created with Camila Camacho, Soo-yeon Kim, and Gabe Givelber for User Interfaces and Mobile Applications at JHU.
